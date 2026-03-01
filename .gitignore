@@ -86,3 +86,5 @@ web/axe-results*
 # backed up files directories
 files-staging/
 files-prod/
+
+!ddev-snapshot/*.gz
