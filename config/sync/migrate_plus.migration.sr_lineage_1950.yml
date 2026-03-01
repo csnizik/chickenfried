@@ -1,0 +1,88 @@
+uuid: null
+langcode: en
+status: true
+dependencies: {  }
+id: sr_lineage_1950
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - '1950'
+  - pedi
+  - lineage
+  - phase1
+migration_group: sheep_data
+label: 'PEDI 1950 → Set sire/dam references on sheep_records'
+
+source:
+  plugin: csv
+  path: modules/custom/sheep_migration/data/pedigree-csv/preprocessed/PEDI1950.preprocessed.csv
+  ids:
+    - UID
+  # Preprocessed PEDI columns include: UID, LAMB, SIRE, DAM, ID10, SIREID10, DAMID10,
+  # LAMB_YR, LAMB_BRD, LAMB_ETAG, SIRE_YR, SIRE_BRD, SIRE_ETAG, DAM_YR, DAM_BRD, DAM_ETAG
+
+process:
+  # --- Find the lamb entity to update ---
+  _lamb_from_stubs:
+    plugin: migration_lookup
+    migration: [sr_pedi_stubs]
+    source: ID10
+    no_stub: true
+
+  _lamb_from_lookup:
+    plugin: entity_lookup
+    source: ID10
+    value_key: field_s_id10
+    entity_type: sheep_entities_sheep_record
+    ignore_case: true
+
+  id:
+    plugin: null_coalesce
+    source:
+      - '@_lamb_from_stubs'
+      - '@_lamb_from_lookup'
+    # If neither found, this row creates nothing (no destination entity ID)
+
+  # Always set ID10
+  field_s_id10: ID10
+
+  # --- Sire reference ---
+  field_s_sire:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: SIREID10
+    -
+      plugin: entity_lookup
+      entity_type: sheep_entities_sheep_record
+      value_key: field_s_id10
+      ignore_case: true
+    -
+      plugin: skip_on_empty
+      method: process
+      message: 'Sire entity not found for SIREID10'
+
+  # --- Dam reference ---
+  field_s_dam:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: DAMID10
+    -
+      plugin: entity_lookup
+      entity_type: sheep_entities_sheep_record
+      value_key: field_s_id10
+      ignore_case: true
+    -
+      plugin: skip_on_empty
+      method: process
+      message: 'Dam entity not found for DAMID10'
+
+destination:
+  plugin: 'entity:sheep_entities_sheep_record'
+
+migration_dependencies:
+  required:
+    - sr_pedi_stubs
+    - sr_lambp_1950

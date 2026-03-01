@@ -1,0 +1,274 @@
+uuid: null
+langcode: en
+status: true
+dependencies: {  }
+id: sr_lambp_1950
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - '1950'
+  - lamb
+  - sheep_record
+  - preprocessed
+  - phase2
+migration_group: sheep_data
+label: 'LAMB 1950 → Update sheep_records with birth data'
+
+source:
+  plugin: csv
+  path: modules/custom/sheep_migration/data/lamb-csv/preprocessed/LAMB1950.preprocessed.csv
+  ids:
+    - ID10
+  constants:
+    year_label: '1950'
+    source_file: 'LAMB1950.csv'
+
+process:
+  # --- Entity lookup: find stub created by sr_pedi_stubs ---
+  _entity_id_from_stubs:
+    plugin: migration_lookup
+    migration: [sr_pedi_stubs]
+    source: ID10
+    no_stub: true
+
+  _entity_id_from_lookup:
+    plugin: entity_lookup
+    source: ID10
+    value_key: field_s_id10
+    entity_type: sheep_entities_sheep_record
+    ignore_case: true
+
+  id:
+    plugin: null_coalesce
+    source:
+      - '@_entity_id_from_stubs'
+      - '@_entity_id_from_lookup'
+
+  # ── Core identity ───────────────────────────────────────────────
+
+  field_s_id10:
+    plugin: validate_id10_length
+    source: ID10
+
+  field_s_etag:
+    -
+      plugin: get
+      source: LAMB
+    -
+      plugin: callback
+      callable: strval
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: skip_on_empty
+      method: process
+
+  # ── Birth data ──────────────────────────────────────────────────
+
+  # 1950 has full date strings (DATEBN = "1950-04-19").
+  # If DATEBN is empty, fall back to julian_to_date from DAYBN.
+  field_s_birth_date:
+    -
+      plugin: get
+      source: DATEBN
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: skip_on_empty
+      method: process
+  # @todo: add fallback pipeline for DAYBN via julian_to_date
+  #        if DATEBN is empty for some rows.
+
+  # BRWT → birth weight (physical_measurement: number + unit)
+  field_s_birth_weight/number:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: BRWT
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: callback
+      callable: floatval
+    -
+      plugin: skip_on_value
+      method: process
+      value: 0
+
+  field_s_birth_weight/unit:
+    plugin: default_value
+    default_value: lb
+
+  field_s_card_num:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: CDNO
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: callback
+      callable: intval
+
+  # Type of birth — plain integer (1-10 scale), NOT a taxonomy reference
+  field_s_type_of_birth:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: TB
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: callback
+      callable: intval
+    -
+      plugin: skip_on_value
+      method: process
+      value: 0
+
+  # ── Taxonomy references ─────────────────────────────────────────
+
+  field_s_sex:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: SEX
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: entity_generate
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: s_sex
+      value_key: name
+      ignore_case: true
+
+  field_s_breed:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: LBRD
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: entity_generate
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: s_breeds
+      value_key: name
+      ignore_case: true
+
+  field_s_line:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: LINE
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: entity_generate
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: s_lines
+      value_key: name
+      ignore_case: true
+
+  field_s_subtype_mating:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: STM
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: entity_generate
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: s_subtype_matings
+      value_key: name
+      ignore_case: true
+
+  # ── Phenotype fields ────────────────────────────────────────────
+
+  field_s_color:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: CLR
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: callback
+      callable: intval
+
+  # 1950 uses INBL (not INBRL as in 2010+)
+  field_s_inbreeding:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: INBL
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: callback
+      callable: floatval
+
+  # ── Disposal data ───────────────────────────────────────────────
+
+  # DISP → preliminary disposal taxonomy
+  field_s_preliminary_disp:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: DISP
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: entity_generate
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: s_preliminary_disposals
+      value_key: name
+      ignore_case: true
+
+  # DAYDIS → disposal date via julian_to_date plugin
+  field_s_disposal_date:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: DAYDIS
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: skip_on_value
+      method: process
+      value: '0'
+    -
+      plugin: julian_to_date
+      year: constants/year_label
+
+  # ── Provenance ──────────────────────────────────────────────────
+
+  field_s_migration_source: constants/source_file
+  field_s_migration_year: constants/year_label
+
+destination:
+  plugin: 'entity:sheep_entities_sheep_record'
+
+migration_dependencies:
+  required:
+    - sr_pedi_stubs
