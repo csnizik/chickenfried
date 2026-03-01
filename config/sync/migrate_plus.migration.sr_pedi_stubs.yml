@@ -29,9 +29,7 @@ source:
   # Registry CSV columns: id10, birth_year, breed, etag, id_type, sources
 
 process:
-  # --- Dedup: if entity already exists (from ANY migration), reuse its ID ---
-  # If entity found → update mode (harmless for stubs).
-  # If null → create new entity.
+  # --- Dedup: skip row if entity already exists (from ANY migration) ---
   _existing_entity:
     plugin: entity_lookup
     source: id10
@@ -39,10 +37,11 @@ process:
     value_key: field_s_id10
     ignore_case: true
 
-  id:
-    plugin: null_coalesce
-    source:
-      - '@_existing_entity'
+  _skip_if_exists:
+    plugin: skip_on_not_empty
+    method: row
+    source: '@_existing_entity'
+    message: 'Skipping — entity already exists for this id10'
 
   # --- Core fields ---
   field_s_id10: id10
