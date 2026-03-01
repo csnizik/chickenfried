@@ -1,0 +1,23 @@
+uuid: 8a8a9082-a316-4629-a556-20a7bba95dd1
+langcode: en
+status: true
+dependencies:
+  config:
+    - dashboards.dashboard.nematode
+  module:
+    - contextual
+    - dashboards
+    - group
+    - help
+    - toolbar
+id: nematode
+label: Nematode
+weight: 1
+is_admin: false
+permissions:
+  - 'access contextual links'
+  - 'access group overview'
+  - 'access help pages'
+  - 'access toolbar'
+  - 'access user profiles'
+  - 'can view nematode dashboard'

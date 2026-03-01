@@ -1,0 +1,14 @@
+uuid: 65da59a7-3b4c-4272-84c2-882a5a870d1d
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.rsper
+  module:
+    - user
+id: user_add_role_action.rsper
+label: 'Add the RSPER role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: rsper

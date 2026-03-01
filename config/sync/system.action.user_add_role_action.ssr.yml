@@ -1,0 +1,14 @@
+uuid: 971234af-d9d3-4f36-8a6d-ec02da847abc
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.ssr
+  module:
+    - user
+id: user_add_role_action.ssr
+label: 'Add the SSR role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: ssr

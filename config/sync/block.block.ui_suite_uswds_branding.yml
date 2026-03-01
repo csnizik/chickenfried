@@ -1,0 +1,25 @@
+uuid: 6d3d7704-e2b3-42d3-abe9-948fc7b36505
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - ui_suite_uswds
+_core:
+  default_config_hash: rc-z_tpRhdw8Dva5Q1-kP1dZ6QEyB-syub9n9Bh8zYo
+id: ui_suite_uswds_branding
+theme: ui_suite_uswds
+region: header_top
+weight: 0
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: false
+visibility: {  }

@@ -1,0 +1,38 @@
+uuid: 284689d9-d5e3-4229-b35c-4a601ad895bc
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+_core:
+  default_config_hash: hEuo32DKPjirGo1l6A1bpHwJJSEgllENKV2f5QqpC-A
+id: paragraph.field_step_indicator_variant
+field_name: field_step_indicator_variant
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: default
+      label: Default
+    -
+      value: no_labels
+      label: 'No labels'
+    -
+      value: counters
+      label: Counters
+    -
+      value: counters_sm
+      label: 'Counters Small'
+    -
+      value: center
+      label: Center
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

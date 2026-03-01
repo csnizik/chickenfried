@@ -1,0 +1,19 @@
+uuid: 6a58a96c-2c9d-4b0d-b179-c6a88b5a682c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_human_readable_name
+    - taxonomy.vocabulary.s_disposal_codes
+id: taxonomy_term.s_disposal_codes.field_human_readable_name
+field_name: field_human_readable_name
+entity_type: taxonomy_term
+bundle: s_disposal_codes
+label: 'Human readable name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

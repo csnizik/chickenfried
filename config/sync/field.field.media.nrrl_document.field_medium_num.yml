@@ -1,0 +1,23 @@
+uuid: cc1899d5-5c70-4dae-94e2-63776556fe0a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_medium_num
+    - media.type.nrrl_document
+id: media.nrrl_document.field_medium_num
+field_name: field_medium_num
+entity_type: media
+bundle: nrrl_document
+label: 'Medium #'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

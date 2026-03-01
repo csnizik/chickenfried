@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for ARS Apps Core module.
+ */
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function ars_apps_core_preprocess_block(array &$variables): void {
+  if ($variables['plugin_id'] === 'webform_contextual_help') {
+    // Get values from render array (set in block's build()).
+    $variables['current_page'] = $variables['content']['#current_page'] ?? '';
+
+    // Get values from block config.
+    $block = $variables['elements']['#block'] ?? NULL;
+    if ($block) {
+      $config = $block->get('settings') ?? [];
+      $variables['webform_id'] = $config['webform_id'] ?? '';
+      $variables['contextual_heading'] = $config['heading'] ?? '';
+    }
+  }
+}
+
+/**
+ * Implements hook_theme
+ */
+function ars_apps_core_theme($existing, $type, $theme, $path) {
+  return [
+    'menu__account' => [
+      'base hook' => 'menu'
+    ]
+    ];
+}
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function ars_apps_core_views_pre_render(\Drupal\views\ViewExecutable $view): void {
+  // Disable AJAX scroll-to-top behavior for views with auto-submit filters.
+  $view->element['#attached']['drupalSettings']['views']['ajaxViews']['scroll_to_top'] = FALSE;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function ars_apps_core_form_alter(array &$form, \Drupal\Core\Form\FormStateInterface $form_state, string $form_id): void {
+  // Attach BEF reset fix to views exposed forms.
+  if (str_starts_with($form_id, 'views_exposed_form')) {
+    $form['#attached']['library'][] = 'ars_apps_core/bef-reset-fix';
+  }
+}

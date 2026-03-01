@@ -1,0 +1,23 @@
+uuid: bf757242-f850-4383-943f-82ad2c86b160
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_card_header_first
+    - paragraphs.paragraphs_type.ui_suite_uswds_card
+_core:
+  default_config_hash: cSrCZPuwkUwDiOni9sf7p-K2b_wdpeN1B7mnrXK18UM
+id: paragraph.ui_suite_uswds_card.field_card_header_first
+field_name: field_card_header_first
+entity_type: paragraph
+bundle: ui_suite_uswds_card
+label: 'Header first'
+description: 'Make the header/title appear above image.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

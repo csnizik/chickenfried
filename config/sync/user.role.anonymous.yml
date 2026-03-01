@@ -1,0 +1,24 @@
+uuid: bf549bc6-4cc4-4a54-b0ad-94bb19de410b
+langcode: en
+status: true
+dependencies:
+  module:
+    - comment
+    - contact
+    - media
+    - search
+    - sitewide_alert
+    - system
+_core:
+  default_config_hash: 6WavjUYXIegP9AAg2zXGx54MWIVoomC3SZhNiqe-Dyk
+id: anonymous
+label: 'Anonymous user'
+weight: -9
+is_admin: false
+permissions:
+  - 'access comments'
+  - 'access content'
+  - 'access site-wide contact form'
+  - 'search content'
+  - 'view media'
+  - 'view published sitewide alert entities'

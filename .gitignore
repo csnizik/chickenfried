@@ -1,0 +1,88 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+core
+
+
+# Ignore sensitive files
+web/sites/default/settings.*.php
+web/sites/*.services.yml
+web/sites/*.*.services.yml
+
+
+# Ignore private files
+web/sites/*/files/private/
+web/sites/*/files/temporary/
+web/sites/*/files/sync/
+web/sites/*/files/config_*
+
+
+# Ignore contributed modules and themes
+web/sites/*/modules/contrib/
+web/sites/*/themes/contrib/
+web/modules/contrib/
+web/themes/contrib/
+
+
+# Ignore default files folder
+web/sites/default/files/
+
+
+# Ignore cache and temporary files
+web/sites/*/files/css/
+web/sites/*/files/js/
+web/sites/*/files/php/
+
+
+# Ignore generated and compiled files
+*.gz
+# Allow project-local DB backups (negate the global *.gz rule)
+!.db-backups/
+!.db-backups/*.gz
+*.tar
+*.zip
+*.log
+migration-logs*
+
+
+# Ignore Composer vendor folder
+vendor/
+**/vendor/
+
+
+# Ignore Node.js dependency folder
+node_modules/
+**/node_modules/
+
+# Editor swap files
+*.swp
+*.swo
+*.swx
+
+# DDEV files
+/.ddev/.dbImageBuild/
+/.ddev/.webimageBuild/
+/.ddev/.ddev-docker-compose-*.yaml
+
+/CLAUDE.md
+/.ddev/.claude/
+
+.dev/
+
+config/sync_*/
+
+# Any top level folders or files that start with _
+/_*
+
+# local scratch
+config-snapshot/
+incoming-config/
+
+# local axe results
+axe-results/
+axe-results*
+web/axe-results*
+
+# backed up files directories
+files-staging/
+files-prod/

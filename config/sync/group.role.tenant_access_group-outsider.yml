@@ -1,0 +1,22 @@
+uuid: 393882f8-ef74-4d40-ae3c-a18e6d8056fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - user.role.authenticated
+id: tenant_access_group-outsider
+label: Outsider
+weight: -9
+admin: false
+scope: outsider
+global_role: authenticated
+group_type: tenant_access_group
+permissions:
+  - 'view group_media:document entity'
+  - 'view group_media:image entity'
+  - 'view group_media:nrrl_catalog entity'
+  - 'view group_media:nrrl_document entity'
+  - 'view group_node:page entity'
+  - 'view group_node:webform entity'
+  - 'view nematode_entities_specimen entity'

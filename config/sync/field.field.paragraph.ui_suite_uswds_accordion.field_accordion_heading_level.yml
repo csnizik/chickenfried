@@ -1,0 +1,23 @@
+uuid: 4b9dc845-9b53-42c1-9229-98210f1ba0aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_accordion_heading_level
+    - paragraphs.paragraphs_type.ui_suite_uswds_accordion
+  module:
+    - options
+_core:
+  default_config_hash: _4DE2fNVH3-xeHETopIPuhN_aKf8hT6PwKO1WOd726g
+id: paragraph.ui_suite_uswds_accordion.field_accordion_heading_level
+field_name: field_accordion_heading_level
+entity_type: paragraph
+bundle: ui_suite_uswds_accordion
+label: 'Heading level'
+description: 'Useful for accessibility.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,31 @@
+uuid: 67dac313-438e-48cb-9a22-4151a772b256
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_collection_item_meta_tags
+    - paragraphs.paragraphs_type.ui_suite_uswds_collection_item
+    - taxonomy.vocabulary.tags
+_core:
+  default_config_hash: CTtCymobMCqfSJmHoBqTHbGssNI91E90fQ3us30vzmk
+id: paragraph.ui_suite_uswds_collection_item.field_collection_item_meta_tags
+field_name: field_collection_item_meta_tags
+entity_type: paragraph
+bundle: ui_suite_uswds_collection_item
+label: 'Meta Tags'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tags: tags
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

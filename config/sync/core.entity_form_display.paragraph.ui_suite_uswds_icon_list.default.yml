@@ -1,0 +1,38 @@
+uuid: 7209c251-afa5-46e9-9ccb-ea346aa52734
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ui_suite_uswds_icon_list.field_icon_list_items
+    - paragraphs.paragraphs_type.ui_suite_uswds_icon_list
+  module:
+    - paragraphs
+_core:
+  default_config_hash: 94D6PxsprFJh-lk0obTZeTWIVf2OUtoDJIl5uDYoPW0
+id: paragraph.ui_suite_uswds_icon_list.default
+targetEntityType: paragraph
+bundle: ui_suite_uswds_icon_list
+mode: default
+content:
+  field_icon_list_items:
+    type: paragraphs
+    weight: 0
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ui_suite_uswds_icon_list_item
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,23 @@
+uuid: 96ffc581-b617-493e-acb4-189379ea9e43
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_media_formula
+    - media.type.nrrl_document
+id: media.nrrl_document.field_media_formula
+field_name: field_media_formula
+entity_type: media
+bundle: nrrl_document
+label: 'Media formula'
+description: 'Checking this box will cause this document to be displayed on the Media Formulas page.'
+required: true
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

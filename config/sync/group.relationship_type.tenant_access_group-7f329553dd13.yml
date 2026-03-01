@@ -1,0 +1,17 @@
+uuid: 92acc7f3-652f-4780-ba97-afea690c632c
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - taxonomy.vocabulary.s_sex
+  module:
+    - group_term
+    - taxonomy
+id: tenant_access_group-7f329553dd13
+group_type: tenant_access_group
+content_plugin: 'group_term:s_sex'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

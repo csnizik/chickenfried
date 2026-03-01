@@ -1,0 +1,21 @@
+uuid: ae9342f5-219e-4d29-b5ac-913629bf28f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - dashboards.dashboard.nrrl
+  module:
+    - dashboards
+    - group
+    - help
+    - toolbar
+id: nrrl
+label: NRRL
+weight: 3
+is_admin: false
+permissions:
+  - 'access group overview'
+  - 'access help pages'
+  - 'access toolbar'
+  - 'access user profiles'
+  - 'can view nrrl dashboard'

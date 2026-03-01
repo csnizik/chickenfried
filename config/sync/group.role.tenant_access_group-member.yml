@@ -1,0 +1,22 @@
+uuid: 1b70c44a-dcbc-44be-a8c5-52317049fbe6
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - user.role.authenticated
+id: tenant_access_group-member
+label: Member
+weight: -8
+admin: false
+scope: insider
+global_role: authenticated
+group_type: tenant_access_group
+permissions:
+  - 'view group_media:document entity'
+  - 'view group_media:image entity'
+  - 'view group_media:nrrl_catalog entity'
+  - 'view group_media:nrrl_document entity'
+  - 'view group_node:page entity'
+  - 'view group_node:webform entity'
+  - 'view nematode_entities_specimen entity'

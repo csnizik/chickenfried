@@ -1,0 +1,60 @@
+uuid: 4e41a584-3427-4252-95bc-d11948ce9fcc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ui_suite_uswds_process_list.field_process_list_items
+    - paragraphs.paragraphs_type.ui_suite_uswds_process_list
+  module:
+    - entity_reference_revisions
+    - nomarkup
+    - ui_patterns
+    - ui_patterns_field_formatters
+  theme:
+    - ui_suite_uswds
+_core:
+  default_config_hash: 8NcOyLU0rPFUpeu-dO9Wy_Yjm05Tqer7FB1z2NwszWE
+id: paragraph.ui_suite_uswds_process_list.default
+targetEntityType: paragraph
+bundle: ui_suite_uswds_process_list
+mode: default
+content:
+  field_process_list_items:
+    type: ui_patterns_component
+    label: hidden
+    settings:
+      ui_patterns:
+        component_id: 'ui_suite_uswds:process_list'
+        variant_id: null
+        props:
+          attributes:
+            source_id: class_attribute
+            source:
+              value: ''
+        slots:
+          items:
+            sources:
+              -
+                source:
+                  derivable_context: 'field:paragraph:ui_suite_uswds_process_list:field_process_list_items'
+                  'field:paragraph:ui_suite_uswds_process_list:field_process_list_items':
+                    value:
+                      sources:
+                        -
+                          source:
+                            type: entity_reference_revisions_entity_view
+                            settings:
+                              view_mode: default
+                          source_id: 'field_formatter:paragraph:ui_suite_uswds_process_list:field_process_list_items'
+                          _weight: '0'
+                source_id: entity_field
+                _weight: '0'
+    third_party_settings:
+      nomarkup:
+        enabled: true
+        separator: ''
+        referenced_entity: ''
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

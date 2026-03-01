@@ -1,0 +1,28 @@
+uuid: d965be18-bcd6-48f7-99c1-24aedea61724
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.sheep_migration_validator
+  module:
+    - system
+    - views
+  theme:
+    - ui_suite_arsapps
+id: migration_validator_pedi
+theme: ui_suite_arsapps
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'views_exposed_filter_block:sheep_migration_validator-migration_validator_pedi'
+settings:
+  id: 'views_exposed_filter_block:sheep_migration_validator-migration_validator_pedi'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /migration-validator/pedi

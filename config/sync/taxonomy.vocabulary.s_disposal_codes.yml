@@ -1,0 +1,9 @@
+uuid: 3de648a1-976c-4d6b-b6ca-c43b739810be
+langcode: en
+status: true
+dependencies: {  }
+name: 'Disposal Codes'
+vid: s_disposal_codes
+description: null
+weight: 0
+new_revision: false

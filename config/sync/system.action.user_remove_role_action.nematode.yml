@@ -1,0 +1,14 @@
+uuid: aa1826f8-04e7-49c0-9737-0c741441f2df
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.nematode
+  module:
+    - user
+id: user_remove_role_action.nematode
+label: 'Remove the Nematode role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: nematode

@@ -1,0 +1,21 @@
+uuid: cd00b396-42a2-47d5-95b7-703957934565
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_collection_item_header
+    - paragraphs.paragraphs_type.ui_suite_uswds_collection_item
+_core:
+  default_config_hash: zI1U6yiiq9n07uEnVreDjQr7V18suZvqcZyA-cNM_Xw
+id: paragraph.ui_suite_uswds_collection_item.field_collection_item_header
+field_name: field_collection_item_header
+entity_type: paragraph
+bundle: ui_suite_uswds_collection_item
+label: Header
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

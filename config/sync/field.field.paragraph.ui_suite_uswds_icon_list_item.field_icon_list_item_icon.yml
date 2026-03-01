@@ -1,0 +1,23 @@
+uuid: 7b11dfc1-4ccb-44be-87da-49667c2a1c70
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_icon_list_item_icon
+    - paragraphs.paragraphs_type.ui_suite_uswds_icon_list_item
+  module:
+    - options
+_core:
+  default_config_hash: RhpXcJVk6Au56pFDFxKE8-9KYkLj9ZHCXKwRNmwIGxs
+id: paragraph.ui_suite_uswds_icon_list_item.field_icon_list_item_icon
+field_name: field_icon_list_item_icon
+entity_type: paragraph
+bundle: ui_suite_uswds_icon_list_item
+label: Icon
+description: 'Any of these https://designsystem.digital.gov/components/icon/ can added and used by the pattern.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,21 @@
+uuid: dab52e2f-1992-4938-9ed1-0ca72a86294d
+langcode: en
+status: true
+dependencies: {  }
+id: nematode_data
+label: 'Nematode Data Migration Group'
+description: 'Container for migrations importing nematode-related data from CSV files including inventory, lambing, weaning, shearing, pedigree, and ewe master records.'
+source_type: CSV
+module: null
+shared_configuration:
+  migration_tags:
+    - nematode
+  dependencies:
+    enforced:
+      module:
+        - nematode_migration
+  source:
+    track_changes: true
+    delimiter: ','
+    enclosure: '"'
+    header_row_count: 1

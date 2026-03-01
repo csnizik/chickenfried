@@ -1,0 +1,17 @@
+global:
+  css:
+    theme:
+      assets/css/base/styles.css: {}
+  js:
+    assets/uswds/js/uswds.min.js: {}
+    assets/uswds/js/uswds-init.min.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once
+    - ui_suite_arsapps/nav
+
+nav:
+  css:
+    component:
+      components/nav/css/uswds-nav.css: {}

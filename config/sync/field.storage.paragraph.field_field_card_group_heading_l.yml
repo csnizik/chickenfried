@@ -1,0 +1,38 @@
+uuid: 13d3e65e-119b-43ce-8c80-80720f806cf1
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+_core:
+  default_config_hash: rzVOiZc5rmPKwmf_2hBFfq9hS8zFzXX9-5r1da4u1H0
+id: paragraph.field_field_card_group_heading_l
+field_name: field_field_card_group_heading_l
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '2'
+      label: 'H2 (default'
+    -
+      value: '3'
+      label: H3
+    -
+      value: '4'
+      label: H4
+    -
+      value: '5'
+      label: H5
+    -
+      value: '6'
+      label: H6
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

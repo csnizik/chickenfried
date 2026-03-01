@@ -1,0 +1,237 @@
+uuid: 7b226d56-89a6-4897-a57d-0abac6e776ec
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ui_suite_uswds_card.field_card_body_exdent
+    - field.field.paragraph.ui_suite_uswds_card.field_card_breakpoint_desktop
+    - field.field.paragraph.ui_suite_uswds_card.field_card_breakpoint_tablet
+    - field.field.paragraph.ui_suite_uswds_card.field_card_content
+    - field.field.paragraph.ui_suite_uswds_card.field_card_footer
+    - field.field.paragraph.ui_suite_uswds_card.field_card_footer_exdent
+    - field.field.paragraph.ui_suite_uswds_card.field_card_footer_url
+    - field.field.paragraph.ui_suite_uswds_card.field_card_header
+    - field.field.paragraph.ui_suite_uswds_card.field_card_header_extent
+    - field.field.paragraph.ui_suite_uswds_card.field_card_header_first
+    - field.field.paragraph.ui_suite_uswds_card.field_card_make_flag
+    - field.field.paragraph.ui_suite_uswds_card.field_card_media
+    - field.field.paragraph.ui_suite_uswds_card.field_card_media_exdent
+    - field.field.paragraph.ui_suite_uswds_card.field_card_media_inset
+    - paragraphs.paragraphs_type.ui_suite_uswds_card
+  module:
+    - field_group
+    - link
+    - media_library
+    - text
+third_party_settings:
+  field_group:
+    group_card_settings:
+      children:
+        - field_card_make_flag
+        - group_breakpoints
+        - group_header
+        - group_media
+        - group_body
+        - group_footer
+      label: 'Card Settings'
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: true
+    group_header:
+      children:
+        - field_card_header_first
+        - field_card_header_extent
+      label: Header
+      region: content
+      parent_name: group_card_settings
+      weight: 3
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: true
+    group_media:
+      children:
+        - field_card_media_inset
+        - field_card_media_exdent
+      label: Media
+      region: content
+      parent_name: group_card_settings
+      weight: 4
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: true
+    group_body:
+      children:
+        - field_card_body_exdent
+      label: Body
+      region: content
+      parent_name: group_card_settings
+      weight: 5
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: true
+    group_footer:
+      children:
+        - field_card_footer_exdent
+      label: Footer
+      region: content
+      parent_name: group_card_settings
+      weight: 6
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: true
+    group_breakpoints:
+      children:
+        - field_card_breakpoint_desktop
+        - field_card_breakpoint_tablet
+      label: Breakpoints
+      region: hidden
+      parent_name: group_card_settings
+      weight: 2
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: true
+_core:
+  default_config_hash: gX23vJExSiT5W9XADnxeIB0cQD-nQsqHfUgtsheNDzA
+id: paragraph.ui_suite_uswds_card.default
+targetEntityType: paragraph
+bundle: ui_suite_uswds_card
+mode: default
+content:
+  field_card_body_exdent:
+    type: boolean_checkbox
+    weight: 14
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_card_breakpoint_desktop:
+    type: number
+    weight: 6
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_card_breakpoint_tablet:
+    type: number
+    weight: 7
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_card_content:
+    type: text_textarea
+    weight: 4
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_card_footer:
+    type: string_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_card_footer_exdent:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_card_footer_url:
+    type: link_default
+    weight: 6
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_card_header:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_card_header_extent:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_card_header_first:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_card_make_flag:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_card_media:
+    type: media_library_widget
+    weight: 3
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_card_media_exdent:
+    type: boolean_checkbox
+    weight: 9
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_card_media_inset:
+    type: boolean_checkbox
+    weight: 7
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

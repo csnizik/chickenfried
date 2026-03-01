@@ -1,0 +1,22 @@
+uuid: f07ebac1-b1b0-4b0c-ad07-a52b95beba30
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - ui_suite_arsapps
+_core:
+  default_config_hash: IBheX7dahqhogAG5_LLqZ_2tvu_6p0ReumHs8bOmeZ0
+id: ui_suite_arsapps_content
+theme: ui_suite_arsapps
+region: content
+weight: -7
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

@@ -1,0 +1,29 @@
+uuid: d8c4ab35-3e1b-4d50-9db6-a7f173ca9b14
+langcode: en
+status: true
+dependencies:
+  module:
+    - openid_connect_windows_aad
+id: usda_net
+label: USDA.net
+plugin: windows_aad
+settings:
+  client_id: dev-site-none
+  client_secret: azureadsecret
+  iss_allowed_domains: ''
+  authorization_endpoint_wa: 'https://ars-apps-drupal.ddev.site/admin/config/people/openid-connect/add/windows_aad'
+  token_endpoint_wa: 'https://ars-apps-drupal.ddev.site/admin/config/people/openid-connect/add/windows_aad'
+  end_session_endpoint: ''
+  userinfo_endpoint_wa: ''
+  map_ad_groups_to_roles: false
+  group_mapping:
+    method: 0
+    mappings: ''
+    strict: false
+  userinfo_graph_api_wa: 2
+  userinfo_graph_api_use_other_mails: false
+  userinfo_update_email: true
+  hide_email_address_warning: false
+  prompt: '<noprompt>'
+  subject_key: sub
+  front_channel_logout_url: ''

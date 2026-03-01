@@ -1,0 +1,6 @@
+services:
+  sheepdog.event_subscriber:
+    class: Drupal\sheepdog\EventSubscriber\SheepdogEventSubscriber
+    arguments: ['@logger.factory', '@entity_type.manager', '@config.factory']
+    tags:
+      - { name: event_subscriber }

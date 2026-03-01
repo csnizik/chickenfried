@@ -1,0 +1,7 @@
+name: 'Sheepdog'
+type: module
+description: 'Migration logging and monitoring watchdog. Keep your data migrations on track with detailed logging, real-time monitoring, and analysis tools.'
+package: Migration
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:migrate

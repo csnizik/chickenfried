@@ -1,0 +1,11 @@
+uuid: aaaa494a-114b-4600-aef1-7ac63432e2db
+langcode: en
+status: true
+dependencies:
+  module:
+    - nematode_entities
+id: nematode_entities_specimen.full
+label: Full
+description: null
+targetEntityType: nematode_entities_specimen
+cache: true

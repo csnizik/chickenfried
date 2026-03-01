@@ -1,0 +1,9 @@
+uuid: 257aac47-0b84-4e76-b402-bd9ceb09aca4
+langcode: en
+status: true
+dependencies: {  }
+name: 'Subtype Matings'
+vid: s_subtype_matings
+description: null
+weight: 0
+new_revision: false

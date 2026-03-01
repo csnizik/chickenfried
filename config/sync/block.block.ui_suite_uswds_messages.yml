@@ -1,0 +1,22 @@
+uuid: 1b3332c5-db26-4a23-a3cb-6978ab035c42
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - ui_suite_uswds
+_core:
+  default_config_hash: qS0UY0V76tI1Wdapun1CE-kqOYqiTQYgg7piSQ4txqE
+id: ui_suite_uswds_messages
+theme: ui_suite_uswds
+region: highlighted
+weight: -50
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }

@@ -1,0 +1,24 @@
+uuid: 3f92dd8c-d65c-4c49-84df-abb3737f44a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_description
+    - filter.format.restricted_html
+    - media.type.nrrl_document
+  module:
+    - text
+id: media.nrrl_document.field_description
+field_name: field_description
+entity_type: media
+bundle: nrrl_document
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - restricted_html
+field_type: text_long

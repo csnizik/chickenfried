@@ -1,0 +1,38 @@
+uuid: 43fc82c7-c06f-40ce-b6ea-1724b669fad0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ui_suite_uswds_accordion_item.field_accordion_item_body
+    - field.field.paragraph.ui_suite_uswds_accordion_item.field_accordion_item_title
+    - paragraphs.paragraphs_type.ui_suite_uswds_accordion_item
+  module:
+    - nomarkup
+    - text
+_core:
+  default_config_hash: fMEt8_dT-15b18hVNFtdO9cs8eUQfCdVO8po_isituc
+id: paragraph.ui_suite_uswds_accordion_item.default
+targetEntityType: paragraph
+bundle: ui_suite_uswds_accordion_item
+mode: default
+content:
+  field_accordion_item_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_accordion_item_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      nomarkup:
+        enabled: true
+        separator: '|'
+        referenced_entity: ''
+    weight: 0
+    region: content
+hidden: {  }

@@ -1,0 +1,23 @@
+uuid: a13ec79b-772f-48ce-95ac-d05ee22ac45c
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+_core:
+  default_config_hash: 8em0X6Ajnh2e9m020gcHUMSQnpFtMBmDpVgGj427yac
+id: paragraph.field_collection_item_header
+field_name: field_collection_item_header
+entity_type: paragraph
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,24 @@
+uuid: d1c2b711-8857-459e-a6ed-f8c3fd1542c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_collection_item_content
+    - paragraphs.paragraphs_type.ui_suite_uswds_collection_item
+  module:
+    - text
+_core:
+  default_config_hash: 0tSUQjwvJmx22Jh2vDSiXrYB6ZbkFMHORrHMSnw6erg
+id: paragraph.ui_suite_uswds_collection_item.field_collection_item_content
+field_name: field_collection_item_content
+entity_type: paragraph
+bundle: ui_suite_uswds_collection_item
+label: Content
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

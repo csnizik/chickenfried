@@ -1,0 +1,38 @@
+uuid: 492f96b4-20c1-4de6-ba92-3f2d87232a83
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ui_suite_uswds_process_list_item.field_process_list_item_content
+    - field.field.paragraph.ui_suite_uswds_process_list_item.field_process_list_item_header
+    - paragraphs.paragraphs_type.ui_suite_uswds_process_list_item
+  module:
+    - nomarkup
+    - text
+_core:
+  default_config_hash: tK6CSQP6E2bc8NMip3ErSd_JQK7b_USFr2x1ysnGloc
+id: paragraph.ui_suite_uswds_process_list_item.default
+targetEntityType: paragraph
+bundle: ui_suite_uswds_process_list_item
+mode: default
+content:
+  field_process_list_item_content:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_process_list_item_header:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      nomarkup:
+        enabled: true
+        separator: '|'
+        referenced_entity: ''
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

@@ -1,0 +1,36 @@
+uuid: 90b206e0-96ac-40d8-9803-089801e56ebc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_accordion_sections
+    - paragraphs.paragraphs_type.ui_suite_uswds_accordion
+    - paragraphs.paragraphs_type.ui_suite_uswds_accordion_item
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: BT7fSxPKZBX9rpZ1hyZTF-xVrHqvWD4IHqA_ePDhWN0
+id: paragraph.ui_suite_uswds_accordion.field_accordion_sections
+field_name: field_accordion_sections
+entity_type: paragraph
+bundle: ui_suite_uswds_accordion
+label: 'Accordion Sections'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      ui_suite_uswds_accordion_item: ui_suite_uswds_accordion_item
+    negate: 0
+    target_bundles_drag_drop:
+      ui_suite_uswds_accordion:
+        weight: 3
+        enabled: false
+      ui_suite_uswds_accordion_item:
+        weight: 4
+        enabled: true
+field_type: entity_reference_revisions

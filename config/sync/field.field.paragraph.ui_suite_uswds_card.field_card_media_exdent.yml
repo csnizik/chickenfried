@@ -1,0 +1,23 @@
+uuid: 2ab7b79e-8fc3-4c7d-9b7c-b89b52e96639
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_card_media_exdent
+    - paragraphs.paragraphs_type.ui_suite_uswds_card
+_core:
+  default_config_hash: WvXr9tLv_ttTJaPsrp5ZzcbBY-39sP2qBFTicYMtlAU
+id: paragraph.ui_suite_uswds_card.field_card_media_exdent
+field_name: field_card_media_exdent
+entity_type: paragraph
+bundle: ui_suite_uswds_card
+label: 'Media Exdent'
+description: 'Extends the media element out over the card border. Useful for light-bordered cards.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

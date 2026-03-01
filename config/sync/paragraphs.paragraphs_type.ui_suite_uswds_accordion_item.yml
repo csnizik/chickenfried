@@ -1,0 +1,12 @@
+uuid: 109e50c0-3af7-48fa-a42f-65ec0150647f
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: O6t2Y5CaSh9kNPtlG8_hes_gNqFyD5eAuLg80-xgfG4
+id: ui_suite_uswds_accordion_item
+label: 'Accordion Item'
+icon_uuid: null
+icon_default: null
+description: 'Used by Accordion. DO NOT USE AS STANDALONE'
+behavior_plugins: {  }

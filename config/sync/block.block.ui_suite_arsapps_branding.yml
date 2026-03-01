@@ -1,0 +1,25 @@
+uuid: 74beeeca-18c4-4c81-9852-83666661e23f
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - ui_suite_arsapps
+_core:
+  default_config_hash: WpH8zJXZqgGjQwuT7-iaRhXlK40Rc7HlTHTxkWn5aC8
+id: ui_suite_arsapps_branding
+theme: ui_suite_arsapps
+region: header_top
+weight: 0
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

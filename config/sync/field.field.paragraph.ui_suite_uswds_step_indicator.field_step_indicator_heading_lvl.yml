@@ -1,0 +1,23 @@
+uuid: cbf54111-a3ee-4ef4-a840-576c8866e37c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_step_indicator_heading_lvl
+    - paragraphs.paragraphs_type.ui_suite_uswds_step_indicator
+  module:
+    - options
+_core:
+  default_config_hash: 7vaKtJzd0ZZl4V3nnWaK1O5tanHFe-Rjl6jbM1rVRuc
+id: paragraph.ui_suite_uswds_step_indicator.field_step_indicator_heading_lvl
+field_name: field_step_indicator_heading_lvl
+entity_type: paragraph
+bundle: ui_suite_uswds_step_indicator
+label: 'Heading Level'
+description: 'Defaults to H2.  Useful for accessibility.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

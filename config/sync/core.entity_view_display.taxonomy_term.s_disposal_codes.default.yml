@@ -1,0 +1,31 @@
+uuid: fc93e172-7a31-480c-acb3-a28768f13e9c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.s_disposal_codes.field_human_readable_name
+    - taxonomy.vocabulary.s_disposal_codes
+  module:
+    - text
+id: taxonomy_term.s_disposal_codes.default
+targetEntityType: taxonomy_term
+bundle: s_disposal_codes
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_human_readable_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  search_api_excerpt: true

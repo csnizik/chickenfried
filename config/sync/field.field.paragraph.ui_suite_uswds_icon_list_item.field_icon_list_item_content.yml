@@ -1,0 +1,24 @@
+uuid: 38998a9c-a8d2-40af-82f5-f5161aec5fd2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_icon_list_item_content
+    - paragraphs.paragraphs_type.ui_suite_uswds_icon_list_item
+  module:
+    - text
+_core:
+  default_config_hash: de_APMHNx8DiGPKzAawrGRIsbwF4hMtfse68trXI71U
+id: paragraph.ui_suite_uswds_icon_list_item.field_icon_list_item_content
+field_name: field_icon_list_item_content
+entity_type: paragraph
+bundle: ui_suite_uswds_icon_list_item
+label: Content
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text

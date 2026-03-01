@@ -1,0 +1,38 @@
+uuid: ec3501b0-a40b-481a-9cf4-a81d16e1edd6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ui_suite_uswds_summary_box.field_summary_box_content
+    - field.field.paragraph.ui_suite_uswds_summary_box.field_summary_box_heading
+    - paragraphs.paragraphs_type.ui_suite_uswds_summary_box
+  module:
+    - nomarkup
+    - text
+_core:
+  default_config_hash: uWzDhcpg2y_k2N-IiGN1TLfgc6RuGOMAQNS6f8pMePY
+id: paragraph.ui_suite_uswds_summary_box.default
+targetEntityType: paragraph
+bundle: ui_suite_uswds_summary_box
+mode: default
+content:
+  field_summary_box_content:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_summary_box_heading:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      nomarkup:
+        enabled: true
+        separator: '|'
+        referenced_entity: ''
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

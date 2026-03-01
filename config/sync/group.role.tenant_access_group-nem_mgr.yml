@@ -1,0 +1,18 @@
+uuid: 3cecb0be-dd61-4f84-82e5-ee10c44c0460
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+id: tenant_access_group-nem_mgr
+label: 'Nematode manager'
+weight: -3
+admin: false
+scope: individual
+global_role: null
+group_type: tenant_access_group
+permissions:
+  - 'create nematode_entities_specimen entity'
+  - 'delete any nematode_entities_specimen entity'
+  - 'update any nematode_entities_specimen entity'
+  - 'view nematode_entities_specimen entity'

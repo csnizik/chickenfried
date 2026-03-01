@@ -1,0 +1,7 @@
+name: 'ARS Apps Core'
+type: module
+description: 'Custom services, integrations, and utilities for the ARS Apps multi-tenant platform.'
+package: Custom
+core_version_requirement: ^10 || ^11
+dependencies:
+  - webform:webform

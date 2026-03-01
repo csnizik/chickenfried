@@ -1,0 +1,22 @@
+uuid: 1003bfe1-a280-4b43-bfc2-1942ef2449fb
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - text
+_core:
+  default_config_hash: VdDFi1Wno70hXsaOw03HiO7d0SnMZA_6E9tLGW3wb8o
+id: paragraph.field_step_indicator_label
+field_name: field_step_indicator_label
+entity_type: paragraph
+type: text
+settings:
+  max_length: 255
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

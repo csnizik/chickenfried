@@ -1,0 +1,23 @@
+uuid: 9ffdfce2-6232-4d7a-be8f-610801e46f1d
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+_core:
+  default_config_hash: Em90ieedbqw57BxfUo7gq5Pj5WKr6S1HmC6KOhrBEUU
+id: paragraph.field_step_indicator_in_progress
+field_name: field_step_indicator_in_progress
+entity_type: paragraph
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

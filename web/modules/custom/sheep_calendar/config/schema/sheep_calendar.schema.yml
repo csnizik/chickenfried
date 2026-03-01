@@ -1,0 +1,36 @@
+# Schema for sheep_calendar module field formatter settings.
+
+field.formatter.settings.sheep_year:
+  type: mapping
+  label: 'Sheep Year formatter settings'
+  mapping: {}
+
+field.formatter.settings.julian_day:
+  type: mapping
+  label: 'Julian Day formatter settings'
+  mapping: {}
+
+field.formatter.settings.date_interval:
+  type: mapping
+  label: 'Date Interval formatter settings'
+  mapping:
+    reference_source:
+      type: string
+      label: 'Reference date source'
+    reference_field:
+      type: string
+      label: 'Reference date field'
+
+field.formatter.settings.sheep_age:
+  type: mapping
+  label: 'Sheep Age formatter settings'
+  mapping:
+    display_format:
+      type: string
+      label: 'Display format'
+    reference_source:
+      type: string
+      label: 'Reference date source'
+    reference_field:
+      type: string
+      label: 'Reference date field'

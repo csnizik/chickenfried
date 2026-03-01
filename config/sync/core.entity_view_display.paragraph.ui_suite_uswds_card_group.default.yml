@@ -1,0 +1,68 @@
+uuid: fc9006a8-7c62-4f60-92c2-e5fcd5302027
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ui_suite_uswds_card_group.field_card_group_cards
+    - field.field.paragraph.ui_suite_uswds_card_group.field_field_card_group_heading_l
+    - paragraphs.paragraphs_type.ui_suite_uswds_card_group
+  module:
+    - entity_reference_revisions
+    - nomarkup
+    - options
+    - ui_patterns
+    - ui_patterns_field_formatters
+  theme:
+    - ui_suite_uswds
+_core:
+  default_config_hash: Gi2hMv780hPhVPZ3gJQRjM1MhVcTnpjkjInz0Y5UViQ
+id: paragraph.ui_suite_uswds_card_group.default
+targetEntityType: paragraph
+bundle: ui_suite_uswds_card_group
+mode: default
+content:
+  field_card_group_cards:
+    type: ui_patterns_component
+    label: hidden
+    settings:
+      ui_patterns:
+        component_id: 'ui_suite_uswds:card_layout'
+        variant_id: null
+        props:
+          attributes:
+            source_id: class_attribute
+            source:
+              value: ''
+        slots:
+          cards:
+            sources:
+              -
+                source_id: entity_field
+                source:
+                  derivable_context: 'field:paragraph:ui_suite_uswds_card_group:field_card_group_cards'
+                  'field:paragraph:ui_suite_uswds_card_group:field_card_group_cards':
+                    value:
+                      sources:
+                        -
+                          source:
+                            type: entity_reference_revisions_entity_view
+                            settings:
+                              view_mode: default
+                          source_id: 'field_formatter:paragraph:ui_suite_uswds_card_group:field_card_group_cards'
+                          _weight: '0'
+                _weight: '0'
+    third_party_settings:
+      nomarkup:
+        enabled: true
+        separator: ''
+        referenced_entity: ''
+    weight: 0
+    region: content
+  field_field_card_group_heading_l:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

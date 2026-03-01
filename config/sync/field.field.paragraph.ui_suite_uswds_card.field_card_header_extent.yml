@@ -1,0 +1,23 @@
+uuid: 493bc51b-3a34-44e9-8578-13b8712f6fc1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_card_header_extent
+    - paragraphs.paragraphs_type.ui_suite_uswds_card
+_core:
+  default_config_hash: UjkDa_klZbfL86HSeeekbhKxPbbyMNn-cBxs72Ujulk
+id: paragraph.ui_suite_uswds_card.field_card_header_extent
+field_name: field_card_header_extent
+entity_type: paragraph
+bundle: ui_suite_uswds_card
+label: 'Header Extent'
+description: 'Extends the header element out over the card border. Useful for light-bordered cards.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

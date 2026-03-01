@@ -1,0 +1,23 @@
+uuid: 74f5ffa9-635c-483a-8e8e-17b01a0c77a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_field_card_group_heading_l
+    - paragraphs.paragraphs_type.ui_suite_uswds_card_group
+  module:
+    - options
+_core:
+  default_config_hash: 2TClLYfkSUaZVZmQW5SaV7XLW92NxYlouJwgs6mwi4A
+id: paragraph.ui_suite_uswds_card_group.field_field_card_group_heading_l
+field_name: field_field_card_group_heading_l
+entity_type: paragraph
+bundle: ui_suite_uswds_card_group
+label: 'Heading level'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

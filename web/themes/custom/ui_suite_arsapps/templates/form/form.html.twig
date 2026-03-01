@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Theme override for a 'form' element.
+ *
+ * Variables:
+ * - attributes: A list of HTML attributes for the <form>.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ */
+#}
+
+{# Ensure the form itself gets the USWDS base class. #}
+{% set form_classes = ['usa-form'] %}
+<form{{ attributes.addClass(form_classes) }}>
+  {{ children }}
+</form>

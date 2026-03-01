@@ -1,0 +1,22 @@
+uuid: 0ad140c4-2187-40aa-8305-b088beabf7b1
+langcode: en
+status: true
+dependencies:
+  theme:
+    - ui_suite_arsapps
+_core:
+  default_config_hash: GuZ1biErXyJOhJCYP_Kmt2IZPonUj81NblJ1Vglhdkw
+id: ui_suite_arsapps_local_tasks
+theme: ui_suite_arsapps
+region: content
+weight: -8
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

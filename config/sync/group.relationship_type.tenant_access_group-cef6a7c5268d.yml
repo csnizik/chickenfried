@@ -1,0 +1,17 @@
+uuid: edb6e5ca-374c-4c56-ba84-b709026cb60e
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - taxonomy.vocabulary.s_bands
+  module:
+    - group_term
+    - taxonomy
+id: tenant_access_group-cef6a7c5268d
+group_type: tenant_access_group
+content_plugin: 'group_term:s_bands'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

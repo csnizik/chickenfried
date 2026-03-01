@@ -1,0 +1,20 @@
+uuid: 4d8b6930-2b2a-4750-95ea-529d59dec13f
+langcode: en
+status: true
+dependencies:
+  theme:
+    - ui_suite_uswds
+_core:
+  default_config_hash: OSO8e48rsCkFtZP8OQvNwrcVDwFkhZyQqsdjcz8E8Fg
+id: ui_suite_uswds_local_actions
+theme: ui_suite_uswds
+region: content
+weight: 10
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

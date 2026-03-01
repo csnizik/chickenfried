@@ -1,0 +1,59 @@
+uuid: c7fb6c3c-6a6d-4c62-a047-eaeeea4970de
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.nrrl_document.field_abbreviation
+    - field.field.media.nrrl_document.field_description
+    - field.field.media.nrrl_document.field_media_document
+    - field.field.media.nrrl_document.field_media_formula
+    - field.field.media.nrrl_document.field_medium_num
+    - media.type.nrrl_document
+  module:
+    - text
+id: media.nrrl_document.default
+targetEntityType: media
+bundle: nrrl_document
+mode: default
+content:
+  field_abbreviation:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_media_formula:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_medium_num:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden:
+  created: true
+  field_media_document: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

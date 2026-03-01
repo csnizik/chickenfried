@@ -1,0 +1,10 @@
+services:
+  sheep_calendar.calendar:
+    class: Drupal\sheep_calendar\SheepCalendarService
+    arguments: ['@datetime.time']
+
+  sheep_calendar.twig_extension:
+    class: Drupal\sheep_calendar\TwigExtension\SheepCalendarTwigExtension
+    arguments: ['@sheep_calendar.calendar']
+    tags:
+      - { name: twig.extension }

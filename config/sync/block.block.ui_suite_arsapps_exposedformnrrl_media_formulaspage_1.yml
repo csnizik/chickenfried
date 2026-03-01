@@ -1,0 +1,28 @@
+uuid: f1732b88-56e8-4223-989c-a07d2e5727f9
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.nrrl_media_formulas
+  module:
+    - system
+    - views
+  theme:
+    - ui_suite_arsapps
+id: ui_suite_arsapps_exposedformnrrl_media_formulaspage_1
+theme: ui_suite_arsapps
+region: sidebar_second
+weight: -12
+provider: null
+plugin: 'views_exposed_filter_block:nrrl_media_formulas-page_1'
+settings:
+  id: 'views_exposed_filter_block:nrrl_media_formulas-page_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /nrrl/media-formulas

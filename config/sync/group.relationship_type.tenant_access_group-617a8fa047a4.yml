@@ -1,0 +1,17 @@
+uuid: 3e68f62d-5742-4b0a-afbf-de3edeab24ae
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - node.type.page
+  module:
+    - gnode
+    - node
+id: tenant_access_group-617a8fa047a4
+group_type: tenant_access_group
+content_plugin: 'group_node:page'
+plugin_config:
+  group_cardinality: 1
+  entity_cardinality: 1
+  use_creation_wizard: false

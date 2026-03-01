@@ -1,0 +1,25 @@
+uuid: 17d757d7-82b0-4325-a863-481ab59522cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_card_single_heading_level
+    - paragraphs.paragraphs_type.ui_suite_uswds_card_single
+  module:
+    - options
+_core:
+  default_config_hash: GfF4eCkPZVZz49VeMOiG2SA3OiaPQUWkOZTkq2ldoZk
+id: paragraph.ui_suite_uswds_card_single.field_card_single_heading_level
+field_name: field_card_single_heading_level
+entity_type: paragraph
+bundle: ui_suite_uswds_card_single
+label: 'Heading Level'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: '2'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

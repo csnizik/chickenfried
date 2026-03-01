@@ -1,0 +1,12 @@
+uuid: d1882893-6d17-4946-90f3-e6d28dc4543c
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 5juGwNdmhxaWrPb9mIzIBNx2kKC2RPBCbNqx0mfBqHQ
+id: ui_suite_uswds_process_list_item
+label: 'Process List Item'
+icon_uuid: null
+icon_default: null
+description: 'Used by Process List. DO NOT USE AS STANDALONE'
+behavior_plugins: {  }

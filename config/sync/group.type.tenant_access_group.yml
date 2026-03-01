@@ -1,0 +1,11 @@
+uuid: 041275bd-e8ff-4799-8b7f-9d78b97ab728
+langcode: en
+status: true
+dependencies: {  }
+id: tenant_access_group
+label: 'Tenant Access Group'
+description: ''
+new_revision: true
+creator_membership: true
+creator_wizard: false
+creator_roles: {  }

@@ -1,0 +1,130 @@
+uuid: 5fae4e27-699e-4e87-b025-cf4e3df11bf0
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.html_no_filter
+  module:
+    - system
+    - ui_patterns
+    - ui_patterns_blocks
+  theme:
+    - ui_suite_arsapps
+    - ui_suite_uswds
+id: ui_suite_arsapps_gridrow2cols
+theme: ui_suite_arsapps
+region: content
+weight: -11
+provider: null
+plugin: 'ui_patterns:ui_suite_uswds:grid_row_2'
+settings:
+  id: 'ui_patterns:ui_suite_uswds:grid_row_2'
+  label: 'Front page - tagline'
+  label_display: '0'
+  provider: ui_patterns_blocks
+  ui_patterns:
+    component_id: 'ui_suite_uswds:grid_row_2'
+    variant_id: null
+    props:
+      attributes:
+        source_id: attributes
+        source:
+          value: 'class="margin-top-4 margin-x-4 tablet:margin-x-2 desktop:margin-x-0"'
+      first_column_attributes:
+        source_id: attributes
+        source:
+          value: 'class="grid-col-12 tablet:grid-col-6 desktop:grid-col-4"'
+      second_column_attributes:
+        source_id: attributes
+        source:
+          value: 'class="grid-col-12 tablet:grid-col-6 desktop:grid-col-8 margin-y-1 usa-prose"'
+      with_container:
+        source_id: checkbox
+        source:
+          value: false
+      gutters:
+        source_id: select
+        source:
+          value: ''
+      offsetting:
+        source_id: select
+        source:
+          value: ''
+      card:
+        source_id: selects
+        source:
+          value:
+            - ''
+            - ''
+      card_lg:
+        source_id: selects
+        source:
+          value:
+            - ''
+            - ''
+      mobile:
+        source_id: selects
+        source:
+          value:
+            - ''
+            - ''
+      mobile_lg:
+        source_id: selects
+        source:
+          value:
+            - ''
+            - ''
+      tablet:
+        source_id: selects
+        source:
+          value:
+            - ''
+            - ''
+      tablet_lg:
+        source_id: selects
+        source:
+          value:
+            - ''
+            - ''
+      desktop:
+        source_id: selects
+        source:
+          value:
+            - ''
+            - ''
+      desktop_lg:
+        source_id: selects
+        source:
+          value:
+            - ''
+            - ''
+      widescreen:
+        source_id: selects
+        source:
+          value:
+            - ''
+            - ''
+    slots:
+      first:
+        sources:
+          -
+            source_id: wysiwyg
+            source:
+              value:
+                value: '<h2 class="font-heading-xl tablet:margin-bottom-0">Grounded in science, growing with purpose</h2>'
+                format: html_no_filter
+            _weight: '0'
+      second:
+        sources:
+          -
+            source_id: wysiwyg
+            source:
+              value:
+                value: '<p>By combining long-term field studies with cutting-edge technology, our researchers generate knowledge that directly benefits communities.</p><p>As the in-house research arm of the USDA, ARS delivers solutions that keep agriculture strong and sustainable. From healthier herds to thriving crops and clean water, these advances shape daily life and strengthen markets worldwide.</p>'
+                format: html_no_filter
+            _weight: '0'
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

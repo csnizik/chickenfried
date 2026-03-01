@@ -1,0 +1,75 @@
+uuid: a5d347d8-0a62-4621-9cc9-70ffc93ae24b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_card_single_card
+    - paragraphs.paragraphs_type.ui_suite_uswds_card
+    - paragraphs.paragraphs_type.ui_suite_uswds_card_single
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: '-YJd1tlSroQYWsp0U3NYX11Wrl8rUzGlhZ_MZqyubzw'
+id: paragraph.ui_suite_uswds_card_single.field_card_single_card
+field_name: field_card_single_card
+entity_type: paragraph
+bundle: ui_suite_uswds_card_single
+label: Card
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      ui_suite_uswds_card: ui_suite_uswds_card
+    negate: 0
+    target_bundles_drag_drop:
+      ui_suite_uswds_icon_list:
+        weight: 16
+        enabled: false
+      ui_suite_uswds_accordion:
+        weight: 17
+        enabled: false
+      ui_suite_uswds_accordion_item:
+        weight: 18
+        enabled: false
+      ui_suite_uswds_alert:
+        weight: 19
+        enabled: false
+      ui_suite_uswds_card:
+        weight: 20
+        enabled: true
+      ui_suite_uswds_card_single:
+        weight: 21
+        enabled: false
+      ui_suite_uswds_collection:
+        weight: 22
+        enabled: false
+      ui_suite_uswds_collection_item:
+        weight: 23
+        enabled: false
+      ui_suite_uswds_hero:
+        weight: 24
+        enabled: false
+      ui_suite_uswds_icon_list_item:
+        weight: 25
+        enabled: false
+      ui_suite_uswds_modal:
+        weight: 26
+        enabled: false
+      ui_suite_uswds_process_list:
+        weight: 27
+        enabled: false
+      ui_suite_uswds_process_list_item:
+        weight: 28
+        enabled: false
+      ui_suite_uswds_step_indicator:
+        weight: 29
+        enabled: false
+      ui_suite_uswds_summary_box:
+        weight: 30
+        enabled: false
+field_type: entity_reference_revisions

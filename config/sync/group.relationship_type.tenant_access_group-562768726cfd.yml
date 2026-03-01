@@ -1,0 +1,17 @@
+uuid: 1e4ccb5a-7165-44a8-8545-2c249e2d29a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - taxonomy.vocabulary.s_seasons
+  module:
+    - group_term
+    - taxonomy
+id: tenant_access_group-562768726cfd
+group_type: tenant_access_group
+content_plugin: 'group_term:s_seasons'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

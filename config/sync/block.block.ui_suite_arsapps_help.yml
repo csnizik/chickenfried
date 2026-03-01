@@ -1,0 +1,22 @@
+uuid: 75383af9-cf0a-47d3-bc07-ab90188ec252
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - ui_suite_arsapps
+_core:
+  default_config_hash: '-ljaAwbO4nHW1Tf5Ko568NXI7l8VLDKjgjQdPtKEmsM'
+id: ui_suite_arsapps_help
+theme: ui_suite_arsapps
+region: help
+weight: -12
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

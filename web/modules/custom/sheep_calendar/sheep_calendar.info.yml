@@ -1,0 +1,7 @@
+name: Sheep Calendar
+type: module
+description: 'Provides sheep-specific date handling including Julian day conversion, Sheep Year (March 1 start), and age calculations. Designed for USDA Sheep Experiment Station but documented for potential generalization.'
+package: Sheep
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:datetime

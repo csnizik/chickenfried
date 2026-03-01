@@ -1,0 +1,75 @@
+uuid: 3a2b4563-7e35-44b9-8fbe-f96e6c01bd71
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ui_suite_uswds_collection_item.field_collection_item_content
+    - field.field.paragraph.ui_suite_uswds_collection_item.field_collection_item_header
+    - field.field.paragraph.ui_suite_uswds_collection_item.field_collection_item_meta_items
+    - field.field.paragraph.ui_suite_uswds_collection_item.field_collection_item_meta_tags
+    - paragraphs.paragraphs_type.ui_suite_uswds_collection_item
+  module:
+    - field_group
+    - text
+third_party_settings:
+  field_group:
+    group_footer_tags:
+      children:
+        - field_collection_item_meta_items
+        - field_collection_item_meta_tags
+      label: 'Footer Tags'
+      region: content
+      parent_name: ''
+      weight: 2
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: true
+_core:
+  default_config_hash: f_FnLKeaO3-08_69gyyZ-lDOC6PCvGhYN4SWQjR_aYs
+id: paragraph.ui_suite_uswds_collection_item.default
+targetEntityType: paragraph
+bundle: ui_suite_uswds_collection_item
+mode: default
+content:
+  field_collection_item_content:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_collection_item_header:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_collection_item_meta_items:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_collection_item_meta_tags:
+    type: entity_reference_autocomplete
+    weight: 4
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

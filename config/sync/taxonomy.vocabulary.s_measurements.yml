@@ -1,0 +1,9 @@
+uuid: 9c46be40-61c8-488e-a4bf-3d55457b7289
+langcode: en
+status: true
+dependencies: {  }
+name: 'Measurements and Observations'
+vid: s_measurements
+description: null
+weight: 0
+new_revision: false

@@ -1,0 +1,21 @@
+uuid: a17feaab-db7f-41fe-a9b2-450f653d64a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_step_indicator_in_progress
+    - paragraphs.paragraphs_type.ui_suite_uswds_step_indicator
+_core:
+  default_config_hash: fJ4RFmgDmyc3qJg35yjf7Fw163M7im67llVC0VaEafs
+id: paragraph.ui_suite_uswds_step_indicator.field_step_indicator_in_progress
+field_name: field_step_indicator_in_progress
+entity_type: paragraph
+bundle: ui_suite_uswds_step_indicator
+label: 'In progress Items'
+description: 'Items that are still in progress'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

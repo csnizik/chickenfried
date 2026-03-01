@@ -1,0 +1,12 @@
+uuid: a579701c-738a-4888-8c9a-f7fddd32b210
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 0lHI-Jg-QBIlmGebzmRNsw0DNiqwhrdHUCUYvMr6gWE
+id: ui_suite_uswds_card_group
+label: 'Card Group'
+icon_uuid: null
+icon_default: null
+description: 'Based off of <a href="https://designsystem.digital.gov/components/card/">USWDS Card</a>'
+behavior_plugins: {  }

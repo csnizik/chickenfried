@@ -1,0 +1,12 @@
+{
+  "type": "module",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
+    "axe-html-reporter": "^2.2.11",
+    "axe-playwright": "^2.2.2",
+    "playwright": "^1.57.0"
+  },
+  "scripts": {
+    "axe-scan": "node scripts/axe-scan.js"
+  }
+}

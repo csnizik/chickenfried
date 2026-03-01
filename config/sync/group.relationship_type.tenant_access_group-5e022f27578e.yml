@@ -1,0 +1,17 @@
+uuid: 4ce83449-ef31-4a5e-8e9e-961c4305f986
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - taxonomy.vocabulary.s_treatment_pens
+  module:
+    - group_term
+    - taxonomy
+id: tenant_access_group-5e022f27578e
+group_type: tenant_access_group
+content_plugin: 'group_term:s_treatment_pens'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

@@ -1,0 +1,9 @@
+uuid: f10c8ea4-2056-44dc-aaaf-82cb54a71405
+langcode: en
+status: true
+dependencies: {  }
+name: 'Type of Birth'
+vid: s_type_of_birth
+description: null
+weight: 0
+new_revision: false

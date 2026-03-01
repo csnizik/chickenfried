@@ -1,0 +1,17 @@
+uuid: afc14058-5fef-4e5f-9b82-5871273b662a
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - taxonomy.vocabulary.s_colors
+  module:
+    - group_term
+    - taxonomy
+id: tenant_access_group-c4206c3e9b07
+group_type: tenant_access_group
+content_plugin: 'group_term:s_colors'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

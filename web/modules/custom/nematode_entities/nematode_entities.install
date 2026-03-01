@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall functions for nematode_entities module.
+ */
+
+/**
+ * Add created and changed fields to specimen entity and backfill existing records.
+ */
+function nematode_entities_update_10001(): void {
+  $entity_type_id = 'nematode_entities_specimen';
+  $update_manager = \Drupal::entityDefinitionUpdateManager();
+  $field_manager = \Drupal::service('entity_field.manager');
+
+  // Clear cached field definitions to pick up new fields.
+  $field_manager->clearCachedFieldDefinitions();
+  $field_definitions = $field_manager->getFieldStorageDefinitions($entity_type_id);
+
+  // Install created field if not exists.
+  if (isset($field_definitions['created'])) {
+    $existing = $update_manager->getFieldStorageDefinition('created', $entity_type_id);
+    if (!$existing) {
+      $update_manager->installFieldStorageDefinition('created', $entity_type_id, 'nematode_entities', $field_definitions['created']);
+    }
+  }
+
+  // Install changed field if not exists.
+  if (isset($field_definitions['changed'])) {
+    $existing = $update_manager->getFieldStorageDefinition('changed', $entity_type_id);
+    if (!$existing) {
+      $update_manager->installFieldStorageDefinition('changed', $entity_type_id, 'nematode_entities', $field_definitions['changed']);
+    }
+  }
+
+  // Backfill NULL timestamps with current time.
+  $connection = \Drupal::database();
+  $connection->update('nematode_entities_specimen')
+    ->fields([
+      'created' => \Drupal::time()->getRequestTime(),
+      'changed' => \Drupal::time()->getRequestTime(),
+    ])
+    ->isNull('created')
+    ->execute();
+}

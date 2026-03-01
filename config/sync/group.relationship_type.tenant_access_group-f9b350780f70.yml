@@ -1,0 +1,17 @@
+uuid: c81d250f-a570-41c5-a7e8-5a4b9f30b244
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - taxonomy.vocabulary.s_disposal_codes
+  module:
+    - group_term
+    - taxonomy
+id: tenant_access_group-f9b350780f70
+group_type: tenant_access_group
+content_plugin: 'group_term:s_disposal_codes'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

@@ -1,0 +1,60 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Sheepdog module.
+ */
+
+use Drupal\Core\Utility\UpdateException;
+
+/**
+ * Implements hook_install().
+ */
+function sheepdog_install($is_syncing) {
+  if (!$is_syncing) {
+    \Drupal::messenger()->addStatus(t('🐕 Sheepdog is now watching your migrations! Good dog.'));
+    \Drupal::logger('sheepdog')->info('🐕 Sheepdog migration monitoring enabled.');
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function sheepdog_uninstall($is_syncing) {
+  if (!$is_syncing) {
+    \Drupal::messenger()->addStatus(t('🐕 Sheepdog has been retired. Thanks for using migration monitoring!'));
+  }
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function sheepdog_requirements($phase) {
+  $requirements = [];
+
+  if ($phase == 'runtime') {
+    $config = \Drupal::config('sheepdog.settings');
+    $requirements['sheepdog'] = [
+      'title' => t('Sheepdog Migration Monitor'),
+      'value' => t('Active and monitoring'),
+      'severity' => REQUIREMENT_OK,
+    ];
+
+    // Check if main migration module is available
+    if (!\Drupal::moduleHandler()->moduleExists('migrate')) {
+      $requirements['sheepdog']['value'] = t('Migrate module required');
+      $requirements['sheepdog']['description'] = t('Sheepdog requires the Migrate module to function properly.');
+      $requirements['sheepdog']['severity'] = REQUIREMENT_ERROR;
+    }
+
+    // Warn if no ID fields are configured
+    $idFields = $config->get('tracking.id_fields');
+    if (empty($idFields)) {
+      $requirements['sheepdog']['value'] = t('No ID fields configured');
+      $requirements['sheepdog']['description'] = t('Consider configuring ID fields in Sheepdog settings for optimal entity matching.');
+      $requirements['sheepdog']['severity'] = REQUIREMENT_WARNING;
+    }
+  }
+
+  return $requirements;
+}

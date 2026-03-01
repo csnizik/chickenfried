@@ -1,0 +1,12 @@
+uuid: 03744a27-4ac9-4f68-ab2d-19c2b87d2ef3
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: DLe4R0wlkR-kUPp7Pi_bJ4oajlijbpZCCZ743-t48M0
+id: ui_suite_uswds_icon_list_item
+label: 'Icon List Item'
+icon_uuid: null
+icon_default: null
+description: 'Used by Icon list. DO NOT USE AS STANDALONE'
+behavior_plugins: {  }

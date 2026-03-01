@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Nematode Entities module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function nematode_entities_theme(): array {
+  return [
+    'nematode_entities_specimen' => [
+      'render element' => 'elements',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function nematode_entities_theme_suggestions_nematode_entities_specimen(array $variables): array {
+  $suggestions = [];
+  $entity = $variables['elements']['#nematode_entities_specimen'];
+  $view_mode = $variables['elements']['#view_mode'];
+
+  $suggestions[] = 'nematode_entities_specimen__' . $view_mode;
+  $suggestions[] = 'nematode_entities_specimen__' . $entity->id();
+  $suggestions[] = 'nematode_entities_specimen__' . $entity->id() . '__' . $view_mode;
+
+  return $suggestions;
+}
+
+/**
+ * Prepares variables for specimen templates.
+ *
+ * Default template: nematode-entities-specimen.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the specimen entity and any
+ *     fields to render.
+ */
+function template_preprocess_nematode_entities_specimen(array &$variables): void {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  $variables['specimen'] = $variables['elements']['#nematode_entities_specimen'];
+
+  // Helpful for templates.
+  $variables['content'] = [];
+  foreach (\Drupal\Core\Render\Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+}

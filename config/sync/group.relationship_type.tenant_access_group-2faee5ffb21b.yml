@@ -1,0 +1,17 @@
+uuid: afdbde78-b4c6-460c-811d-090417d9810f
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - taxonomy.vocabulary.s_lots
+  module:
+    - group_term
+    - taxonomy
+id: tenant_access_group-2faee5ffb21b
+group_type: tenant_access_group
+content_plugin: 'group_term:s_lots'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

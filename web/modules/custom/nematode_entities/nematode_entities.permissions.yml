@@ -1,0 +1,20 @@
+administer nematode_entities_specimen:
+  title: 'Administer specimen entities'
+  description: 'Full administrative access to specimen entities.'
+  restrict access: true
+
+create nematode_entities_specimen:
+  title: 'Create specimen entities'
+  description: 'Create new specimen records.'
+
+view nematode_entities_specimen:
+  title: 'View specimen entities'
+  description: 'View specimen records.'
+
+edit nematode_entities_specimen:
+  title: 'Edit specimen entities'
+  description: 'Edit existing specimen records.'
+
+delete nematode_entities_specimen:
+  title: 'Delete specimen entities'
+  description: 'Delete specimen records.'

@@ -1,0 +1,25 @@
+uuid: 356e9510-b989-412d-a489-bb004c994839
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_accordion_default_open
+    - paragraphs.paragraphs_type.ui_suite_uswds_accordion
+_core:
+  default_config_hash: tZi94c5EGjVghP8ys4spJMuJASX7LvHRPVS70_faA5Q
+id: paragraph.ui_suite_uswds_accordion.field_accordion_default_open
+field_name: field_accordion_default_open
+entity_type: paragraph
+bundle: ui_suite_uswds_accordion
+label: 'Default Open'
+description: 'Default one of the accordions to open.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

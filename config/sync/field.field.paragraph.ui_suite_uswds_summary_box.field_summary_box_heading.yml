@@ -1,0 +1,24 @@
+uuid: 07a0474d-7ead-4e14-8dab-5f9b17e681e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_summary_box_heading
+    - paragraphs.paragraphs_type.ui_suite_uswds_summary_box
+  module:
+    - text
+_core:
+  default_config_hash: Hyqon5KGiUUbStSIB_02IUF_AmVUZO_6jd0mJOAcor0
+id: paragraph.ui_suite_uswds_summary_box.field_summary_box_heading
+field_name: field_summary_box_heading
+entity_type: paragraph
+bundle: ui_suite_uswds_summary_box
+label: Heading
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text

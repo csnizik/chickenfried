@@ -1,0 +1,21 @@
+uuid: a7f0bc51-9092-4801-990c-2261c6d78ab7
+langcode: en
+status: true
+dependencies:
+  config:
+    - group_content_menu.group_content_menu_type.tenant_admin_menu
+id: group_content_menu.tenant_admin_menu.default
+targetEntityType: group_content_menu
+bundle: tenant_admin_menu
+mode: default
+content:
+  label:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

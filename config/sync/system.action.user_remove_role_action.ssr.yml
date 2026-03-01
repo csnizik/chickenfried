@@ -1,0 +1,14 @@
+uuid: e540b1f1-78c4-4475-8f57-0493a97a23e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.ssr
+  module:
+    - user
+id: user_remove_role_action.ssr
+label: 'Remove the SSR role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: ssr

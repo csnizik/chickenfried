@@ -1,0 +1,12 @@
+uuid: 038ef5a3-d4a0-47cc-a8cb-d9301d61213c
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: C8Zv0pLkPUa9pOZek43U-Ks5IAJQAx0i_FXjE4pKVBs
+id: ui_suite_uswds_card
+label: Card
+icon_uuid: null
+icon_default: null
+description: 'Used by Card Single and Card Group.  DO NOT USE AS STANDALONE'
+behavior_plugins: {  }

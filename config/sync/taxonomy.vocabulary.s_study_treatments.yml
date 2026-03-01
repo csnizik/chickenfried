@@ -1,0 +1,9 @@
+uuid: 4c21e6d2-7cff-4b3e-8cf1-26000acf1a85
+langcode: en
+status: true
+dependencies: {  }
+name: 'Study Treatments'
+vid: s_study_treatments
+description: null
+weight: 0
+new_revision: false

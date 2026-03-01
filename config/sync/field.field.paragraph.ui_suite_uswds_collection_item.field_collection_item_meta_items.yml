@@ -1,0 +1,21 @@
+uuid: b3638ffc-fbf5-47c5-975d-2ce0152a16e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_collection_item_meta_items
+    - paragraphs.paragraphs_type.ui_suite_uswds_collection_item
+_core:
+  default_config_hash: yeCQ1r4LanNSSFXnpkZXRKDxso-Q_3Jp4qQWQbz0tUA
+id: paragraph.ui_suite_uswds_collection_item.field_collection_item_meta_items
+field_name: field_collection_item_meta_items
+entity_type: paragraph
+bundle: ui_suite_uswds_collection_item
+label: 'Meta Items'
+description: 'Will appear as list items below the content.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

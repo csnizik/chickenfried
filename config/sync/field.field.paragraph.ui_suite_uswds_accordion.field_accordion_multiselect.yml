@@ -1,0 +1,23 @@
+uuid: 669d29b4-2ed1-46af-ac80-a309c78fef85
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_accordion_multiselect
+    - paragraphs.paragraphs_type.ui_suite_uswds_accordion
+_core:
+  default_config_hash: mOeLPBJb7V8KeR0FPXG5ULNBxOO_qXq9mcKvNELGync
+id: paragraph.ui_suite_uswds_accordion.field_accordion_multiselect
+field_name: field_accordion_multiselect
+entity_type: paragraph
+bundle: ui_suite_uswds_accordion
+label: Multiselect
+description: 'Allow more than one accordion to be open at once.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

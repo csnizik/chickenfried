@@ -1,0 +1,25 @@
+uuid: 85c6cef5-265b-4d19-ba09-d41176474450
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - ui_suite_arsapps
+id: ui_suite_arsapps_loginagreementblock
+theme: ui_suite_arsapps
+region: content
+weight: -6
+provider: null
+plugin: 'block_content:91b414ea-33f1-4856-aea9-2c93dae90dde'
+settings:
+  id: 'block_content:91b414ea-33f1-4856-aea9-2c93dae90dde'
+  label: 'Login Agreement block'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /user/login

@@ -1,0 +1,53 @@
+uuid: a8cfeefe-8338-4611-a2e1-3df6f5fffd27
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.s_breeds.field_human_readable_name
+    - taxonomy.vocabulary.s_breeds
+  module:
+    - path
+    - text
+id: taxonomy_term.s_breeds.default
+targetEntityType: taxonomy_term
+bundle: s_breeds
+mode: default
+content:
+  description:
+    type: text_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_human_readable_name:
+    type: string_textfield
+    weight: 101
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 100
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden: {  }

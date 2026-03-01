@@ -1,0 +1,9 @@
+uuid: 13e9aafa-ae7e-4a99-afc3-c48eda4efec4
+langcode: en
+status: true
+dependencies: {  }
+name: Abnormalities
+vid: s_abnormalities
+description: null
+weight: 0
+new_revision: false

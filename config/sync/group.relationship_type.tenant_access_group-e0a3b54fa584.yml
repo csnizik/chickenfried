@@ -1,0 +1,17 @@
+uuid: 3783188c-349e-46c3-8fc9-d444ab7c0cce
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - taxonomy.vocabulary.s_measurement_types
+  module:
+    - group_term
+    - taxonomy
+id: tenant_access_group-e0a3b54fa584
+group_type: tenant_access_group
+content_plugin: 'group_term:s_measurement_types'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

@@ -1,0 +1,53 @@
+uuid: dce0c2f9-81fd-4b5d-87c6-7dbe3b61becd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.s_disposal_codes.field_human_readable_name
+    - taxonomy.vocabulary.s_disposal_codes
+  module:
+    - path
+    - text
+id: taxonomy_term.s_disposal_codes.default
+targetEntityType: taxonomy_term
+bundle: s_disposal_codes
+mode: default
+content:
+  description:
+    type: text_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_human_readable_name:
+    type: string_textfield
+    weight: 101
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 100
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden: {  }

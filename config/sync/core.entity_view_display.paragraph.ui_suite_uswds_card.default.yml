@@ -1,0 +1,176 @@
+uuid: dfd86afb-91fd-4126-8e4a-62c9f414a001
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ui_suite_uswds_card.field_card_body_exdent
+    - field.field.paragraph.ui_suite_uswds_card.field_card_breakpoint_desktop
+    - field.field.paragraph.ui_suite_uswds_card.field_card_breakpoint_tablet
+    - field.field.paragraph.ui_suite_uswds_card.field_card_content
+    - field.field.paragraph.ui_suite_uswds_card.field_card_footer
+    - field.field.paragraph.ui_suite_uswds_card.field_card_footer_exdent
+    - field.field.paragraph.ui_suite_uswds_card.field_card_footer_url
+    - field.field.paragraph.ui_suite_uswds_card.field_card_header
+    - field.field.paragraph.ui_suite_uswds_card.field_card_header_extent
+    - field.field.paragraph.ui_suite_uswds_card.field_card_header_first
+    - field.field.paragraph.ui_suite_uswds_card.field_card_make_flag
+    - field.field.paragraph.ui_suite_uswds_card.field_card_media
+    - field.field.paragraph.ui_suite_uswds_card.field_card_media_exdent
+    - field.field.paragraph.ui_suite_uswds_card.field_card_media_inset
+    - paragraphs.paragraphs_type.ui_suite_uswds_card
+  module:
+    - link
+    - nomarkup
+    - text
+_core:
+  default_config_hash: S9iLX-yUgvIFoGGJpMOnVTGxEsg8pCZYO8r6zSn9HpU
+id: paragraph.ui_suite_uswds_card.default
+targetEntityType: paragraph
+bundle: ui_suite_uswds_card
+mode: default
+content:
+  field_card_body_exdent:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_card_breakpoint_desktop:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 13
+    region: content
+  field_card_breakpoint_tablet:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 14
+    region: content
+  field_card_content:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_card_footer:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      nomarkup:
+        enabled: true
+        separator: '|'
+        referenced_entity: ''
+    weight: 9
+    region: content
+  field_card_footer_exdent:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_card_footer_url:
+    type: link_separate
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_card_header:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      nomarkup:
+        enabled: true
+        separator: '|'
+        referenced_entity: ''
+    weight: 7
+    region: content
+  field_card_header_extent:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_card_header_first:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_card_make_flag:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_card_media:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings:
+      nomarkup:
+        enabled: true
+        separator: '|'
+        referenced_entity: '1'
+    weight: 12
+    region: content
+  field_card_media_exdent:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_card_media_inset:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden: {  }

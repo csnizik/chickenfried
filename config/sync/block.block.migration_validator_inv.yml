@@ -1,0 +1,28 @@
+uuid: da162bcd-d9e6-47a5-83ae-b79ed364b191
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.sheep_migration_validator
+  module:
+    - system
+    - views
+  theme:
+    - ui_suite_arsapps
+id: migration_validator_inv
+theme: ui_suite_arsapps
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'views_exposed_filter_block:sheep_migration_validator-migration_validator_inv'
+settings:
+  id: 'views_exposed_filter_block:sheep_migration_validator-migration_validator_inv'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /migration-validator/inv

@@ -1,0 +1,15 @@
+uuid: b1afe786-d02c-4a31-8073-1f66491eabe2
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+  module:
+    - nematode_entities
+id: tenant_access_group-6d2a36bd5db5
+group_type: tenant_access_group
+content_plugin: nematode_entities_specimen
+plugin_config:
+  group_cardinality: 1
+  entity_cardinality: 1
+  use_creation_wizard: false

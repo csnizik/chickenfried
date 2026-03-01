@@ -1,0 +1,15 @@
+uuid: 29b563ee-37e5-4f2f-8a1f-8c0e8a934f10
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+  module:
+    - sheep_entities
+id: tenant_access_group-baa0fb456f7c
+group_type: tenant_access_group
+content_plugin: sheep_entities_annual_assignment
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

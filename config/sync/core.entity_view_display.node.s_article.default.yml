@@ -1,0 +1,28 @@
+uuid: 5425fdcf-bc05-43b7-b6a0-ddf4f5d2c724
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.s_article.field_test
+    - node.type.s_article
+  module:
+    - user
+id: node.s_article.default
+targetEntityType: node
+bundle: s_article
+mode: default
+content:
+  field_test:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  search_api_excerpt: true

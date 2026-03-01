@@ -1,0 +1,15 @@
+uuid: 72ba141a-4ec3-4225-aa07-fe7193de472a
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - user.role.administrator
+id: tenant_access_group-global_admin
+label: 'Global administrator'
+weight: -4
+admin: true
+scope: insider
+global_role: administrator
+group_type: tenant_access_group
+permissions: {  }

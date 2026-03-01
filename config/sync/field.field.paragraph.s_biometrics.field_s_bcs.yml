@@ -1,0 +1,23 @@
+uuid: c2ca3155-27ce-4d0a-b799-b37f75e8f6fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_s_bcs
+    - paragraphs.paragraphs_type.s_biometrics
+id: paragraph.s_biometrics.field_s_bcs
+field_name: field_s_bcs
+entity_type: paragraph
+bundle: s_biometrics
+label: BCS
+description: '1 to 5, in increments of 0.5'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1.0
+  max: 5.0
+  prefix: ''
+  suffix: ''
+field_type: decimal

@@ -1,0 +1,21 @@
+uuid: 5f5a60c4-1632-48b1-9e33-3cf0315fe556
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_accordion_item_title
+    - paragraphs.paragraphs_type.ui_suite_uswds_accordion_item
+_core:
+  default_config_hash: xVfZC3saiRDOZwh3aYTzkh8s717oJ0-yDDdlIdB4B0s
+id: paragraph.ui_suite_uswds_accordion_item.field_accordion_item_title
+field_name: field_accordion_item_title
+entity_type: paragraph
+bundle: ui_suite_uswds_accordion_item
+label: Title
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

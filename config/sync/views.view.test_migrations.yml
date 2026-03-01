@@ -1,0 +1,3888 @@
+uuid: 68d13e06-8526-4f6f-a774-80768d8c2666
+langcode: en
+status: true
+dependencies:
+  module:
+    - better_exposed_filters
+    - sheep_entities
+id: test_migrations
+label: 'Test Migrations'
+module: views
+description: ''
+tag: ''
+base_table: sheep_entities_sheep_record
+base_field: id
+display:
+  default:
+    id: default
+    display_title: Default
+    display_plugin: default
+    position: 0
+    display_options:
+      title: 'Test Migrations'
+      fields:
+        id:
+          id: id
+          table: sheep_entities_sheep_record
+          field: id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: id
+          plugin_id: field
+          label: ID
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_import_log:
+          id: field_import_log
+          table: sheep_entities_sheep_record
+          field: field_import_log
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_import_log
+          plugin_id: field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: basic_string
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_born_year:
+          id: field_s_born_year
+          table: sheep_entities_sheep_record
+          field: field_s_born_year
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_born_year
+          plugin_id: field
+          label: 'Born (year)'
+          exclude: false
+          alter:
+            alter_text: true
+            text: "{# Get the plain born year; bail out silently if empty #}\r\n{% set this_field = field_s_born_year__value|default('') %}\r\n{% if this_field is not empty %}\r\n  {# Extract value from the import log #}\r\n  {% set log_part = field_import_log|split(' | ')|filter(p => p starts with 'YR:')|first|default('') %}\r\n  {% set log_value = log_part ? log_part|replace({'YR:': ''}) : '' %}\r\n\r\n  {# If it matches, show the original field output; else show NO MATCH #}\r\n  {% if log_value == this_field %}\r\n    {{ this_field }}\r\n  {% else %}\r\n    <span class=\"button--danger\">! {{ this_field }} !</span>\r\n  {% endif %}\r\n{% endif %}\r\n\r\n\r\n"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_altid:
+          id: field_s_altid
+          table: sheep_entities_sheep_record
+          field: field_s_altid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_altid
+          plugin_id: field
+          label: 'Alternate ID'
+          exclude: false
+          alter:
+            alter_text: true
+            text: "{# field_s_altid__value vs ALTID #}\r\n{% set this_field = field_s_altid__value|default('') %}\r\n{% if this_field is not empty %}\r\n  {% set log_part = field_import_log|split(' | ')|filter(p => p starts with 'ALTID:')|first|default('') %}\r\n  {% set log_value = log_part ? log_part|replace({'ALTID:': ''}) : '' %}\r\n  {% if log_value == this_field %}\r\n    {{ this_field }}\r\n  {% else %}\r\n    <span class=\"button--danger\">! {{ field_s_altid__value }} !</span>\r\n  {% endif %}\r\n{% endif %}\r\n"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_breed:
+          id: field_s_breed
+          table: sheep_entities_sheep_record
+          field: field_s_breed
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_breed
+          plugin_id: field
+          label: Breed
+          exclude: false
+          alter:
+            alter_text: true
+            text: "{# field_s_breed vs BRD #}\r\n{% set this_field = field_s_breed|default('') %}\r\n{% if this_field is not empty %}\r\n  {% set log_part = field_import_log|split(' | ')|filter(p => p starts with 'BRD:')|first|default('') %}\r\n  {% set log_value = log_part ? log_part|replace({'BRD:': ''}) : '' %}\r\n  {% if log_value == this_field %}\r\n    {{ this_field }}\r\n  {% else %}\r\n    <span class=\"button--danger\">! {{ this_field }} !</span>\r\n  {% endif %}\r\n{% endif %}\r\n"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_dam:
+          id: field_s_dam
+          table: sheep_entities_sheep_record
+          field: field_s_dam
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_dam
+          plugin_id: field
+          label: Dam
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_disposal_day_julian:
+          id: field_s_disposal_day_julian
+          table: sheep_entities_sheep_record
+          field: field_s_disposal_day_julian
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_disposal_day_julian
+          plugin_id: field
+          label: 'Disposal (Julian day)'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_disposal_year:
+          id: field_s_disposal_year
+          table: sheep_entities_sheep_record
+          field: field_s_disposal_year
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_disposal_year
+          plugin_id: field
+          label: 'Disposal (year)'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_disposal:
+          id: field_s_disposal
+          table: sheep_entities_sheep_record
+          field: field_s_disposal
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_disposal
+          plugin_id: field
+          label: 'Disposal code'
+          exclude: false
+          alter:
+            alter_text: true
+            text: "{# field_s_disposal vs DISP #}\r\n{% set this_field = field_s_disposal|default('') %}\r\n{% if this_field is not empty %}\r\n  {% set log_part = field_import_log|split(' | ')|filter(p => p starts with 'DISP:')|first|default('') %}\r\n  {% set log_value = log_part ? log_part|replace({'DISP:': ''}) : '' %}\r\n  {% if log_value == this_field %}\r\n    {{ this_field }}\r\n  {% else %}\r\n    <span class=\"button--danger\">! {{ this_field }} !</span>\r\n  {% endif %}\r\n{% endif %}\r\n"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_etag:
+          id: field_s_etag
+          table: sheep_entities_sheep_record
+          field: field_s_etag
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_etag
+          plugin_id: field
+          label: 'Ear tag'
+          exclude: false
+          alter:
+            alter_text: true
+            text: "{# field_s_etag vs ETAG #}\r\n{% set this_field = field_s_etag__value|default('') %}\r\n{% if this_field is not empty %}\r\n  {% set log_part = field_import_log|split(' | ')|filter(p => p starts with 'ETAG:')|first|default('') %}\r\n  {% set log_value = log_part ? log_part|replace({'ETAG:': ''}) : '' %}\r\n  {% if log_value == this_field %}\r\n    {{ this_field }}\r\n  {% else %}\r\n    <span class=\"button--danger\">! {{ this_field }} !</span>\r\n  {% endif %}\r\n{% endif %}\r\n"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_id10:
+          id: field_s_id10
+          table: sheep_entities_sheep_record
+          field: field_s_id10
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_id10
+          plugin_id: field
+          label: ID10
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_sex:
+          id: field_s_sex
+          table: sheep_entities_sheep_record
+          field: field_s_sex
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_sex
+          plugin_id: field
+          label: Sex
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_subtype_mating:
+          id: field_s_subtype_mating
+          table: sheep_entities_sheep_record
+          field: field_s_subtype_mating
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_subtype_mating
+          plugin_id: field
+          label: 'Subtype mating'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+      pager:
+        type: full
+        options:
+          offset: 0
+          pagination_heading_level: h4
+          items_per_page: 100
+          total_pages: null
+          id: 0
+          tags:
+            next: ››
+            previous: ‹‹
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          quantity: 9
+      exposed_form:
+        type: bef
+        options:
+          submit_button: Apply
+          reset_button: true
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+          text_input_required: 'Select any filter and click on Apply to see results'
+          text_input_required_format: basic_html
+          bef:
+            general:
+              autosubmit: false
+              auto_submit_sort_only: false
+              autosubmit_breakpoint: ''
+              autosubmit_exclude_textfield: false
+              autosubmit_textfield_delay: 500
+              autosubmit_textfield_minimum_length: 3
+              autosubmit_hide: false
+              input_required: false
+              allow_secondary: false
+              secondary_label: 'Advanced options'
+              secondary_open: false
+              reset_button_always_show: false
+            filter:
+              field_s_disposal:
+                plugin_id: default
+                advanced:
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
+                  placeholder_text: ''
+                  rewrite:
+                    filter_rewrite_values: ''
+                    filter_rewrite_values_key: false
+                  collapsible: false
+                  collapsible_disable_automatic_open: false
+                  open_by_default: false
+                  is_secondary: false
+                  hide_label: false
+                  field_classes: ''
+              field_s_etag:
+                plugin_id: default
+                advanced:
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
+                  placeholder_text: ''
+                  rewrite:
+                    filter_rewrite_values: ''
+                    filter_rewrite_values_key: false
+                  collapsible: false
+                  collapsible_disable_automatic_open: false
+                  open_by_default: false
+                  is_secondary: false
+                  hide_label: false
+                  field_classes: ''
+              field_s_id10:
+                plugin_id: default
+                advanced:
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
+                  placeholder_text: ''
+                  rewrite:
+                    filter_rewrite_values: ''
+                    filter_rewrite_values_key: false
+                  collapsible: false
+                  collapsible_disable_automatic_open: false
+                  open_by_default: false
+                  is_secondary: false
+                  hide_label: false
+                  field_classes: ''
+              field_s_born_year:
+                plugin_id: bef_sliders
+                advanced:
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
+                  placeholder_text: ''
+                  collapsible: false
+                  collapsible_disable_automatic_open: false
+                  open_by_default: false
+                  is_secondary: false
+                  hide_label: false
+                  field_classes: ''
+                min: '2010'
+                max: '2025'
+                step: '1'
+                animate: '0'
+                animate_ms: '0'
+                orientation: horizontal
+                enable_tooltips: false
+                tooltips_value_prefix: ''
+                tooltips_value_suffix: ''
+                placement_location: end
+              field_s_disposal_year:
+                plugin_id: bef_sliders
+                advanced:
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
+                  placeholder_text: ''
+                  collapsible: false
+                  collapsible_disable_automatic_open: false
+                  open_by_default: false
+                  is_secondary: false
+                  hide_label: false
+                  field_classes: ''
+                min: '2010'
+                max: '2025'
+                step: '1'
+                animate: '0'
+                animate_ms: '0'
+                orientation: horizontal
+                enable_tooltips: false
+                tooltips_value_prefix: ''
+                tooltips_value_suffix: ''
+                placement_location: end
+      access:
+        type: none
+        options: {  }
+      cache:
+        type: tag
+        options: {  }
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: true
+          content: '<h2>All results have been filtered out.</h2>'
+          tokenize: false
+      sorts: {  }
+      arguments: {  }
+      filters: {  }
+      filter_groups:
+        operator: AND
+        groups: {  }
+      style:
+        type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          columns:
+            id: id
+            field_import_log: field_import_log
+            field_s_born_year: field_s_born_year
+            field_s_altid: field_s_altid
+            field_s_breed: field_s_breed
+            field_s_dam: field_s_dam
+            field_s_disposal_day_julian: field_s_disposal_day_julian
+            field_s_disposal_year: field_s_disposal_year
+            field_s_disposal: field_s_disposal
+            field_s_etag: field_s_etag
+            field_s_id10: field_s_id10
+            field_s_sex: field_s_sex
+            field_s_subtype_mating: field_s_subtype_mating
+            field_import_log_1: field_import_log_1
+          default: id
+          info:
+            id:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_import_log:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_s_born_year:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_s_altid:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_s_breed:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_s_dam:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_s_disposal_day_julian:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_s_disposal_year:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_s_disposal:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_s_etag:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_s_id10:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_s_sex:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_s_subtype_mating:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_import_log_1:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          override: true
+          sticky: false
+          summary: ''
+          empty_table: false
+          caption: ''
+          description: ''
+          class: ''
+      row:
+        type: fields
+      query:
+        type: views_query
+        options:
+          query_comment: ''
+          disable_sql_rewrite: false
+          distinct: false
+          replica: false
+          query_tags: {  }
+      relationships: {  }
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: result
+          empty: false
+          content: 'Displaying @start - @end of @total'
+      footer: {  }
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+      tags: {  }
+  page_1:
+    id: page_1
+    display_title: 'Duplicated ID10'
+    display_plugin: page
+    position: 2
+    display_options:
+      fields:
+        id:
+          id: id
+          table: sheep_entities_sheep_record
+          field: id
+          relationship: none
+          group_type: count
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: id
+          plugin_id: field
+          label: ID
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_id10:
+          id: field_s_id10
+          table: sheep_entities_sheep_record
+          field: field_s_id10
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_id10
+          plugin_id: field
+          label: ID10
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: '{ no ID10 found }'
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+      filters:
+        id:
+          id: id
+          table: sheep_entities_sheep_record
+          field: id
+          relationship: none
+          group_type: count
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: id
+          plugin_id: numeric
+          operator: '>'
+          value:
+            min: ''
+            max: ''
+            value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups: {  }
+      defaults:
+        group_by: false
+        fields: false
+        filters: false
+        filter_groups: false
+        header: false
+      group_by: true
+      display_description: ''
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: result
+          empty: false
+          content: '<strong>Count of all entities with duplicate ID10 values</strong>'
+      display_extenders: {  }
+      path: dupeid10
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+      tags: {  }
+  page_2:
+    id: page_2
+    display_title: 'Missing criticals'
+    display_plugin: page
+    position: 2
+    display_options:
+      fields:
+        id:
+          id: id
+          table: sheep_entities_sheep_record
+          field: id
+          relationship: none
+          group_type: count
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: id
+          plugin_id: field
+          label: ID
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_etag:
+          id: field_s_etag
+          table: sheep_entities_sheep_record
+          field: field_s_etag
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_etag
+          plugin_id: field
+          label: 'Ear tag'
+          exclude: false
+          alter:
+            alter_text: false
+            text: "{# field_s_etag vs ETAG #}\r\n{% set this_field = field_s_etag__value|default('') %}\r\n{% if this_field is not empty %}\r\n  {% set log_part = field_import_log|split(' | ')|filter(p => p starts with 'ETAG:')|first|default('') %}\r\n  {% set log_value = log_part ? log_part|replace({'ETAG:': ''}) : '' %}\r\n  {% if log_value == this_field %}\r\n    {{ this_field }}\r\n  {% else %}\r\n    <span class=\"button--danger\">! {{ this_field }} !</span>\r\n  {% endif %}\r\n{% endif %}\r\n"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_id10:
+          id: field_s_id10
+          table: sheep_entities_sheep_record
+          field: field_s_id10
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_id10
+          plugin_id: field
+          label: ID10
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+      filters:
+        field_s_id10:
+          id: field_s_id10
+          table: sheep_entities_sheep_record
+          field: field_s_id10
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_id10
+          plugin_id: string
+          operator: empty
+          value: ''
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups: {  }
+      defaults:
+        group_by: false
+        fields: false
+        filters: false
+        filter_groups: false
+        header: false
+      group_by: false
+      display_description: ''
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: result
+          empty: true
+          content: "<div><strong>Finds all entities that are missing ID10 value.</strong></div>\r\nFound @total total."
+      display_extenders: {  }
+      path: missing
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+      tags: {  }
+  page_3:
+    id: page_3
+    display_title: 'ID10 length'
+    display_plugin: page
+    position: 2
+    display_options:
+      fields:
+        id:
+          id: id
+          table: sheep_entities_sheep_record
+          field: id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: id
+          plugin_id: field
+          label: ID
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_etag:
+          id: field_s_etag
+          table: sheep_entities_sheep_record
+          field: field_s_etag
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_etag
+          plugin_id: field
+          label: 'Ear tag'
+          exclude: false
+          alter:
+            alter_text: false
+            text: "{# field_s_etag vs ETAG #}\r\n{% set this_field = field_s_etag__value|default('') %}\r\n{% if this_field is not empty %}\r\n  {% set log_part = field_import_log|split(' | ')|filter(p => p starts with 'ETAG:')|first|default('') %}\r\n  {% set log_value = log_part ? log_part|replace({'ETAG:': ''}) : '' %}\r\n  {% if log_value == this_field %}\r\n    {{ this_field }}\r\n  {% else %}\r\n    <span class=\"button--danger\">! {{ this_field }} !</span>\r\n  {% endif %}\r\n{% endif %}\r\n"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_id10:
+          id: field_s_id10
+          table: sheep_entities_sheep_record
+          field: field_s_id10
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_id10
+          plugin_id: field
+          label: ID10
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+      filters:
+        field_s_id10:
+          id: field_s_id10
+          table: sheep_entities_sheep_record
+          field: field_s_id10
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_id10
+          plugin_id: string
+          operator: shorterthan
+          value: '10'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: field_s_id10_op
+            label: 'Hide length < 10'
+            description: ''
+            use_operator: false
+            operator: field_s_id10_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_s_id10
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_s_id10_1:
+          id: field_s_id10_1
+          table: sheep_entities_sheep_record
+          field: field_s_id10
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_id10
+          plugin_id: string
+          operator: longerthan
+          value: '10'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: OR
+      defaults:
+        fields: false
+        filters: false
+        filter_groups: false
+        header: false
+      display_description: ''
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: result
+          empty: false
+          content: "<div><strong>ID10 values that are not exactly 10 characters long</strong></div>\r\nDisplaying @start - @end of @total"
+      display_extenders: {  }
+      path: id10len
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+      tags: {  }
+  page_4:
+    id: page_4
+    display_title: 'ID10 junk characters'
+    display_plugin: page
+    position: 2
+    display_options:
+      fields:
+        id:
+          id: id
+          table: sheep_entities_sheep_record
+          field: id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: id
+          plugin_id: field
+          label: ID
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_etag:
+          id: field_s_etag
+          table: sheep_entities_sheep_record
+          field: field_s_etag
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_etag
+          plugin_id: field
+          label: 'Ear tag'
+          exclude: false
+          alter:
+            alter_text: false
+            text: "{# field_s_etag vs ETAG #}\r\n{% set this_field = field_s_etag__value|default('') %}\r\n{% if this_field is not empty %}\r\n  {% set log_part = field_import_log|split(' | ')|filter(p => p starts with 'ETAG:')|first|default('') %}\r\n  {% set log_value = log_part ? log_part|replace({'ETAG:': ''}) : '' %}\r\n  {% if log_value == this_field %}\r\n    {{ this_field }}\r\n  {% else %}\r\n    <span class=\"button--danger\">! {{ this_field }} !</span>\r\n  {% endif %}\r\n{% endif %}\r\n"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_id10:
+          id: field_s_id10
+          table: sheep_entities_sheep_record
+          field: field_s_id10
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_id10
+          plugin_id: field
+          label: ID10
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+      filters:
+        field_s_id10:
+          id: field_s_id10
+          table: sheep_entities_sheep_record
+          field: field_s_id10
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_id10
+          plugin_id: string
+          operator: regular_expression
+          value: '[^A-Za-z0-9]'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: field_s_id10_op
+            label: 'Hide length < 10'
+            description: ''
+            use_operator: false
+            operator: field_s_id10_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_s_id10
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: OR
+      defaults:
+        fields: false
+        filters: false
+        filter_groups: false
+        header: false
+      display_description: ''
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: result
+          empty: true
+          content: '<strong>Finds non-alphanumeric characters in ID10 field</strong>'
+      display_extenders: {  }
+      path: id10junk
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+      tags: {  }
+  page_5:
+    id: page_5
+    display_title: 'Disposal values'
+    display_plugin: page
+    position: 2
+    display_options:
+      fields:
+        id:
+          id: id
+          table: sheep_entities_sheep_record
+          field: id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: id
+          plugin_id: field
+          label: ID
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_etag:
+          id: field_s_etag
+          table: sheep_entities_sheep_record
+          field: field_s_etag
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_etag
+          plugin_id: field
+          label: 'Ear tag'
+          exclude: false
+          alter:
+            alter_text: false
+            text: "{# field_s_etag vs ETAG #}\r\n{% set this_field = field_s_etag__value|default('') %}\r\n{% if this_field is not empty %}\r\n  {% set log_part = field_import_log|split(' | ')|filter(p => p starts with 'ETAG:')|first|default('') %}\r\n  {% set log_value = log_part ? log_part|replace({'ETAG:': ''}) : '' %}\r\n  {% if log_value == this_field %}\r\n    {{ this_field }}\r\n  {% else %}\r\n    <span class=\"button--danger\">! {{ this_field }} !</span>\r\n  {% endif %}\r\n{% endif %}\r\n"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_id10:
+          id: field_s_id10
+          table: sheep_entities_sheep_record
+          field: field_s_id10
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_id10
+          plugin_id: field
+          label: ID10
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_disposal_day_julian:
+          id: field_s_disposal_day_julian
+          table: sheep_entities_sheep_record
+          field: field_s_disposal_day_julian
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_disposal_day_julian
+          plugin_id: field
+          label: 'Disposal (Julian day)'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_disposal_year:
+          id: field_s_disposal_year
+          table: sheep_entities_sheep_record
+          field: field_s_disposal_year
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_disposal_year
+          plugin_id: field
+          label: 'Disposal (year)'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_disposal:
+          id: field_s_disposal
+          table: sheep_entities_sheep_record
+          field: field_s_disposal
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_disposal
+          plugin_id: field
+          label: 'Disposal code'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_born_day_julian:
+          id: field_s_born_day_julian
+          table: sheep_entities_sheep_record
+          field: field_s_born_day_julian
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_born_day_julian
+          plugin_id: field
+          label: 'Born (Julian day)'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_born_year:
+          id: field_s_born_year
+          table: sheep_entities_sheep_record
+          field: field_s_born_year
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_born_year
+          plugin_id: field
+          label: 'Born (year)'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+      filters:
+        field_s_disposal:
+          id: field_s_disposal
+          table: sheep_entities_sheep_record
+          field: field_s_disposal
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_disposal
+          plugin_id: numeric
+          operator: 'not empty'
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_s_disposal_op
+            label: 'Disposal code'
+            description: ''
+            use_operator: false
+            operator: field_s_disposal_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_s_disposal
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''
+          is_grouped: true
+          group_info:
+            label: DISP
+            description: ''
+            identifier: field_s_disposal
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: 'Has DISP'
+                operator: 'not empty'
+                value:
+                  min: ''
+                  max: ''
+                  value: ''
+              2:
+                title: 'No DISP'
+                operator: empty
+                value:
+                  min: ''
+                  max: ''
+                  value: ''
+        field_s_etag:
+          id: field_s_etag
+          table: sheep_entities_sheep_record
+          field: field_s_etag
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_etag
+          plugin_id: string
+          operator: '='
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_s_etag_op
+            label: 'Ear tag'
+            description: null
+            use_operator: false
+            operator: field_s_etag_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_s_etag
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: null
+          is_grouped: true
+          group_info:
+            label: ETAG
+            description: ''
+            identifier: field_s_etag
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: 'Has ETAG'
+                operator: 'not empty'
+                value: ''
+              2:
+                title: 'No ETAG'
+                operator: empty
+                value: ''
+        field_s_id10:
+          id: field_s_id10
+          table: sheep_entities_sheep_record
+          field: field_s_id10
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_id10
+          plugin_id: string
+          operator: '='
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_s_id10_op
+            label: ID10
+            description: null
+            use_operator: false
+            operator: field_s_id10_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_s_id10
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: null
+          is_grouped: true
+          group_info:
+            label: ID10
+            description: ''
+            identifier: field_s_id10
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: 'D (disposed in lambing event)'
+                operator: starts
+                value: D
+              2:
+                title: 'No D'
+                operator: not_starts
+                value: D
+        field_s_born_year:
+          id: field_s_born_year
+          table: sheep_entities_sheep_record
+          field: field_s_born_year
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_born_year
+          plugin_id: numeric
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_s_born_year_op
+            label: 'Born (year)'
+            description: ''
+            use_operator: false
+            operator: field_s_born_year_op
+            operator_limit_selection: false
+            operator_list:
+              '=': '='
+            identifier: field_s_born_year
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_s_disposal_year:
+          id: field_s_disposal_year
+          table: sheep_entities_sheep_record
+          field: field_s_disposal_year
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_disposal_year
+          plugin_id: numeric
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_s_disposal_year_op
+            label: 'Disposal (year)'
+            description: ''
+            use_operator: false
+            operator: field_s_disposal_year_op
+            operator_limit_selection: false
+            operator_list:
+              '=': '='
+            identifier: field_s_disposal_year
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups: {  }
+      defaults:
+        fields: false
+        filters: false
+        filter_groups: false
+        header: false
+      display_description: ''
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: result
+          empty: true
+          content: "<div><strong>Error checking on disposed vs. live</strong></div>\r\nDisplaying @start - @end of @total"
+      display_extenders: {  }
+      path: id10junk
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+      tags: {  }
+  page_6:
+    id: page_6
+    display_title: Pedigree
+    display_plugin: page
+    position: 2
+    display_options:
+      fields:
+        id:
+          id: id
+          table: sheep_entities_sheep_record
+          field: id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: id
+          plugin_id: field
+          label: ID
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_etag:
+          id: field_s_etag
+          table: sheep_entities_sheep_record
+          field: field_s_etag
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_etag
+          plugin_id: field
+          label: 'Ear tag'
+          exclude: false
+          alter:
+            alter_text: false
+            text: "{# field_s_etag vs ETAG #}\r\n{% set this_field = field_s_etag__value|default('') %}\r\n{% if this_field is not empty %}\r\n  {% set log_part = field_import_log|split(' | ')|filter(p => p starts with 'ETAG:')|first|default('') %}\r\n  {% set log_value = log_part ? log_part|replace({'ETAG:': ''}) : '' %}\r\n  {% if log_value == this_field %}\r\n    {{ this_field }}\r\n  {% else %}\r\n    <span class=\"button--danger\">! {{ this_field }} !</span>\r\n  {% endif %}\r\n{% endif %}\r\n"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_id10:
+          id: field_s_id10
+          table: sheep_entities_sheep_record
+          field: field_s_id10
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_id10
+          plugin_id: field
+          label: ID10
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_line:
+          id: field_s_line
+          table: sheep_entities_sheep_record
+          field: field_s_line
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_line
+          plugin_id: field
+          label: Line
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_dam:
+          id: field_s_dam
+          table: sheep_entities_sheep_record
+          field: field_s_dam
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_dam
+          plugin_id: field
+          label: Dam
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_breed:
+          id: field_s_breed
+          table: sheep_entities_sheep_record
+          field: field_s_breed
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_breed
+          plugin_id: field
+          label: Breed
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_s_sire:
+          id: field_s_sire
+          table: sheep_entities_sheep_record
+          field: field_s_sire
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_sire
+          plugin_id: field
+          label: Sire
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+      filters:
+        field_s_line:
+          id: field_s_line
+          table: sheep_entities_sheep_record
+          field: field_s_line
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_line
+          plugin_id: numeric
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_s_line_op
+            label: Line
+            description: null
+            use_operator: false
+            operator: field_s_line_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_s_line
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            min_placeholder: null
+            max_placeholder: null
+            placeholder: null
+          is_grouped: true
+          group_info:
+            label: Line
+            description: ''
+            identifier: field_s_line
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: 'Has line'
+                operator: 'not empty'
+                value:
+                  min: ''
+                  max: ''
+                  value: ''
+              2:
+                title: 'No line'
+                operator: empty
+                value:
+                  min: ''
+                  max: ''
+                  value: ''
+              3:
+                title: ''
+                operator: '='
+                value:
+                  min: ''
+                  max: ''
+                  value: ''
+        field_s_id10:
+          id: field_s_id10
+          table: sheep_entities_sheep_record
+          field: field_s_id10
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_id10
+          plugin_id: string
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_s_id10_op
+            label: ID10
+            description: ''
+            use_operator: false
+            operator: field_s_id10_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_s_id10
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        id:
+          id: id
+          table: sheep_entities_sheep_record
+          field: id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: id
+          plugin_id: numeric
+          operator: '>'
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: id_op
+            label: ID
+            description: ''
+            use_operator: false
+            operator: id_op
+            operator_limit_selection: false
+            operator_list:
+              '>': '>'
+            identifier: id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_s_etag:
+          id: field_s_etag
+          table: sheep_entities_sheep_record
+          field: field_s_etag
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_etag
+          plugin_id: string
+          operator: '='
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_s_etag_op
+            label: 'Ear tag'
+            description: ''
+            use_operator: false
+            operator: field_s_etag_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_s_etag
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_s_sire:
+          id: field_s_sire
+          table: sheep_entities_sheep_record
+          field: field_s_sire
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_sire
+          plugin_id: numeric
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_s_sire_op
+            label: Sire
+            description: null
+            use_operator: false
+            operator: field_s_sire_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_s_sire
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            min_placeholder: null
+            max_placeholder: null
+            placeholder: null
+          is_grouped: true
+          group_info:
+            label: Sire
+            description: ''
+            identifier: field_s_sire
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: 'No sire'
+                operator: empty
+                value:
+                  min: ''
+                  max: ''
+                  value: ''
+              2:
+                title: Sire
+                operator: 'not empty'
+                value:
+                  min: ''
+                  max: ''
+                  value: ''
+        field_s_sire_1:
+          id: field_s_sire_1
+          table: sheep_entities_sheep_record
+          field: field_s_sire
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: sheep_entities_sheep_record
+          entity_field: field_s_sire
+          plugin_id: numeric
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_s_sire_1_op
+            label: Sire
+            description: ''
+            use_operator: false
+            operator: field_s_sire_1_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_s_sire_1
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups: {  }
+      defaults:
+        relationships: false
+        fields: false
+        filters: false
+        filter_groups: false
+        header: false
+      relationships: {  }
+      display_description: ''
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: result
+          empty: false
+          content: "<div><strong>Find missing parentage</strong></div>\r\nDisplaying @start - @end of @total"
+      display_extenders: {  }
+      path: id10len
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+      tags: {  }

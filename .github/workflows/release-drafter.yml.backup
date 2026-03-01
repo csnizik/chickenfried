@@ -1,0 +1,53 @@
+# Release Drafter Workflow
+# Automatically drafts release notes as PRs are merged
+#
+# This workflow has two functions:
+# 1. Autolabeler: Automatically labels PRs based on files/title (runs on PR events)
+# 2. Release Drafter: Updates draft release notes when PRs merge to develop
+#
+# The draft release is then published by deploy-production.yml when code reaches main.
+
+name: Draft Release Notes
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  # Update the release draft when PRs are merged to develop
+  update-release-draft:
+    name: Update Release Draft
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
+    steps:
+      - name: Run Release Drafter
+        uses: release-drafter/release-drafter@v6
+        with:
+          config-name: release-drafter-config.yml
+          disable-autolabeler: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  # Apply autolabels to PRs when opened/updated
+  autolabel-pr:
+    name: Autolabel PR
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: Run Autolabeler
+        uses: release-drafter/release-drafter@v6
+        with:
+          config-name: release-drafter-config.yml
+          disable-releaser: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+

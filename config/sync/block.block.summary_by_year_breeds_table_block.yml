@@ -1,0 +1,29 @@
+uuid: 2341bf09-0754-48a5-805a-8a5471323394
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.sheep_summary_by_year
+  module:
+    - system
+    - views
+  theme:
+    - ui_suite_arsapps
+id: summary_by_year_breeds_table_block
+theme: ui_suite_arsapps
+region: sidebar_second
+weight: 0
+provider: null
+plugin: 'views_block:sheep_summary_by_year-breeds_table_block'
+settings:
+  id: 'views_block:sheep_summary_by_year-breeds_table_block'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /migration-validator/summary-year

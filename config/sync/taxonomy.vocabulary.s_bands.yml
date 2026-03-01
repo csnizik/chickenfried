@@ -1,0 +1,9 @@
+uuid: 8020e9bf-d2af-4634-a565-76610eec5c09
+langcode: en
+status: true
+dependencies: {  }
+name: Bands
+vid: s_bands
+description: null
+weight: 0
+new_revision: false

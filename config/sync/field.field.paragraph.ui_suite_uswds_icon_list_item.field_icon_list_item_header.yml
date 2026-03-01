@@ -1,0 +1,21 @@
+uuid: ea0c912a-0bca-48ea-889c-36d7c0013210
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_icon_list_item_header
+    - paragraphs.paragraphs_type.ui_suite_uswds_icon_list_item
+_core:
+  default_config_hash: LNdHopv-5YFtnYP4dY8hw3zHPrf2i_tmj0yDIWr6I0Q
+id: paragraph.ui_suite_uswds_icon_list_item.field_icon_list_item_header
+field_name: field_icon_list_item_header
+entity_type: paragraph
+bundle: ui_suite_uswds_icon_list_item
+label: Header
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

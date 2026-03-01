@@ -1,0 +1,4 @@
+services:
+  logger.channel.sheep_migration:
+    parent: logger.channel_base
+    arguments: ['sheep_migration']

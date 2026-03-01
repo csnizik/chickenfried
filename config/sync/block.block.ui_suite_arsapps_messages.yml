@@ -1,0 +1,22 @@
+uuid: b7c7e863-b6a5-470e-be48-f6101603f9f7
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - ui_suite_arsapps
+_core:
+  default_config_hash: PJbJDjLlGJIeNHr0VYn_nVncCJRlxcMxHCThU30hHaE
+id: ui_suite_arsapps_messages
+theme: ui_suite_arsapps
+region: highlighted
+weight: -11
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }

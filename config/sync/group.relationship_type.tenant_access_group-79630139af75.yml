@@ -1,0 +1,17 @@
+uuid: 7c3b170a-69bb-4941-8f47-5e57ba0798bf
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - taxonomy.vocabulary.s_studies
+  module:
+    - group_term
+    - taxonomy
+id: tenant_access_group-79630139af75
+group_type: tenant_access_group
+content_plugin: 'group_term:s_studies'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

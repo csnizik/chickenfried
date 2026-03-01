@@ -1,0 +1,20 @@
+uuid: 12dbd50e-c45c-4f71-8653-5bdea4e10b1e
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.field_medium_num
+field_name: field_medium_num
+entity_type: media
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

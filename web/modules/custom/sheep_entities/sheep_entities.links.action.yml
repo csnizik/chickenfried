@@ -1,0 +1,17 @@
+sheep_entities_annual_assignment.add_form:
+  title: 'Add annual assignment'
+  route_name: entity.sheep_entities_annual_assignment.add_form
+  appears_on:
+    - entity.sheep_entities_annual_assignment.collection
+
+sheep_entities_sheep_record.add_form:
+  title: 'Add sheep record'
+  route_name: entity.sheep_entities_sheep_record.add_form
+  appears_on:
+    - entity.sheep_entities_sheep_record.collection
+
+sheep_entities_lamb_card.add_form:
+  title: 'Add lamb card'
+  route_name: entity.sheep_entities_lamb_card.add_form
+  appears_on:
+    - entity.sheep_entities_lamb_card.collection

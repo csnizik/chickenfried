@@ -1,0 +1,45 @@
+uuid: f5b1c4a8-ddb8-4fd2-8fb7-5793c2a55b61
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ui_suite_uswds_card_single.field_card_single_card
+    - field.field.paragraph.ui_suite_uswds_card_single.field_card_single_heading_level
+    - paragraphs.paragraphs_type.ui_suite_uswds_card_single
+  module:
+    - paragraphs
+_core:
+  default_config_hash: Sdz5pTN7hW0g1vERkrBau6FQvtXrcGBC66upvl3ZtEs
+id: paragraph.ui_suite_uswds_card_single.default
+targetEntityType: paragraph
+bundle: ui_suite_uswds_card_single
+mode: default
+content:
+  field_card_single_card:
+    type: paragraphs
+    weight: 1
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ui_suite_uswds_card
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+  field_card_single_heading_level:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,17 @@
+uuid: a5b43dac-db35-4c18-b914-bf23f948987a
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - taxonomy.vocabulary.s_breeding_pens
+  module:
+    - group_term
+    - taxonomy
+id: tenant_access_group-4abfe162cc58
+group_type: tenant_access_group
+content_plugin: 'group_term:s_breeding_pens'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

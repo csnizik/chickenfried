@@ -1,0 +1,90 @@
+uuid: f12bcb7d-131a-4eca-8432-497f5d203f16
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ui_suite_uswds_accordion.field_accordion_bordered
+    - field.field.paragraph.ui_suite_uswds_accordion.field_accordion_default_open
+    - field.field.paragraph.ui_suite_uswds_accordion.field_accordion_heading_level
+    - field.field.paragraph.ui_suite_uswds_accordion.field_accordion_multiselect
+    - field.field.paragraph.ui_suite_uswds_accordion.field_accordion_sections
+    - paragraphs.paragraphs_type.ui_suite_uswds_accordion
+  module:
+    - field_group
+    - paragraphs
+third_party_settings:
+  field_group:
+    group_accordion_group_settings:
+      children:
+        - field_accordion_heading_level
+        - field_accordion_bordered
+        - field_accordion_multiselect
+        - field_accordion_default_open
+      label: 'Accordion Group Settings'
+      region: content
+      parent_name: ''
+      weight: 1
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: true
+_core:
+  default_config_hash: Ak62YRoENkMR2SF49D29PaSIysdwH4R1qe0cdMC5Xy4
+id: paragraph.ui_suite_uswds_accordion.default
+targetEntityType: paragraph
+bundle: ui_suite_uswds_accordion
+mode: default
+content:
+  field_accordion_bordered:
+    type: boolean_checkbox
+    weight: 6
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_accordion_default_open:
+    type: number
+    weight: 8
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_accordion_heading_level:
+    type: options_select
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_accordion_multiselect:
+    type: boolean_checkbox
+    weight: 7
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_accordion_sections:
+    type: paragraphs
+    weight: 4
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ui_suite_uswds_accordion_item
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

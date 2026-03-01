@@ -1,0 +1,20 @@
+uuid: 19a12b35-9ab5-43c6-9a8e-fccffbe0354b
+langcode: en
+status: true
+dependencies:
+  theme:
+    - ui_suite_arsapps
+_core:
+  default_config_hash: WAoOkyHen1FpAvd4TGghk7bZC3Vb-_v6TAjtwbVac3w
+id: ui_suite_arsapps_local_actions
+theme: ui_suite_arsapps
+region: content
+weight: -9
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

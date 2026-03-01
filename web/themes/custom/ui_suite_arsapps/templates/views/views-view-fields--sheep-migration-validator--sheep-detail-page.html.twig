@@ -1,0 +1,153 @@
+{#
+/**
+ * @file
+ * Sheep Detail page using USWDS components.
+ */
+#}
+
+{% set id10 = fields.field_s_id10.content|render|striptags|trim %}
+{% set etag = fields.field_s_etag.content|render|striptags|trim %}
+{% set altid = fields.field_s_altid.content|render|striptags|trim %}
+{% set scrapie = fields.field_s_scrapie_tag.content|render|striptags|trim %}
+{% set breed = fields.name.content|render|striptags|trim %}
+{% set sex = fields.field_human_readable_name_1.content|render|striptags|trim %}
+{% set line = fields.field_human_readable_name_3.content|render|striptags|trim %}
+{% set color = fields.field_s_color.content|render|striptags|trim %}
+{% set stm = fields.nothing.content|render|striptags|trim %}
+{% set bday = fields.field_s_birth_date.content|render|striptags|trim %}
+{% set tb = fields.field_s_type_of_birth.content|render|striptags|trim %}
+{% set rt = fields.field_s_rearing_type.content|render|striptags|trim %}
+{% set card = fields.field_s_card_num.content|render|striptags|trim %}
+{% set cut = fields.field_s_cut.content|render|striptags|trim %}
+{% set sire = fields.field_s_sire.content|render|striptags|trim %}
+{% set dam = fields.field_s_dam.content|render|striptags|trim %}
+{% set inbreeding = fields.field_s_inbreeding.content|render|striptags|trim %}
+{% set pd = fields.field_s_preliminary_disp.content|render|striptags|trim %}
+{% set disp = fields.field_s_disposal.content|render|striptags|trim %}
+{% set dday = fields.field_s_disposal_date.content|render|striptags|trim %}
+{% set dna = fields.field_s_dna.content|render|striptags|trim %}
+{% set purchased = fields.field_s_is_purchased.content|render|striptags|trim %}
+{% set pdate = fields.field_s_purchased_date.content|render|striptags|trim %}
+
+{# Status calculation #}
+{% set is_active = dday is empty and disp is empty and pd is empty %}
+
+
+<div class="sheep-detail">
+
+  {# Summary Box - Key Identifiers #}
+  {% include 'ui_suite_uswds:summary_box' with {
+    summary_heading: id10,
+    content: '
+      <div class="grid-row grid-gap">
+        <div class="grid-col-6">
+          <strong>ETAG:</strong> ' ~ (etag ?: '—') ~ '<br>
+          <strong>Breed:</strong> ' ~ (breed ?: '—') ~ '<br>
+          <strong>Sex:</strong> ' ~ (sex ?: '—') ~ '
+        </div>
+        <div class="grid-col-6">
+          <strong>Birth:</strong> ' ~ (bday ?: '—') ~ '<br>
+          <strong>Line:</strong> ' ~ (line ?: '—') ~ '<br>
+          <strong>STM:</strong> ' ~ (stm ?: '—') ~ '
+        </div>
+      </div>
+    '
+  } %}
+
+  <div class="grid-row grid-gap margin-top-4">
+
+    {# Left Column - Identity & Birth #}
+    <div class="grid-col-12 tablet:grid-col-6">
+
+      {% include 'ui_suite_uswds:card' with {
+        header: 'Identification',
+        content: '
+          <table class="usa-table usa-table--compact width-full">
+            <tbody>
+              <tr><th scope="row">ID10</th><td class="font-mono-sm">' ~ (id10 ?: '—') ~ '</td></tr>
+              <tr><th scope="row">ETAG</th><td class="font-mono-sm">' ~ (etag ?: '—') ~ '</td></tr>
+              <tr><th scope="row">Alt ID</th><td class="font-mono-sm">' ~ (altid ?: '—') ~ '</td></tr>
+              <tr><th scope="row">Scrapie Tag</th><td class="font-mono-sm">' ~ (scrapie ?: '—') ~ '</td></tr>
+            </tbody>
+          </table>
+        '
+      } %}
+
+      {% include 'ui_suite_uswds:card' with {
+        header: 'Birth & Origin',
+        content: '
+          <table class="usa-table usa-table--compact width-full">
+            <tbody>
+              <tr><th scope="row">Birth Date</th><td>' ~ (bday ?: '—') ~ '</td></tr>
+              <tr><th scope="row">Type of Birth</th><td>' ~ (tb ?: '—') ~ '</td></tr>
+              <tr><th scope="row">Rearing Type</th><td>' ~ (rt ?: '—') ~ '</td></tr>
+              <tr><th scope="row">Card #</th><td>' ~ (card ?: '—') ~ '</td></tr>
+              <tr><th scope="row">Cut</th><td>' ~ (cut ?: '—') ~ '</td></tr>
+              <tr><th scope="row">Purchased</th><td>' ~ (purchased ?: 'No') ~ '</td></tr>
+              ' ~ (pdate ? '<tr><th scope="row">Purchase Date</th><td>' ~ pdate ~ '</td></tr>' : '') ~ '
+            </tbody>
+          </table>
+        '
+      } %}
+
+    </div>
+
+    {# Right Column - Classification & Lineage #}
+    <div class="grid-col-12 tablet:grid-col-6">
+
+      {% include 'ui_suite_uswds:card' with {
+        header: 'Classification',
+        content: '
+          <table class="usa-table usa-table--compact width-full">
+            <tbody>
+              <tr><th scope="row">Breed</th><td>' ~ (breed ?: '—') ~ '</td></tr>
+              <tr><th scope="row">Sex</th><td>' ~ (sex ?: '—') ~ '</td></tr>
+              <tr><th scope="row">Line</th><td>' ~ (line ?: '—') ~ '</td></tr>
+              <tr><th scope="row">Color</th><td>' ~ (color ?: '—') ~ '</td></tr>
+              <tr><th scope="row">STM</th><td>' ~ (stm_display|trim ?: '—') ~ '</td></tr>
+            </tbody>
+          </table>
+        '
+      } %}
+
+      {% include 'ui_suite_uswds:card' with {
+        header: 'Lineage',
+        content: '
+          <table class="usa-table usa-table--compact width-full">
+            <tbody>
+              <tr><th scope="row">Sire</th><td class="font-mono-sm">' ~ (sire ?: '—') ~ '</td></tr>
+              <tr><th scope="row">Dam</th><td class="font-mono-sm">' ~ (dam ?: '—') ~ '</td></tr>
+              <tr><th scope="row">Inbreeding</th><td>' ~ (inbreeding ?: '—') ~ '</td></tr>
+            </tbody>
+          </table>
+        '
+      } %}
+
+      {% include 'ui_suite_uswds:card' with {
+        header: 'Disposal Status',
+        content: '
+          <table class="usa-table usa-table--compact width-full">
+            <tbody>
+              <tr><th scope="row">Status</th><td><span class="usa-tag ' ~ (is_active ? 'bg-base-dark' : 'bg-secondary') ~ '">' ~ (is_active ? 'Unknown*' : 'Disposed') ~ '</span></td></tr>
+              <tr><th scope="row">Prelim. Disp.</th><td>' ~ (pd ?: '—') ~ '</td></tr>
+              <tr><th scope="row">Disposal Code</th><td>' ~ (disp ?: '—') ~ '</td></tr>
+              <tr><th scope="row">Disposal Date</th><td>' ~ (dday ?: '—') ~ '</td></tr>
+            </tbody>
+          </table>' ~ (is_active ? '<p class="font-mono-sm"><em>*Not enough data imported to determine active/disposed status.</em></p>' : '')
+      } %}
+
+    </div>
+
+  </div>
+
+  {# DNA Section - Full Width #}
+  {% if dna %}
+  <div class="margin-top-4">
+    {% include 'ui_suite_uswds:card' with {
+      header: 'DNA Information',
+      content: '<pre class="font-mono-xs bg-base-lightest padding-2">' ~ dna ~ '</pre>'
+    } %}
+  </div>
+  {% endif %}
+
+</div>

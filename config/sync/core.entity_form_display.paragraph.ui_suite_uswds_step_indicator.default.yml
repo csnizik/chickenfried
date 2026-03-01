@@ -1,0 +1,111 @@
+uuid: 19bd4116-3a39-4c3f-9d3c-26b2348179cd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ui_suite_uswds_step_indicator.field_step_indicator_completed
+    - field.field.paragraph.ui_suite_uswds_step_indicator.field_step_indicator_heading_lvl
+    - field.field.paragraph.ui_suite_uswds_step_indicator.field_step_indicator_in_progress
+    - field.field.paragraph.ui_suite_uswds_step_indicator.field_step_indicator_label
+    - field.field.paragraph.ui_suite_uswds_step_indicator.field_step_indicator_variant
+    - paragraphs.paragraphs_type.ui_suite_uswds_step_indicator
+  module:
+    - field_group
+    - text
+third_party_settings:
+  field_group:
+    group_step_indicator_settings:
+      children:
+        - field_step_indicator_heading_lvl
+        - field_step_indicator_variant
+      label: 'Step Indicator Settings'
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: true
+    group_completed:
+      children:
+        - field_step_indicator_completed
+      label: Completed
+      region: content
+      parent_name: ''
+      weight: 2
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: true
+        formatter: closed
+        effect: none
+    group_in_progress:
+      children:
+        - field_step_indicator_in_progress
+      label: 'In progress'
+      region: content
+      parent_name: ''
+      weight: 3
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: true
+        formatter: closed
+_core:
+  default_config_hash: p17z65aXzFv1OqbN403ig-dUkHE5YU5-9y5UcEUl8gw
+id: paragraph.ui_suite_uswds_step_indicator.default
+targetEntityType: paragraph
+bundle: ui_suite_uswds_step_indicator
+mode: default
+content:
+  field_step_indicator_completed:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_step_indicator_heading_lvl:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_step_indicator_in_progress:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_step_indicator_label:
+    type: text_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_step_indicator_variant:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

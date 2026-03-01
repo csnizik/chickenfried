@@ -1,0 +1,24 @@
+uuid: eee64eff-5220-4771-94c7-8cf8f54306f9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_accordion_item_body
+    - paragraphs.paragraphs_type.ui_suite_uswds_accordion_item
+  module:
+    - text
+_core:
+  default_config_hash: dEuv5TAawH4tven9faaUSehoOjwWTqVX1iysuN76Blw
+id: paragraph.ui_suite_uswds_accordion_item.field_accordion_item_body
+field_name: field_accordion_item_body
+entity_type: paragraph
+bundle: ui_suite_uswds_accordion_item
+label: Body
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

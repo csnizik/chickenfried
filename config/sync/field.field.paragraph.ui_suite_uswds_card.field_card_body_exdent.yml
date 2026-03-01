@@ -1,0 +1,23 @@
+uuid: d0d6f622-399a-4b80-8616-f7400aef1f23
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_card_body_exdent
+    - paragraphs.paragraphs_type.ui_suite_uswds_card
+_core:
+  default_config_hash: UscFb8tmzl1kTmd1gs6b7cvH-H3Mze8D9RooaUttpuQ
+id: paragraph.ui_suite_uswds_card.field_card_body_exdent
+field_name: field_card_body_exdent
+entity_type: paragraph
+bundle: ui_suite_uswds_card
+label: 'Body Exdent'
+description: 'Extends the body element out over the card border. Useful for light-bordered cards.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

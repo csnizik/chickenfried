@@ -1,0 +1,382 @@
+uuid: 868a6c23-be96-4911-a378-efd3c1383574
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.html_no_filter
+  module:
+    - system
+    - ui_patterns
+    - ui_patterns_blocks
+  theme:
+    - ui_suite_arsapps
+    - ui_suite_uswds
+id: ui_suite_arsapps_section
+theme: ui_suite_arsapps
+region: content
+weight: -9
+provider: null
+plugin: 'ui_patterns:ui_suite_uswds:section'
+settings:
+  id: 'ui_patterns:ui_suite_uswds:section'
+  label: '[UIC] Front page -cards'
+  label_display: '0'
+  provider: ui_patterns_blocks
+  ui_patterns:
+    component_id: 'ui_suite_uswds:section'
+    variant_id:
+      source_id: select
+      source:
+        value: default
+    props:
+      attributes:
+        source_id: attributes
+        source:
+          value: 'class="padding-x-0"'
+    slots:
+      content:
+        sources:
+          -
+            source_id: component
+            source:
+              component:
+                component_id: 'ui_suite_uswds:card_layout'
+                variant_id: null
+                props:
+                  attributes:
+                    source_id: attributes
+                    source:
+                      value: 'class="margin-x-neg-4"'
+                slots:
+                  cards:
+                    sources:
+                      -
+                        source_id: component
+                        source:
+                          component:
+                            component_id: 'ui_suite_uswds:card'
+                            variant_id:
+                              source_id: select
+                              source:
+                                value: default
+                            props:
+                              attributes:
+                                source_id: attributes
+                                source:
+                                  value: 'class="grid-col-12 tablet:grid-col-6 desktop:grid-col-4"'
+                              list:
+                                source_id: checkbox
+                                source:
+                                  value: true
+                              header_first:
+                                source_id: checkbox
+                              header_exdent:
+                                source_id: checkbox
+                              heading_level:
+                                source_id: select
+                                source:
+                                  value: ''
+                              media_inset:
+                                source_id: checkbox
+                                source:
+                                  value: true
+                              media_exdent:
+                                source_id: checkbox
+                              body_exdent:
+                                source_id: checkbox
+                              footer_url:
+                                source_id: path
+                                source:
+                                  value:
+                                    route_name: entity.node.canonical
+                                    route_parameters:
+                                      node: '5246'
+                              footer_exdent:
+                                source_id: checkbox
+                            slots:
+                              header:
+                                sources:
+                                  -
+                                    source_id: wysiwyg
+                                    source:
+                                      value:
+                                        value: 'Range Sheep Production Efficiency Research (RSPER)'
+                                        format: html_no_filter
+                                    _weight: '0'
+                              image:
+                                sources:
+                                  -
+                                    source_id: wysiwyg
+                                    source:
+                                      value:
+                                        value: '<img src="/sites/default/files/assets/global/images/2025-12/cardimg-rsper.jpg" alt="A sheep looks directly at the camera, its mouth full of grass.">'
+                                        format: html_no_filter
+                                    _weight: '0'
+                              content:
+                                sources:
+                                  -
+                                    source_id: wysiwyg
+                                    source:
+                                      value:
+                                        value: "<p>Pioneering sustainable grazing and genetics research to improve flock productivity, animal health, and land stewardship across western rangelands.</p>\r\n"
+                                        format: html_no_filter
+                                    _weight: '0'
+                              footer:
+                                sources:
+                                  -
+                                    source_id: wysiwyg
+                                    source:
+                                      value:
+                                        value: 'Learn About RSPER'
+                                        format: html_no_filter
+                                    _weight: '0'
+                        _weight: '0'
+                      -
+                        source_id: component
+                        source:
+                          component:
+                            component_id: 'ui_suite_uswds:card'
+                            variant_id:
+                              source_id: select
+                              source:
+                                value: ''
+                            props:
+                              attributes:
+                                source_id: attributes
+                                source:
+                                  value: 'class="grid-col-12 tablet:grid-col-6 desktop:grid-col-4"'
+                              list:
+                                source_id: checkbox
+                                source:
+                                  value: true
+                              header_first:
+                                source_id: checkbox
+                              header_exdent:
+                                source_id: checkbox
+                              heading_level:
+                                source_id: select
+                                source:
+                                  value: ''
+                              media_inset:
+                                source_id: checkbox
+                                source:
+                                  value: true
+                              media_exdent:
+                                source_id: checkbox
+                              body_exdent:
+                                source_id: checkbox
+                              footer_url:
+                                source_id: path
+                                source:
+                                  value:
+                                    route_name: entity.node.canonical
+                                    route_parameters:
+                                      node: '7'
+                              footer_exdent:
+                                source_id: checkbox
+                            slots:
+                              header:
+                                sources:
+                                  -
+                                    source_id: wysiwyg
+                                    source:
+                                      value:
+                                        value: 'ARS Culture Collection (NRRL)'
+                                        format: html_no_filter
+                                    _weight: '0'
+                              image:
+                                sources:
+                                  -
+                                    source_id: wysiwyg
+                                    source:
+                                      value:
+                                        value: '<img src="/sites/default/files/assets/global/images/2026-01/cardimg-nrrl-0126.jpg" alt="A colorful collage of microbial strains.">'
+                                        format: html_no_filter
+                                    _weight: '0'
+                              content:
+                                sources:
+                                  -
+                                    source_id: wysiwyg
+                                    source:
+                                      value:
+                                        value: '<p>One of the world’s largest collections of agricultural microbes, providing essential strains for biotechnology, food safety, and bioenergy research.</p>'
+                                        format: html_no_filter
+                                    _weight: '0'
+                              footer:
+                                sources:
+                                  -
+                                    source_id: wysiwyg
+                                    source:
+                                      value:
+                                        value: 'Browse the Collection'
+                                        format: html_no_filter
+                                    _weight: '0'
+                        _weight: '1'
+                      -
+                        source_id: component
+                        source:
+                          component:
+                            component_id: 'ui_suite_uswds:card'
+                            variant_id:
+                              source_id: select
+                              source:
+                                value: ''
+                            props:
+                              attributes:
+                                source_id: attributes
+                                source:
+                                  value: 'class="grid-col-12 tablet:grid-col-6 desktop:grid-col-4"'
+                              list:
+                                source_id: checkbox
+                                source:
+                                  value: true
+                              header_first:
+                                source_id: checkbox
+                              header_exdent:
+                                source_id: checkbox
+                              heading_level:
+                                source_id: select
+                                source:
+                                  value: ''
+                              media_inset:
+                                source_id: checkbox
+                                source:
+                                  value: true
+                              media_exdent:
+                                source_id: checkbox
+                              body_exdent:
+                                source_id: checkbox
+                              footer_url:
+                                source_id: path
+                                source:
+                                  value:
+                                    route_name: entity.node.canonical
+                                    route_parameters:
+                                      node: '5255'
+                              footer_exdent:
+                                source_id: checkbox
+                            slots:
+                              header:
+                                sources:
+                                  -
+                                    source_id: wysiwyg
+                                    source:
+                                      value:
+                                        value: 'Imperfect SSR Finder'
+                                        format: html_no_filter
+                                    _weight: '0'
+                              image:
+                                sources:
+                                  -
+                                    source_id: wysiwyg
+                                    source:
+                                      value:
+                                        value: " <img src=\"\r\n/sites/default/files/assets/global/images/2025-12/cardimg-ssr.jpg\" alt=\"Researcher wearing a white lab coat looks at a computer screen with data.\">"
+                                        format: html_no_filter
+                                    _weight: '0'
+                              content:
+                                sources:
+                                  -
+                                    source_id: wysiwyg
+                                    source:
+                                      value:
+                                        value: '<p> The Imperfect SSR Finder is an online tool to help geneticists find Simple Sequence Repeats (SSR), aka microsatellites or Short Tandem Repeats (STR), in uploaded FASTA sequences.</p>'
+                                        format: html_no_filter
+                                    _weight: '0'
+                              footer:
+                                sources:
+                                  -
+                                    source_id: wysiwyg
+                                    source:
+                                      value:
+                                        value: 'Upload a Sequence'
+                                        format: html_no_filter
+                                    _weight: '0'
+                        _weight: '2'
+                      -
+                        source_id: component
+                        source:
+                          component:
+                            component_id: 'ui_suite_uswds:card'
+                            variant_id:
+                              source_id: select
+                              source:
+                                value: ''
+                            props:
+                              attributes:
+                                source_id: attributes
+                                source:
+                                  value: 'class="grid-col-12 tablet:grid-col-6 desktop:grid-col-4"'
+                              list:
+                                source_id: checkbox
+                                source:
+                                  value: true
+                              header_first:
+                                source_id: checkbox
+                              header_exdent:
+                                source_id: checkbox
+                              heading_level:
+                                source_id: select
+                                source:
+                                  value: ''
+                              media_inset:
+                                source_id: checkbox
+                                source:
+                                  value: true
+                              media_exdent:
+                                source_id: checkbox
+                              body_exdent:
+                                source_id: checkbox
+                              footer_url:
+                                source_id: path
+                                source:
+                                  value:
+                                    route_name: entity.node.canonical
+                                    route_parameters:
+                                      node: '5243'
+                              footer_exdent:
+                                source_id: checkbox
+                            slots:
+                              header:
+                                sources:
+                                  -
+                                    source_id: wysiwyg
+                                    source:
+                                      value:
+                                        value: 'Nematode Collection'
+                                        format: html_no_filter
+                                    _weight: '0'
+                              image:
+                                sources:
+                                  -
+                                    source_id: wysiwyg
+                                    source:
+                                      value:
+                                        value: '<img src="/sites/default/files/assets/global/images/2025-12/cardimg-nematode-new.jpg" alt="Magnified view of bacterial-feeding nematodes frozen in liquid nitrogen.">'
+                                        format: html_no_filter
+                                    _weight: '0'
+                              content:
+                                sources:
+                                  -
+                                    source_id: wysiwyg
+                                    source:
+                                      value:
+                                        value: '<p>A global resource housing thousands of nematode specimens, supporting breakthroughs in plant health, soil science, and integrated pest management.</p>'
+                                        format: html_no_filter
+                                    _weight: '0'
+                              footer:
+                                sources:
+                                  -
+                                    source_id: wysiwyg
+                                    source:
+                                      value:
+                                        value: 'Search the Database'
+                                        format: html_no_filter
+                                    _weight: '0'
+                        _weight: '3'
+            _weight: '0'
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

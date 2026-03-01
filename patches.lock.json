@@ -1,0 +1,17 @@
+{
+    "_hash": "61c300df27e33718a8a718f94cc153799305c918d206d9369d4b4451e3d566ff",
+    "patches": {
+        "drupal/group": [
+            {
+                "package": "drupal/group",
+                "description": "More contexts needed (issue #2815971)",
+                "url": "https://git.drupalcode.org/project/group/-/merge_requests/159.diff",
+                "sha256": "9464011b3c9fc1f43dbde355fdea5b9d9f9b9e40743727dcb4120615a66bbaf6",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ]
+    }
+}

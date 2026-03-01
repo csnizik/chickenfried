@@ -1,0 +1,11 @@
+webform_contextual_help:
+  css:
+    component:
+      css/webform-contextual-help.css: {}
+
+bef-reset-fix:
+  js:
+    js/bef-reset-fix.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

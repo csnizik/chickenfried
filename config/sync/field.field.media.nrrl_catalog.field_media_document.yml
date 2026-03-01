@@ -1,0 +1,27 @@
+uuid: b753c757-a12d-48d3-be8a-9daabcc50408
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_media_document
+    - media.type.nrrl_catalog
+  module:
+    - file
+id: media.nrrl_catalog.field_media_document
+field_name: field_media_document
+entity_type: media
+bundle: nrrl_catalog
+label: File
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: 'assets/tenants/nrrl/documents/[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'xls xlsx csv pdf'
+  max_filesize: ''
+  description_field: true
+field_type: file

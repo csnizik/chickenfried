@@ -1,0 +1,26 @@
+uuid: 23aa2dae-2c68-429a-a97e-5948a3df50d5
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - ui_suite_arsapps
+_core:
+  default_config_hash: eCR1ms3MmE7eann05LFtqOzUpfl2Mi0sWNdbRhr72cI
+id: ui_suite_arsapps_breadcrumbs
+theme: ui_suite_arsapps
+region: breadcrumb
+weight: -100
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: '/specimen/*'

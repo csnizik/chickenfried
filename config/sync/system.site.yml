@@ -1,0 +1,15 @@
+_core:
+  default_config_hash: ijfbzDTN4CbE7Sr-6ubWzy_t1vH4OtU1doNCLssVz-4
+langcode: en
+uuid: e6065204-19a0-4ff3-8290-f77d5c07aceb
+name: 'ARS (Agricultural Research Service)'
+mail: admin@example.com
+slogan: 'U.S. Department of Agriculture'
+page:
+  403: ''
+  404: ''
+  front: /node/8
+admin_compact_mode: false
+weight_select_max: 100
+default_langcode: en
+mail_notification: null

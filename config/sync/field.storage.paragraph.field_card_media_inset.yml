@@ -1,0 +1,20 @@
+uuid: 60233266-5b6b-4b5c-b076-1dd17ae9c484
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+_core:
+  default_config_hash: IRQtwWaRVtvaBL8NFqqTuHQntRwVocUyjqslv-TmIFY
+id: paragraph.field_card_media_inset
+field_name: field_card_media_inset
+entity_type: paragraph
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,24 @@
+uuid: 723a8961-fd8a-4e29-8048-3ddd68504331
+langcode: en
+status: true
+dependencies:
+  config:
+    - dashboards.dashboard.rsper
+  module:
+    - dashboards
+    - group
+    - help
+    - system
+    - toolbar
+id: rsper
+label: RSPER
+weight: 0
+is_admin: false
+permissions:
+  - 'access administration pages'
+  - 'access group overview'
+  - 'access help pages'
+  - 'access toolbar'
+  - 'access user profiles'
+  - 'can view rsper dashboard'
+  - 'view the administration theme'

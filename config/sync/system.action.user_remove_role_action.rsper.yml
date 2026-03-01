@@ -1,0 +1,14 @@
+uuid: 80efa2e4-ce98-46b1-9a39-b429e3ee8d38
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.rsper
+  module:
+    - user
+id: user_remove_role_action.rsper
+label: 'Remove the RSPER role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: rsper

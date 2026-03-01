@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies: {  }
+id: sheep_data
+label: 'Sheep Data Migration Group'
+description: 'Container for migrations importing sheep-related data from CSV files including inventory, lambing, weaning, shearing, pedigree, and ewe master records.'
+source_type: CSV
+module: null
+shared_configuration:
+  migration_tags:
+    - sheep
+  dependencies:
+    enforced:
+      module:
+        - sheep_migration
+
+  source:
+    track_changes: true
+    delimiter: ','
+    enclosure: '"'
+    header_row_count: 1
+

@@ -1,0 +1,17 @@
+uuid: e753b86a-7181-4e9b-b095-23de39fb8415
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - taxonomy.vocabulary.s_life_stage_events
+  module:
+    - group_term
+    - taxonomy
+id: tenant_access_group-d093ee999aa4
+group_type: tenant_access_group
+content_plugin: 'group_term:s_life_stage_events'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

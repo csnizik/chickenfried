@@ -1,0 +1,48 @@
+uuid: 15344421-046c-44bf-992a-9191b197fd5c
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+id: tenant_access_group-nrrl_mgr
+label: 'NRRL manager'
+weight: -1
+admin: false
+scope: individual
+global_role: null
+group_type: tenant_access_group
+permissions:
+  - 'access group_node overview'
+  - 'access group_term overview'
+  - 'create group_media:nrrl_catalog entity'
+  - 'create group_media:nrrl_document entity'
+  - 'create group_node:page entity'
+  - 'create group_node:webform entity'
+  - 'delete any group_media:nrrl_catalog entity'
+  - 'delete any group_media:nrrl_document entity'
+  - 'delete any group_node:page entity'
+  - 'delete any group_node:webform entity'
+  - 'delete own group_media:nrrl_catalog entity'
+  - 'delete own group_media:nrrl_document entity'
+  - 'delete own group_node:page entity'
+  - 'delete own group_node:webform entity'
+  - 'update any group_media:nrrl_catalog entity'
+  - 'update any group_media:nrrl_document entity'
+  - 'update any group_node:page entity'
+  - 'update any group_node:webform entity'
+  - 'update own group_media:nrrl_catalog entity'
+  - 'update own group_media:nrrl_document entity'
+  - 'update own group_node:page entity'
+  - 'update own group_node:webform entity'
+  - 'view group_media:nrrl_catalog entity'
+  - 'view group_media:nrrl_document entity'
+  - 'view group_node:page entity'
+  - 'view group_node:webform entity'
+  - 'view own unpublished group_media:nrrl_catalog entity'
+  - 'view own unpublished group_media:nrrl_document entity'
+  - 'view own unpublished group_node:page entity'
+  - 'view own unpublished group_node:webform entity'
+  - 'view unpublished group_media:nrrl_catalog entity'
+  - 'view unpublished group_media:nrrl_document entity'
+  - 'view unpublished group_node:page entity'
+  - 'view unpublished group_node:webform entity'

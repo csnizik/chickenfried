@@ -1,0 +1,9 @@
+uuid: 6d639ed3-9776-4e21-84a5-742801d89104
+langcode: en
+status: true
+dependencies: {  }
+name: 'Measurement Types'
+vid: s_measurement_types
+description: null
+weight: 0
+new_revision: false

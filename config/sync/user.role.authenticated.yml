@@ -1,0 +1,34 @@
+uuid: 569e8bb2-377f-44d1-982f-0982c2f0d323
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.webform_default
+  module:
+    - comment
+    - contact
+    - filter
+    - media
+    - search
+    - shortcut
+    - sitewide_alert
+    - system
+_core:
+  default_config_hash: cFrlqjtkTfvY3RGccjJkPf1SGIfJ942IrxTLWAO4mgA
+id: authenticated
+label: 'Authenticated user'
+weight: -8
+is_admin: false
+permissions:
+  - 'access administration pages'
+  - 'access comments'
+  - 'access content'
+  - 'access shortcuts'
+  - 'access site-wide contact form'
+  - 'post comments'
+  - 'search content'
+  - 'skip comment approval'
+  - 'use text format webform_default'
+  - 'view media'
+  - 'view published sitewide alert entities'
+  - 'view the administration theme'

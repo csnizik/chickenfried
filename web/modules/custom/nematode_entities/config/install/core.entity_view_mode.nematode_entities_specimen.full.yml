@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - nematode_entities
+id: nematode_entities_specimen.full
+label: Full
+targetEntityType: nematode_entities_specimen
+cache: true

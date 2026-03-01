@@ -1,0 +1,39 @@
+uuid: 06f153c9-5b60-42f7-962d-40ff3fdfa668
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.file_download_button
+    - field.field.media.audio.field_media_audio_file
+    - media.type.audio
+  module:
+    - file
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+_core:
+  default_config_hash: AS765MdDfNpK6K5eE7WVnBvpynClz_havy1R3bO3gVo
+id: media.audio.file_download_button
+targetEntityType: media
+bundle: audio
+mode: file_download_button
+content:
+  field_media_audio_file:
+    type: file_audio
+    label: visually_hidden
+    settings:
+      controls: true
+      autoplay: false
+      loop: false
+      multiple_file_display_type: tags
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

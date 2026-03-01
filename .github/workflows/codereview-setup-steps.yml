@@ -1,0 +1,574 @@
+# Automated Code Review Workflow
+# Runs comprehensive checks on pull requests targeting develop branch
+#
+# This workflow:
+# 1. Analyzes changed files to determine review scope
+# 2. Runs static analysis (coding standards, security)
+# 3. Sets up DDEV for integration testing
+# 4. Runs accessibility tests if UI changes detected
+# 5. Validates documentation completeness
+# 6. Posts review summary as PR comment
+
+name: Automated Code Review
+
+on:
+  pull_request:
+    branches:
+      - develop
+      - main
+    types: [opened, synchronize, reopened]
+
+concurrency:
+  group: code-review-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+env:
+  PHP_VERSION: '8.3'
+  NODE_VERSION: '20'
+
+jobs:
+  # =============================================================================
+  # JOB 1: Scope Detection
+  # Analyzes changed files to determine which checks to run
+  # =============================================================================
+  scope-detection:
+    name: Analyze PR Scope
+    runs-on: ubuntu-latest
+    outputs:
+      has_php_changes: ${{ steps.changes.outputs.has_php_changes }}
+      has_theme_changes: ${{ steps.changes.outputs.has_theme_changes }}
+      has_config_changes: ${{ steps.changes.outputs.has_config_changes }}
+      has_workflow_changes: ${{ steps.changes.outputs.has_workflow_changes }}
+      has_docs_changes: ${{ steps.changes.outputs.has_docs_changes }}
+      changed_modules: ${{ steps.changes.outputs.changed_modules }}
+      required_agents: ${{ steps.changes.outputs.required_agents }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changed files
+        id: changes
+        run: |
+          BASE_BRANCH="${{ github.base_ref }}"
+
+          # Get list of changed files (excluding config/sync which is Drupal-managed)
+          CHANGED_FILES=$(git diff --name-only origin/${BASE_BRANCH}...HEAD | grep -v "^config/sync/" || true)
+
+          echo "Changed files:"
+          echo "$CHANGED_FILES"
+
+          # Detect file types
+          HAS_PHP=$(echo "$CHANGED_FILES" | grep -E '\.(php|module|install|theme|inc)$' | wc -l)
+          HAS_THEME=$(echo "$CHANGED_FILES" | grep -E '(\.twig|\.scss|\.css|themes/custom/)' | wc -l)
+          HAS_CONFIG=$(echo "$CHANGED_FILES" | grep -E '^config/' | wc -l)
+          HAS_WORKFLOW=$(echo "$CHANGED_FILES" | grep -E '^\.github/workflows/' | wc -l)
+          HAS_DOCS=$(echo "$CHANGED_FILES" | grep -E '(README|CHANGELOG|docs/|\.md$)' | wc -l)
+
+          # Detect changed custom modules
+          CHANGED_MODULES=$(echo "$CHANGED_FILES" | grep "web/modules/custom/" | cut -d'/' -f4 | sort -u | tr '\n' ',' | sed 's/,$//')
+
+          # Determine required agents
+          REQUIRED_AGENTS=""
+
+          # PHP changes require security and arsapps agents
+          if [[ $HAS_PHP -gt 0 ]]; then
+            REQUIRED_AGENTS="security,arsapps"
+          fi
+
+          # Theme changes require a11y and uswds agents
+          if [[ $HAS_THEME -gt 0 ]]; then
+            REQUIRED_AGENTS="${REQUIRED_AGENTS:+$REQUIRED_AGENTS,}a11y,uswds"
+          fi
+
+          # Workflow changes require azure agent
+          if [[ $HAS_WORKFLOW -gt 0 ]]; then
+            REQUIRED_AGENTS="${REQUIRED_AGENTS:+$REQUIRED_AGENTS,}azure"
+          fi
+
+          # Always include docs agent
+          REQUIRED_AGENTS="${REQUIRED_AGENTS:+$REQUIRED_AGENTS,}docs"
+
+          # Set outputs
+          echo "has_php_changes=$([[ $HAS_PHP -gt 0 ]] && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+          echo "has_theme_changes=$([[ $HAS_THEME -gt 0 ]] && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+          echo "has_config_changes=$([[ $HAS_CONFIG -gt 0 ]] && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+          echo "has_workflow_changes=$([[ $HAS_WORKFLOW -gt 0 ]] && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+          echo "has_docs_changes=$([[ $HAS_DOCS -gt 0 ]] && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+          echo "changed_modules=$CHANGED_MODULES" >> $GITHUB_OUTPUT
+          echo "required_agents=$REQUIRED_AGENTS" >> $GITHUB_OUTPUT
+
+          # Summary
+          echo "## Scope Detection Results" >> $GITHUB_STEP_SUMMARY
+          echo "| Category | Changed |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|---------|" >> $GITHUB_STEP_SUMMARY
+          echo "| PHP Files | $([[ $HAS_PHP -gt 0 ]] && echo '✅' || echo '❌') |" >> $GITHUB_STEP_SUMMARY
+          echo "| Theme Files | $([[ $HAS_THEME -gt 0 ]] && echo '✅' || echo '❌') |" >> $GITHUB_STEP_SUMMARY
+          echo "| Configuration | $([[ $HAS_CONFIG -gt 0 ]] && echo '✅' || echo '❌') |" >> $GITHUB_STEP_SUMMARY
+          echo "| Workflows | $([[ $HAS_WORKFLOW -gt 0 ]] && echo '✅' || echo '❌') |" >> $GITHUB_STEP_SUMMARY
+          echo "| Documentation | $([[ $HAS_DOCS -gt 0 ]] && echo '✅' || echo '❌') |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Changed Modules:** ${CHANGED_MODULES:-None}" >> $GITHUB_STEP_SUMMARY
+          echo "**Required Agents:** $REQUIRED_AGENTS" >> $GITHUB_STEP_SUMMARY
+
+  # =============================================================================
+  # JOB 2: Static Analysis
+  # Runs without DDEV - fast checks for coding standards and dependencies
+  # =============================================================================
+  static-analysis:
+    name: Static Analysis
+    runs-on: ubuntu-latest
+    needs: scope-detection
+    if: needs.scope-detection.outputs.has_php_changes == 'true'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql, dom, filter, gd, json, mbstring, pdo
+          tools: composer:v2
+
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: composer-${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+          restore-keys: composer-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Run PHP CodeSniffer
+        id: phpcs
+        run: |
+          echo "## PHP CodeSniffer Results" >> $GITHUB_STEP_SUMMARY
+
+          if vendor/bin/phpcs --standard=Drupal,DrupalPractice --report=summary web/modules/custom/ 2>&1; then
+            echo "✅ No coding standard violations found" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ Coding standard violations detected - see logs for details" >> $GITHUB_STEP_SUMMARY
+            # Run again with full report for log output
+            vendor/bin/phpcs --standard=Drupal,DrupalPractice web/modules/custom/ || true
+          fi
+
+      - name: Run Composer Audit
+        id: composer-audit
+        run: |
+          echo "## Security Audit Results" >> $GITHUB_STEP_SUMMARY
+
+          if composer audit --no-interaction 2>&1; then
+            echo "✅ No known vulnerabilities in dependencies" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "🔴 **Security vulnerabilities detected!**" >> $GITHUB_STEP_SUMMARY
+            echo "Run \`composer audit\` locally for details" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  # =============================================================================
+  # JOB 3: DDEV Integration Tests
+  # Sets up DDEV for full integration testing
+  # =============================================================================
+  ddev-tests:
+    name: DDEV Integration Tests
+    runs-on: ubuntu-latest
+    needs: scope-detection
+    if: needs.scope-detection.outputs.has_php_changes == 'true' || needs.scope-detection.outputs.has_theme_changes == 'true'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup DDEV
+        uses: ddev/github-action-setup-ddev@v1
+
+      - name: Start DDEV
+        run: |
+          ddev start
+          ddev describe
+
+      - name: Install Composer dependencies
+        run: ddev composer install --no-interaction
+
+      - name: Check Drupal requirements
+        run: |
+          echo "## Drupal Status" >> $GITHUB_STEP_SUMMARY
+          ddev drush status --fields=drupal-version,php-version,db-driver >> $GITHUB_STEP_SUMMARY || true
+
+      - name: Run PHPUnit tests
+        if: needs.scope-detection.outputs.changed_modules != ''
+        run: |
+          echo "## PHPUnit Test Results" >> $GITHUB_STEP_SUMMARY
+
+          # Run tests for each changed module
+          IFS=',' read -ra MODULES <<< "${{ needs.scope-detection.outputs.changed_modules }}"
+          for module in "${MODULES[@]}"; do
+            if [[ -d "web/modules/custom/$module/tests" ]]; then
+              echo "### Testing: $module" >> $GITHUB_STEP_SUMMARY
+              if ddev exec vendor/bin/phpunit "web/modules/custom/$module/tests/" 2>&1; then
+                echo "✅ Tests passed for $module" >> $GITHUB_STEP_SUMMARY
+              else
+                echo "❌ Tests failed for $module" >> $GITHUB_STEP_SUMMARY
+              fi
+            fi
+          done
+
+      - name: Validate configuration
+        run: |
+          echo "## Configuration Validation" >> $GITHUB_STEP_SUMMARY
+
+          # Check for configuration status
+          if ddev drush config:status 2>&1 | grep -q "No differences"; then
+            echo "✅ Configuration is in sync" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ Configuration differences detected" >> $GITHUB_STEP_SUMMARY
+            ddev drush config:status || true
+          fi
+
+      - name: Stop DDEV
+        if: always()
+        run: ddev stop
+
+  # =============================================================================
+  # JOB 4: Accessibility Testing
+  # Runs axe-scan.js for WCAG 2.1 AA compliance
+  # =============================================================================
+  accessibility-tests:
+    name: Accessibility Tests
+    runs-on: ubuntu-latest
+    needs: scope-detection
+    if: needs.scope-detection.outputs.has_theme_changes == 'true'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Setup DDEV
+        uses: ddev/github-action-setup-ddev@v1
+
+      - name: Start DDEV
+        run: |
+          ddev start
+          ddev composer install --no-interaction
+
+      - name: Install Drupal (minimal for testing)
+        run: |
+          # Check if site is already installed
+          if ! ddev drush status bootstrap 2>/dev/null | grep -q "Successful"; then
+            ddev drush site:install minimal -y --account-pass=admin || true
+          fi
+          ddev drush cr
+
+      - name: Install Playwright and axe-core
+        run: |
+          npm install --save-dev playwright@latest @axe-core/playwright@latest axe-html-reporter@latest
+          npx playwright install --with-deps chromium
+
+      - name: Run accessibility scan
+        id: a11y-scan
+        run: |
+          echo "## Accessibility Scan Results" >> $GITHUB_STEP_SUMMARY
+
+          if [[ -f scripts/axe-scan.js ]]; then
+            # Use project's axe-scan script with basic level for CI speed
+            AXE_SCAN_LEVEL=basic CRAWL_DEPTH=1 ddev exec node scripts/axe-scan.js || true
+
+            # Check if results exist
+            if [[ -f web/axe-results/axe-summary-report.html ]]; then
+              echo "✅ Accessibility scan completed - see artifacts for detailed report" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "⚠️ Accessibility scan completed but no report generated" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "⚠️ axe-scan.js not found - skipping automated a11y tests" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Upload accessibility report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: accessibility-report
+          path: web/axe-results/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Stop DDEV
+        if: always()
+        run: ddev stop
+
+  # =============================================================================
+  # JOB 5: Documentation Validation
+  # Checks markdown formatting and link validity
+  # =============================================================================
+  documentation-check:
+    name: Documentation Validation
+    runs-on: ubuntu-latest
+    needs: scope-detection
+    if: needs.scope-detection.outputs.has_docs_changes == 'true'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install documentation tools
+        run: |
+          npm install -g markdownlint-cli markdown-link-check
+
+      - name: Lint markdown files
+        id: markdown-lint
+        run: |
+          echo "## Markdown Lint Results" >> $GITHUB_STEP_SUMMARY
+
+          # Find all markdown files
+          MD_FILES=$(find docs/ -name "*.md" 2>/dev/null || true)
+          MD_FILES="$MD_FILES README.md CHANGELOG.md"
+
+          LINT_ERRORS=0
+          for file in $MD_FILES; do
+            if [[ -f "$file" ]]; then
+              if ! markdownlint "$file" 2>&1; then
+                LINT_ERRORS=$((LINT_ERRORS + 1))
+              fi
+            fi
+          done
+
+          if [[ $LINT_ERRORS -eq 0 ]]; then
+            echo "✅ All markdown files pass linting" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ $LINT_ERRORS file(s) have markdown issues" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Check for broken links
+        id: link-check
+        continue-on-error: true
+        run: |
+          echo "## Link Check Results" >> $GITHUB_STEP_SUMMARY
+
+          # Check links in README
+          if [[ -f README.md ]]; then
+            if markdown-link-check README.md --quiet 2>&1; then
+              echo "✅ README.md - all links valid" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "⚠️ README.md has broken links" >> $GITHUB_STEP_SUMMARY
+            fi
+          fi
+
+  # =============================================================================
+  # JOB 6: YAML Validation
+  # Validates YAML configuration files
+  # =============================================================================
+  yaml-validation:
+    name: YAML Validation
+    runs-on: ubuntu-latest
+    needs: scope-detection
+    if: needs.scope-detection.outputs.has_workflow_changes == 'true' || needs.scope-detection.outputs.has_config_changes == 'true'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate YAML files
+        run: |
+          echo "## YAML Validation Results" >> $GITHUB_STEP_SUMMARY
+
+          YAML_ERRORS=0
+
+          # Validate workflow files
+          for file in .github/workflows/*.yml; do
+            if [[ -f "$file" ]]; then
+              if yq eval '.' "$file" > /dev/null 2>&1; then
+                echo "✅ $file - valid" >> $GITHUB_STEP_SUMMARY
+              else
+                echo "❌ $file - invalid YAML syntax" >> $GITHUB_STEP_SUMMARY
+                YAML_ERRORS=$((YAML_ERRORS + 1))
+              fi
+            fi
+          done
+
+          # Validate DDEV config
+          if [[ -f .ddev/config.yaml ]]; then
+            if yq eval '.' .ddev/config.yaml > /dev/null 2>&1; then
+              echo "✅ .ddev/config.yaml - valid" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "❌ .ddev/config.yaml - invalid YAML syntax" >> $GITHUB_STEP_SUMMARY
+              YAML_ERRORS=$((YAML_ERRORS + 1))
+            fi
+          fi
+
+          if [[ $YAML_ERRORS -gt 0 ]]; then
+            echo "::error::$YAML_ERRORS YAML file(s) have syntax errors"
+            exit 1
+          fi
+
+  # =============================================================================
+  # JOB 7: Security Scan
+  # Additional security-focused checks
+  # =============================================================================
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    needs: scope-detection
+    if: needs.scope-detection.outputs.has_php_changes == 'true'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for potential secrets
+        run: |
+          echo "## Secrets Scan Results" >> $GITHUB_STEP_SUMMARY
+
+          BASE_BRANCH="${{ github.base_ref }}"
+
+          # Patterns that might indicate secrets
+          SECRET_PATTERNS='(password|secret|api_key|apikey|token|credential|private_key).*=.*["\x27][^"\x27]{8,}'
+
+          # Check diff for potential secrets (case-insensitive)
+          MATCHES=$(git diff origin/${BASE_BRANCH}...HEAD | grep -iE "$SECRET_PATTERNS" | grep "^+" | head -10 || true)
+
+          if [[ -n "$MATCHES" ]]; then
+            echo "🔴 **Potential secrets detected in diff!**" >> $GITHUB_STEP_SUMMARY
+            echo "Please review the following lines:" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "$MATCHES" | head -5 >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "::warning::Potential secrets detected - please review"
+          else
+            echo "✅ No obvious secrets detected in diff" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Check for SQL injection patterns
+        run: |
+          BASE_BRANCH="${{ github.base_ref }}"
+
+          # Basic SQL injection pattern check
+          SQL_PATTERNS='(query|execute).*\$.*SELECT|SELECT.*FROM.*\$|db_query.*\$'
+
+          MATCHES=$(git diff origin/${BASE_BRANCH}...HEAD -- '*.php' '*.module' '*.install' | grep -E "$SQL_PATTERNS" | grep "^+" || true)
+
+          if [[ -n "$MATCHES" ]]; then
+            echo "### SQL Injection Check" >> $GITHUB_STEP_SUMMARY
+            echo "⚠️ Potential SQL injection patterns found - please verify parameterized queries are used" >> $GITHUB_STEP_SUMMARY
+            echo "::warning::Potential SQL patterns detected - verify parameterized queries"
+          fi
+
+  # =============================================================================
+  # JOB 8: Review Summary
+  # Aggregates results and posts PR comment
+  # =============================================================================
+  review-summary:
+    name: Review Summary
+    runs-on: ubuntu-latest
+    needs:
+      - scope-detection
+      - static-analysis
+      - ddev-tests
+      - accessibility-tests
+      - documentation-check
+      - yaml-validation
+      - security-scan
+    if: always()
+
+    steps:
+      - name: Generate review summary
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const results = {
+              scope: '${{ needs.scope-detection.result }}',
+              static: '${{ needs.static-analysis.result }}',
+              ddev: '${{ needs.ddev-tests.result }}',
+              a11y: '${{ needs.accessibility-tests.result }}',
+              docs: '${{ needs.documentation-check.result }}',
+              yaml: '${{ needs.yaml-validation.result }}',
+              security: '${{ needs.security-scan.result }}'
+            };
+
+            const statusEmoji = (status) => {
+              switch(status) {
+                case 'success': return '✅';
+                case 'failure': return '❌';
+                case 'skipped': return '⏭️';
+                case 'cancelled': return '🚫';
+                default: return '❓';
+              }
+            };
+
+            let summary = '## 🔍 Automated Code Review Summary\n\n';
+            summary += '| Check | Status |\n';
+            summary += '|-------|--------|\n';
+            summary += `| Scope Detection | ${statusEmoji(results.scope)} ${results.scope} |\n`;
+            summary += `| Static Analysis | ${statusEmoji(results.static)} ${results.static} |\n`;
+            summary += `| DDEV Integration | ${statusEmoji(results.ddev)} ${results.ddev} |\n`;
+            summary += `| Accessibility | ${statusEmoji(results.a11y)} ${results.a11y} |\n`;
+            summary += `| Documentation | ${statusEmoji(results.docs)} ${results.docs} |\n`;
+            summary += `| YAML Validation | ${statusEmoji(results.yaml)} ${results.yaml} |\n`;
+            summary += `| Security Scan | ${statusEmoji(results.security)} ${results.security} |\n\n`;
+
+            // Overall status
+            const hasFailure = Object.values(results).includes('failure');
+            if (hasFailure) {
+              summary += '### ⚠️ Issues Found\n\n';
+              summary += 'Please review the failed checks above and address any issues before merging.\n';
+            } else {
+              summary += '### ✅ All Checks Passed\n\n';
+              summary += 'This PR is ready for human review.\n';
+            }
+
+            summary += '\n---\n';
+            summary += '*This is an automated review. Please also request a human review before merging.*';
+
+            // Post as PR comment
+            const { owner, repo } = context.repo;
+            const issue_number = context.issue.number;
+
+            // Find existing bot comment
+            const comments = await github.rest.issues.listComments({
+              owner,
+              repo,
+              issue_number,
+            });
+
+            const botComment = comments.data.find(comment =>
+              comment.user.type === 'Bot' &&
+              comment.body.includes('Automated Code Review Summary')
+            );
+
+            if (botComment) {
+              // Update existing comment
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: botComment.id,
+                body: summary
+              });
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number,
+                body: summary
+              });
+            }

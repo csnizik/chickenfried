@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies: {  }
+id: sr_taxonomy_breeding_pens
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - taxonomy
+migration_group: sheep_data
+label: 'Import s_breeding_pens taxonomy terms'
+source:
+  plugin: csv
+  path: modules/custom/sheep_migration/data/taxonomy/s_breeding_pens.csv
+  ids:
+    - name
+process:
+  name: name
+  vid:
+    plugin: default_value
+    default_value: s_breeding_pens
+destination:
+  plugin: 'entity:taxonomy_term'
+  default_bundle: s_breeding_pens
+idMap: {  }
+migration_dependencies:
+  required: {  }
+  optional: {  }
+include: null

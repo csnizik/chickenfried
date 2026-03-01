@@ -1,0 +1,502 @@
+# Production Deployment Pipeline
+# Builds and pushes Docker image to ACR with production tag
+# ACR webhook triggers Azure App Service to pull the new image
+#
+# Trigger: Push to main branch (typically via PR merge from develop)
+# Tag format: prod_arsapps_X.X.X-YYYY-MM-DD
+#
+# Release notes are automatically generated from:
+# 1. Release Drafter draft (if available) - categorized by PR labels
+# 2. GitHub's auto-generated notes (fallback) - from merged PRs
+
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.github/ISSUE_TEMPLATE/**'
+
+  workflow_dispatch:
+    inputs:
+      version_bump:
+        description: 'Version bump type'
+        type: choice
+        options: [patch, minor, major]
+        default: patch
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+env:
+  REGISTRY: acrasegrinprod01.azurecr.us
+  IMAGE_NAME: ars-apps-drupal-rep
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  # ═══════════════════════════════════════════════════════════════════════════
+  # VERSION CALCULATION
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  determine-version:
+    name: Determine Version
+    runs-on: ubuntu-latest
+    outputs:
+      current_version: ${{ steps.version.outputs.current }}
+      new_version: ${{ steps.version.outputs.new }}
+      image_tag: ${{ steps.version.outputs.tag }}
+      bump_type: ${{ steps.version.outputs.bump }}
+      previous_tag: ${{ steps.version.outputs.previous_tag }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Calculate version
+        id: version
+        run: |
+          # Get current version from VERSION file
+          if [[ -f VERSION ]]; then
+            CURRENT=$(cat VERSION | tr -d '[:space:]')
+          else
+            CURRENT="0.0.0"
+          fi
+
+          echo "current=$CURRENT" >> $GITHUB_OUTPUT
+
+          # Get previous tag for release notes
+          PREVIOUS_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          echo "previous_tag=$PREVIOUS_TAG" >> $GITHUB_OUTPUT
+
+          # Parse version components
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT"
+
+          # Determine bump type (manual input or default to patch)
+          BUMP="${{ github.event.inputs.version_bump }}"
+          if [[ -z "$BUMP" ]]; then
+            BUMP="patch"
+          fi
+
+          echo "bump=$BUMP" >> $GITHUB_OUTPUT
+
+          # Calculate new version
+          case "$BUMP" in
+            major)
+              NEW="$((MAJOR + 1)).0.0"
+              ;;
+            minor)
+              NEW="${MAJOR}.$((MINOR + 1)).0"
+              ;;
+            patch)
+              NEW="${MAJOR}.${MINOR}.$((PATCH + 1))"
+              ;;
+          esac
+
+          echo "new=$NEW" >> $GITHUB_OUTPUT
+
+          # Build image tag in required format: prod_arsapps_X.X.X-YYYY-MM-DD
+          DATE=$(date -u +"%Y-%m-%d")
+          TAG="prod_arsapps_${NEW}-${DATE}"
+
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+
+          # Summary
+          echo "## 📦 Version Calculation" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Field | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Current Version | \`$CURRENT\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Bump Type | \`$BUMP\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| New Version | \`$NEW\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Image Tag | \`$TAG\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Previous Tag | \`$PREVIOUS_TAG\` |" >> $GITHUB_STEP_SUMMARY
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # PRE-FLIGHT CHECKS
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  pre-flight:
+    name: Pre-flight Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for debug code
+        run: |
+          echo "## 🔍 Pre-flight Checks" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          DEBUG_PATTERNS='dpm\(|dvm\(|kint\(|dd\(|dump\(|var_dump\(|print_r\(|dsm\('
+
+          if grep -rE "$DEBUG_PATTERNS" web/modules/custom/ web/themes/custom/ \
+             --include="*.php" --include="*.module" --include="*.theme" --include="*.inc" 2>/dev/null; then
+            echo "::error::Debug code found in codebase"
+            echo "❌ **Debug code detected** - Remove before deploying" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          else
+            echo "✅ No debug code found" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # BUILD AND PUSH
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  build-and-push:
+    name: Build & Push Image
+    runs-on: ubuntu-latest
+    needs: [determine-version, pre-flight]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to ACR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          provenance: false
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.determine-version.outputs.image_tag }}
+          labels: |
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.version=${{ needs.determine-version.outputs.new_version }}
+            org.opencontainers.image.created=${{ github.event.head_commit.timestamp }}
+            org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+          build-args: |
+            GIT_SHA=${{ github.sha }}
+            VERSION=${{ needs.determine-version.outputs.new_version }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Summary
+        run: |
+          echo "## 🐳 Docker Image" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Image pushed to ACR:**" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          echo "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.determine-version.outputs.image_tag }}" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "ACR webhook will trigger Azure App Service deployment." >> $GITHUB_STEP_SUMMARY
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # GENERATE CHANGELOG
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  # generate-changelog:
+  #   name: Generate Changelog
+  #   runs-on: ubuntu-latest
+  #   needs: [determine-version, build-and-push]
+  #   outputs:
+  #     changelog_file: ${{ steps.changelog.outputs.file }}
+
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #         token: ${{ secrets.GH_TOKEN }}
+
+  #     - name: Install git-cliff
+  #       uses: kenji-miyake/setup-git-cliff@v2
+
+  #     - name: Generate changelog
+  #       id: changelog
+  #       env:
+  #         GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
+  #       run: |
+  #         VERSION="${{ needs.determine-version.outputs.new_version }}"
+  #         PREVIOUS_TAG="${{ needs.determine-version.outputs.previous_tag }}"
+
+  #         # Generate changelog for this release
+  #         if [[ -n "$PREVIOUS_TAG" ]]; then
+  #           # Generate only changes since last tag
+  #           git-cliff "$PREVIOUS_TAG"..HEAD --tag "v$VERSION" -o RELEASE_CHANGELOG.md
+  #         else
+  #           # First release - generate all
+  #           git-cliff --tag "v$VERSION" -o RELEASE_CHANGELOG.md
+  #         fi
+
+  #         # Also update the full CHANGELOG.md
+  #         git-cliff --tag "v$VERSION" -o CHANGELOG.md
+
+  #         echo "file=RELEASE_CHANGELOG.md" >> $GITHUB_OUTPUT
+
+  #         # Show in summary
+  #         echo "## 📝 Generated Changelog" >> $GITHUB_STEP_SUMMARY
+  #         echo "" >> $GITHUB_STEP_SUMMARY
+  #         cat RELEASE_CHANGELOG.md >> $GITHUB_STEP_SUMMARY
+
+  #     - name: Upload changelog artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: changelog
+  #         path: |
+  #           RELEASE_CHANGELOG.md
+  #           CHANGELOG.md
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # UPDATE VERSION FILES & CREATE RELEASE
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  # create-release:
+  #   name: Create Release
+  #   runs-on: ubuntu-latest
+  #   needs: [determine-version, build-and-push, generate-changelog]
+
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #         token: ${{ secrets.GH_TOKEN }}
+
+
+  #     - name: Update VERSION file
+  #       run: |
+  #         echo "${{ needs.determine-version.outputs.new_version }}" > VERSION
+
+  #     - name: Update VERSION_HISTORY
+  #       run: |
+  #         VERSION="${{ needs.determine-version.outputs.new_version }}"
+  #         DATE=$(date -u +"%Y-%m-%d")
+  #         BUMP="${{ needs.determine-version.outputs.bump_type }}"
+
+  #         # Get first line of release changelog as summary
+  #         SUMMARY=$(grep -E "^- " RELEASE_CHANGELOG.md | head -1 | sed 's/^- //')
+  #         MAX_SUMMARY_LENGTH=50
+
+  #         if [[ -z "$SUMMARY" ]]; then
+  #           SUMMARY="Release ${VERSION}"
+  #         fi
+
+  #         # Truncate summary and add ellipsis only if it exceeds the max length
+  #         if ((${#SUMMARY} > MAX_SUMMARY_LENGTH)); then
+  #           SUMMARY="${SUMMARY:0:$((MAX_SUMMARY_LENGTH-3))}..."
+  #         fi
+
+  #         if [[ -f VERSION_HISTORY.md ]]; then
+  #           # Add new row after the header separator
+  #           sed -i "/^|---------|/a | ${VERSION} | ${DATE} | ${BUMP} | ${SUMMARY} |" VERSION_HISTORY.md
+  #         fi
+
+  #     - name: Commit changes
+  #       run: |
+  #         git config user.name "github-actions[bot]"
+  #         git config user.email "github-actions[bot]@users.noreply.github.com"
+
+  #         git add VERSION CHANGELOG.md VERSION_HISTORY.md
+  #         git diff --staged --quiet || git commit -m "chore(release): v${{ needs.determine-version.outputs.new_version }} [skip ci]"
+  #         git push
+
+  #     - name: Create git tag
+  #       run: |
+  #         VERSION="${{ needs.determine-version.outputs.new_version }}"
+  #         git tag -a "v${VERSION}" -m "Release v${VERSION}"
+  #         git push origin "v${VERSION}"
+
+  #     - name: Check for draft release
+  #       id: check_draft
+  #       uses: actions/github-script@v7
+  #       with:
+  #         script: |
+  #           const { data: releases } = await github.rest.repos.listReleases({
+  #             owner: context.repo.owner,
+  #             repo: context.repo.repo,
+  #           });
+
+  #           const draft = releases.find(r => r.draft === true);
+
+  #           if (draft) {
+  #             core.setOutput('draft_id', draft.id);
+  #             core.setOutput('draft_body', draft.body);
+  #             core.setOutput('has_draft', 'true');
+  #             console.log(`Found draft release: ${draft.name}`);
+  #           } else {
+  #             core.setOutput('has_draft', 'false');
+  #             console.log('No draft release found');
+  #           }
+
+  #     - name: Publish draft release (if exists)
+  #       if: steps.check_draft.outputs.has_draft == 'true'
+  #       uses: actions/github-script@v7
+  #       env:
+  #         DRAFT_BODY: ${{ steps.check_draft.outputs.draft_body }}
+  #       with:
+  #         script: |
+  #           const version = '${{ needs.determine-version.outputs.new_version }}';
+  #           const imageTag = '${{ needs.determine-version.outputs.image_tag }}';
+
+  #           // Get draft body from environment and append deployment info
+  #           const draftBody = process.env.DRAFT_BODY || '';
+  #           let body = draftBody;
+  #           body += `\n\n---\n\n`;
+  #           body += `**Docker Image:** \`${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${imageTag}\`\n`;
+  #           body += `**Commit:** \`${{ github.sha }}\``;
+
+  #           await github.rest.repos.updateRelease({
+  #             owner: context.repo.owner,
+  #             repo: context.repo.repo,
+  #             release_id: ${{ steps.check_draft.outputs.draft_id }},
+  #             tag_name: `v${version}`,
+  #             name: `Release ${version}`,
+  #             body: body,
+  #             draft: false,
+  #             prerelease: false,
+  #           });
+
+  #           console.log(`Published release v${version}`);
+
+  #     - name: Create release with auto-generated notes (fallback)
+  #       if: steps.check_draft.outputs.has_draft != 'true'
+  #       uses: softprops/action-gh-release@v1
+  #       with:
+  #         tag_name: v${{ needs.determine-version.outputs.new_version }}
+  #         name: Release ${{ needs.determine-version.outputs.new_version }}
+  #         body_path: RELEASE_CHANGELOG.md
+  #         draft: false
+  #         prerelease: false
+  #         append_body: true
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  #     - name: Append deployment info to release
+  #       if: steps.check_draft.outputs.has_draft != 'true'
+  #       uses: softprops/action-gh-release@v1
+  #       with:
+  #         tag_name: v${{ needs.determine-version.outputs.new_version }}
+  #         body: |
+
+  #           ---
+
+  #           **Docker Image:** `${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.determine-version.outputs.image_tag }}`
+  #           **Commit:** `${{ github.sha }}`
+  #         append_body: true
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  #     - name: Summary
+  #       run: |
+  #         VERSION="${{ needs.determine-version.outputs.new_version }}"
+
+  #         echo "## 🎉 Release Created" >> $GITHUB_STEP_SUMMARY
+  #         echo "" >> $GITHUB_STEP_SUMMARY
+  #         echo "[View Release v${VERSION}](https://github.com/${{ github.repository }}/releases/tag/v${VERSION})" >> $GITHUB_STEP_SUMMARY
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # HEALTH CHECK
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  health-check:
+    name: Health Check
+    runs-on: ubuntu-latest
+    needs: [determine-version, build-and-push]
+
+    steps:
+      - name: Wait for webhook deployment
+        run: |
+          echo "Waiting for ACR webhook to trigger deployment..."
+          echo "This typically takes 2-3 minutes for:"
+          echo "  - Webhook notification"
+          echo "  - Image pull"
+          echo "  - Container restart"
+          echo "  - Drupal bootstrap (drush deploy)"
+          sleep 150  # 2.5 minutes
+
+      - name: Verify application health
+        id: health
+        run: |
+          URL="${{ vars.PRODUCTION_URL }}"
+
+          if [[ -z "$URL" ]]; then
+            echo "::warning::PRODUCTION_URL variable not set, skipping health check"
+            echo "⚠️ Health check skipped - PRODUCTION_URL not configured" >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+
+          HEALTH_URL="${URL}/user/login"
+
+          echo "## 🏥 Health Check" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Checking: \`${HEALTH_URL}\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          for i in {1..10}; do
+            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$HEALTH_URL" --max-time 30 -L || echo "000")
+
+            if [[ "$HTTP_CODE" =~ ^(200|302)$ ]]; then
+              echo "✅ Health check passed (HTTP $HTTP_CODE)" >> $GITHUB_STEP_SUMMARY
+              echo "status=healthy" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+
+            echo "Attempt $i/10: HTTP $HTTP_CODE - waiting 15s..."
+            sleep 15
+          done
+
+          echo "❌ Health check failed after 10 attempts" >> $GITHUB_STEP_SUMMARY
+          echo "status=unhealthy" >> $GITHUB_OUTPUT
+          exit 1
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # DEPLOYMENT SUMMARY
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  summary:
+    name: Deployment Summary
+    runs-on: ubuntu-latest
+    # needs: [determine-version, build-and-push, create-release, health-check]
+    needs: [determine-version, build-and-push, health-check]
+    if: always()
+
+    steps:
+      - name: Generate summary
+        run: |
+          VERSION="${{ needs.determine-version.outputs.new_version }}"
+          TAG="${{ needs.determine-version.outputs.image_tag }}"
+
+          echo "# 🚀 Production Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [[ "${{ needs.health-check.result }}" == "success" ]]; then
+            echo "## ✅ Deployment Successful" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "## ⚠️ Deployment Completed with Warnings" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Component | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Version | \`${VERSION}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Image Tag | \`${TAG}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Build | ${{ needs.build-and-push.result == 'success' && '✅' || '❌' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Health Check | ${{ needs.health-check.result == 'success' && '✅' || '⚠️' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Registry:** \`${{ env.REGISTRY }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "**Repository:** \`${{ env.IMAGE_NAME }}\`" >> $GITHUB_STEP_SUMMARY
+
+# When create-release is fixed, re-add to generate summary steps:
+# echo "| Release | ${{ needs.create-release.result == 'success' && '✅' || '❌' }} |" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Template for Nematode Specimen entity.
+ *
+ * Dynamically renders all fields as a USWDS borderless table.
+ */
+#}
+<article{{ attributes.addClass('width-mobile','specimen', 'specimen--' ~ view_mode) }}>
+
+  <h1 class="font-heading-xl margin-bottom-3">
+    Specimen #{{ specimen.field_n_entry_number.value|default('N/A') }}
+  </h1>
+
+  <table class="usa-table usa-table--stacked-header usa-table--borderless">
+    <caption class="usa-sr-only">Specimen record details</caption>
+    <tbody>
+      {% for key, field in elements %}
+        {% if key starts with 'field' %}
+          {% set values = [] %}
+          {% for delta, item in field %}
+            {% if delta matches '/^\\d+$/' %}
+              {% set values = values|merge([item|render|striptags|trim]) %}
+            {% endif %}
+          {% endfor %}
+          {% set field_content = values|filter(v => v is not empty)|join(', ') %}
+          {% if field_content is not empty %}
+            <tr>
+              <th scope="row">
+                {{ field['#title']|default(key|replace({'field_n_': '', '_': ' '})|title) }}
+              </th>
+              <td>{{ field_content|raw }}</td>
+            </tr>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+
+</article>

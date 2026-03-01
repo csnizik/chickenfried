@@ -1,0 +1,34 @@
+uuid: 70161d5d-153c-4c2a-a77a-9d69a5feff69
+langcode: en
+status: true
+dependencies:
+  config:
+    - group_content_menu.group_content_menu_type.tenant_public_menu
+  module:
+    - group_content_menu
+    - system
+  theme:
+    - ui_suite_arsapps
+id: ui_suite_arsapps_tenantpublicmenu_2
+theme: ui_suite_arsapps
+region: sidebar_first
+weight: -9
+provider: null
+plugin: 'group_content_menu:tenant_public_menu'
+settings:
+  id: 'group_content_menu:tenant_public_menu'
+  label: 'Tenant public menu'
+  label_display: '0'
+  provider: group_content_menu
+  context_mapping:
+    group: '@group.group_route_context:group'
+  level: 1
+  depth: 0
+  expand_all_items: true
+  relative_visibility: false
+  theme_hook_suggestion: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/nrrl\r\n/nrrl/*\r\n/ssr-finder\r\n/ssr-finder/*"

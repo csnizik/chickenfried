@@ -1,0 +1,38 @@
+uuid: 88e178c8-98f7-4edb-9eb9-8b467c5f5cf5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.group_relationship.tenant_access_group-9376111be951.group_roles
+    - group.relationship_type.tenant_access_group-9376111be951
+  module:
+    - path
+id: group_relationship.tenant_access_group-9376111be951.default
+targetEntityType: group_relationship
+bundle: tenant_access_group-9376111be951
+mode: default
+content:
+  entity_id:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  group_roles:
+    type: options_buttons
+    weight: 31
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  uid: true

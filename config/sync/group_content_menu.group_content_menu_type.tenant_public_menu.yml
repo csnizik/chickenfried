@@ -1,0 +1,6 @@
+uuid: 3fde05f1-7467-4860-b20a-9b46023691c4
+langcode: en
+status: true
+dependencies: {  }
+id: tenant_public_menu
+label: 'Tenant public menu'

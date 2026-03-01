@@ -1,0 +1,39 @@
+uuid: e73fdee3-8e3f-42b1-833d-2943dcac709a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_process_list_items
+    - paragraphs.paragraphs_type.ui_suite_uswds_process_list
+    - paragraphs.paragraphs_type.ui_suite_uswds_process_list_item
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: IubtyZoOTjqkT1JHLEE_3wcwTRSWua5l4M5FAub5kKk
+id: paragraph.ui_suite_uswds_process_list.field_process_list_items
+field_name: field_process_list_items
+entity_type: paragraph
+bundle: ui_suite_uswds_process_list
+label: Items
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      ui_suite_uswds_process_list_item: ui_suite_uswds_process_list_item
+    negate: 0
+    target_bundles_drag_drop:
+      ui_suite_uswds_process_list:
+        weight: 4
+        enabled: false
+      ui_suite_uswds_process_list_item:
+        weight: 5
+        enabled: true
+      ui_suite_uswds_step_indicator:
+        weight: 6
+        enabled: false
+field_type: entity_reference_revisions

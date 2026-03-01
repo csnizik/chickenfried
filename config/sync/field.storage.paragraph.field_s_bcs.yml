@@ -1,0 +1,20 @@
+uuid: 61792b28-a015-4be3-ac31-818c81a1fdbf
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_s_bcs
+field_name: field_s_bcs
+entity_type: paragraph
+type: decimal
+settings:
+  precision: 10
+  scale: 1
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

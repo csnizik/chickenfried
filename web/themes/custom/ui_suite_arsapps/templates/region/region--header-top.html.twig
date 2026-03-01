@@ -1,0 +1,15 @@
+{%
+  set classes = [
+    'region',
+    'region--' ~ region|clean_class,
+    'usa-navbar',
+    'margin-y-2',
+    'tablet:margin-y-0'
+  ]
+%}
+
+{% if content %}
+  <div{{ attributes.addClass(classes) }}>
+    {{ content }}
+  </div>
+{% endif %}

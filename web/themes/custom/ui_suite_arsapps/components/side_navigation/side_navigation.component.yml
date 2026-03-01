@@ -1,0 +1,16 @@
+name: 'Side Navigation'
+description: 'Hierarchical, vertical navigation to place at the side of a page.'
+group: Navigation
+replaces: ui_suite_uswds:side_navigation
+links:
+  - 'https://designsystem.digital.gov/components/side-navigation/'
+props:
+  type: object
+  properties:
+    items:
+      title: 'Menu items'
+      description: 'Full-height and lightweight navigation (including support for dropdowns).'
+      $ref: 'ui-patterns://links'
+# Fake library for extension/override in sub-themes.
+libraryOverrides:
+  css: {}

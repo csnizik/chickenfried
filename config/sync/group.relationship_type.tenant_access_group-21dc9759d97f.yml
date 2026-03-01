@@ -1,0 +1,17 @@
+uuid: d4e713de-5a6a-42d1-a1d5-44fa71c2a484
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - taxonomy.vocabulary.s_causes
+  module:
+    - group_term
+    - taxonomy
+id: tenant_access_group-21dc9759d97f
+group_type: tenant_access_group
+content_plugin: 'group_term:s_causes'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

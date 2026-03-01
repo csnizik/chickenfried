@@ -1,0 +1,9 @@
+uuid: 30927c23-0242-4949-8728-ed9d7120ea2f
+langcode: en
+status: true
+dependencies: {  }
+name: Studies
+vid: s_studies
+description: null
+weight: 0
+new_revision: false

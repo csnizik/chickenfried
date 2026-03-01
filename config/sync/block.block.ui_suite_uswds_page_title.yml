@@ -1,0 +1,20 @@
+uuid: 8c4bac52-3cf5-48df-8b20-6359135b2fd8
+langcode: en
+status: true
+dependencies:
+  theme:
+    - ui_suite_uswds
+_core:
+  default_config_hash: pvxqS5SvKRjGV2-Wc0i5yVO46z3BY3qJFanlpJAYfxE
+id: ui_suite_uswds_page_title
+theme: ui_suite_uswds
+region: content
+weight: 0
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }

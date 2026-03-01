@@ -1,0 +1,56 @@
+# Schema overrides for Sheep Migration custom configs.
+# This file provides a minimal, lenient schema for the
+# "views.view.sheep_migration_validator" configuration to prevent
+# schema validation errors while allowing the view to be saved/edited.
+#
+# IMPORTANT: Do NOT use a top-level "type: ignore" here. In recent
+# Drupal versions, the schema checker expects a TraversableTypedData
+# at the root. Using "ignore" at the root causes a typed property type
+# error (fatal). Instead, declare a mapping at the root and mark large
+# sub-branches as ignore so they are not validated in detail.
+
+views.view.sheep_migration_validator:
+  type: mapping
+  label: 'View: sheep_migration_validator (lenient schema)'
+  mapping:
+    # The bulk of a View configuration lives under "display"; mark it
+    # ignored so BEF/custom options do not trigger missing schema warnings.
+    display:
+      type: ignore
+      label: 'Displays'
+    # Common top-level keys for views.view.* configs.
+    uuid:
+      type: string
+      label: 'UUID'
+    tag:
+      type: string
+      label: 'Tag'
+    base_table:
+      type: string
+      label: 'Base table'
+    base_field:
+      type: string
+      label: 'Base field'
+    # Basic metadata keys; treated leniently. These keys may or may not
+    # exist depending on how the View is exported/edited.
+    langcode:
+      type: string
+      label: 'Language'
+    status:
+      type: boolean
+      label: 'Status'
+    dependencies:
+      type: ignore
+      label: 'Dependencies'
+    id:
+      type: string
+      label: 'Machine name'
+    label:
+      type: string
+      label: 'Label'
+    module:
+      type: string
+      label: 'Module'
+    description:
+      type: text
+      label: 'Description'

@@ -1,0 +1,22 @@
+uuid: e79fab7c-9c93-4643-b04f-48aa4e1633f6
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+_core:
+  default_config_hash: 0HVJXJZu7AEm4Sx1vNelzt44Kk5oWMSHKHdCGaunqSg
+id: paragraph.field_card_breakpoint_desktop
+field_name: field_card_breakpoint_desktop
+entity_type: paragraph
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

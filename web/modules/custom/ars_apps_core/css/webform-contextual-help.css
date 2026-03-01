@@ -1,0 +1,11 @@
+/**
+ * @file
+ * Hide contextual help elements from webform display.
+ *
+ * These elements are rendered in the sidebar block instead.
+ */
+[id$="-contextual-help"],
+[data-drupal-selector$="-contextual-help"],
+.form-item[class*="contextual-help"] {
+  display: none !important;
+}

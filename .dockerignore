@@ -1,0 +1,66 @@
+# DDEV and local development files
+.ddev/
+.ddev-docker-compose*.yaml
+
+# Version control
+.git/
+.gitignore
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Node modules (will be installed during build)
+node_modules/
+npm-debug.log*
+
+# Drupal specific
+web/sites/*/files/
+web/sites/*/private/
+web/sites/*/translations/
+web/sites/development.services.yml
+web/sites/example.settings.local.php
+web/sites/example.sites.php
+
+# Local development settings
+web/sites/default/settings.local.php
+web/sites/default/settings.ddev.php
+
+# Composer
+vendor/
+composer.phar
+
+# Build artifacts
+*.tar.gz
+*.zip
+
+# Cache and logs
+*.log
+web/sites/default/files/php/
+web/sites/default/files/css/
+web/sites/default/files/js/
+
+# Documentation
+*.md
+README*
+CHANGELOG*
+LICENSE*
+
+# CI/CD files that shouldn't be in container
+.github/
+docker-compose*.yml
+
+# Environment files
+.env*

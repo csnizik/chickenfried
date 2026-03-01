@@ -1,0 +1,176 @@
+# Release Drafter Configuration
+# https://github.com/release-drafter/release-drafter
+#
+# This automatically drafts release notes based on merged PRs.
+# PRs are categorized by labels - add labels to PRs for best results.
+
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+
+# Version resolution based on labels
+version-resolver:
+  major:
+    labels:
+      - 'breaking'
+      - 'major'
+  minor:
+    labels:
+      - 'feature'
+      - 'enhancement'
+      - 'minor'
+  patch:
+    labels:
+      - 'bug'
+      - 'bugfix'
+      - 'fix'
+      - 'patch'
+      - 'security'
+      - 'dependencies'
+  default: patch
+
+# Categories for organizing release notes
+categories:
+  - title: '🚀 Features'
+    labels:
+      - 'feature'
+      - 'enhancement'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'bug'
+      - 'bugfix'
+      - 'fix'
+  - title: '🔒 Security'
+    labels:
+      - 'security'
+  - title: '📦 Dependencies'
+    labels:
+      - 'dependencies'
+      - 'deps'
+  - title: '📚 Documentation'
+    labels:
+      - 'documentation'
+      - 'docs'
+  - title: '🧹 Maintenance'
+    labels:
+      - 'chore'
+      - 'maintenance'
+      - 'refactor'
+  - title: '⚡ Performance'
+    labels:
+      - 'performance'
+  - title: '♿ Accessibility'
+    labels:
+      - 'accessibility'
+      - 'a11y'
+  - title: '🎨 UI/UX'
+    labels:
+      - 'ui'
+      - 'ux'
+      - 'design'
+      - 'uswds'
+  - title: '🔧 Configuration'
+    labels:
+      - 'config'
+      - 'configuration'
+  - title: '📝 Other Changes'
+    labels:
+      - '*'
+
+# Exclude certain labels from release notes
+exclude-labels:
+  - 'skip-changelog'
+  - 'wip'
+  - 'do-not-merge'
+
+# Template for the release body
+template: |
+  ## What's Changed
+
+  $CHANGES
+
+  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
+
+# PR title replacers (clean up common prefixes)
+replacers:
+  # Remove conventional commit prefixes for cleaner notes
+  - search: '/^feat(\(.+\))?:\s*/i'
+    replace: ''
+  - search: '/^fix(\(.+\))?:\s*/i'
+    replace: ''
+  - search: '/^docs(\(.+\))?:\s*/i'
+    replace: ''
+  - search: '/^chore(\(.+\))?:\s*/i'
+    replace: ''
+  - search: '/^refactor(\(.+\))?:\s*/i'
+    replace: ''
+  - search: '/^style(\(.+\))?:\s*/i'
+    replace: ''
+  - search: '/^test(\(.+\))?:\s*/i'
+    replace: ''
+  - search: '/^ci(\(.+\))?:\s*/i'
+    replace: ''
+
+# Autolabeler - automatically label PRs based on files/title
+autolabeler:
+  - label: 'documentation'
+    files:
+      - '*.md'
+      - 'docs/**/*'
+    title:
+      - '/^docs/i'
+
+  - label: 'bug'
+    title:
+      - '/^fix/i'
+      - '/bug/i'
+
+  - label: 'feature'
+    title:
+      - '/^feat/i'
+      - '/feature/i'
+
+  - label: 'chore'
+    title:
+      - '/^chore/i'
+
+  - label: 'dependencies'
+    files:
+      - 'composer.json'
+      - 'composer.lock'
+      - 'package.json'
+      - 'package-lock.json'
+    title:
+      - '/^deps/i'
+      - '/dependencies/i'
+
+  - label: 'security'
+    title:
+      - '/security/i'
+      - '/^sec/i'
+      - '/vulnerability/i'
+
+  - label: 'accessibility'
+    files:
+      - '**/a11y/**'
+      - '**/accessibility/**'
+    title:
+      - '/a11y/i'
+      - '/accessibility/i'
+      - '/wcag/i'
+      - '/508/i'
+
+  - label: 'ui'
+    files:
+      - 'web/themes/**/*'
+      - '**/*.scss'
+      - '**/*.css'
+      - '**/*.twig'
+    title:
+      - '/^ui/i'
+      - '/^ux/i'
+      - '/theme/i'
+      - '/uswds/i'
+
+  - label: 'config'
+    files:
+      - 'config/**/*'

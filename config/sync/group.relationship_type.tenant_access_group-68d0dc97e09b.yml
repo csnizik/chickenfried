@@ -1,0 +1,18 @@
+uuid: 36aa16c4-940d-47fb-8b1a-3b2f7cf5b0cb
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - media.type.image
+  module:
+    - groupmedia
+    - media
+id: tenant_access_group-68d0dc97e09b
+group_type: tenant_access_group
+content_plugin: 'group_media:image'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false
+  tracking_enabled: 0

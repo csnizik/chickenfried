@@ -1,0 +1,28 @@
+uuid: 7fd69bf0-c04a-4ffc-830e-053f6675796b
+langcode: en
+status: true
+dependencies:
+  config:
+    - group_content_menu.group_content_menu_type.tenant_public_menu
+  module:
+    - layout_builder
+    - layout_discovery
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: group_content_menu.tenant_public_menu.default
+targetEntityType: group_content_menu
+bundle: tenant_public_menu
+mode: default
+content:
+  label:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

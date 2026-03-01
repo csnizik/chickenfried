@@ -1,0 +1,14 @@
+uuid: 6f94b5d4-c86d-4d61-b685-fcc6f4d43135
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.nematode
+  module:
+    - user
+id: user_add_role_action.nematode
+label: 'Add the Nematode role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: nematode

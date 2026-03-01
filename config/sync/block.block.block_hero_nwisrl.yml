@@ -1,0 +1,59 @@
+uuid: 7ad57f78-4a87-4123-8ca2-7df351c1083d
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.html_no_filter
+  module:
+    - system
+    - ui_patterns
+    - ui_patterns_blocks
+  theme:
+    - ui_suite_arsapps
+id: block_hero_nwisrl
+theme: ui_suite_arsapps
+region: hero
+weight: 0
+provider: null
+plugin: 'ui_patterns:ui_suite_arsapps:hero'
+settings:
+  id: 'ui_patterns:ui_suite_arsapps:hero'
+  label: 'Hero (NWISRL)'
+  label_display: '0'
+  provider: ui_patterns_blocks
+  ui_patterns:
+    component_id: 'ui_suite_arsapps:hero'
+    variant_id: null
+    props:
+      attributes:
+        source_id: attributes
+        source:
+          value: ''
+      title_alt:
+        source_id: textfield
+        source:
+          value: ''
+      aria_label:
+        source_id: textfield
+        source:
+          value: 'Colorful image showing DNA markers labeled with fluorescent dyes (blue, green, yellow, and red).'
+      bg_image:
+        source_id: textfield
+        source:
+          value: /sites/default/files/assets/global/images/2025-12/ssr-banner.jpg
+    slots:
+      title:
+        sources:
+          -
+            source_id: wysiwyg
+            source:
+              value:
+                value: 'Imperfect <span class="text-accent-cool text-italic">Simple Sequence Repeat (SSR) Finder</span>'
+                format: html_no_filter
+            _weight: '0'
+      body: {  }
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/ssr-finder\r\n/ssr-finder/*"

@@ -1,0 +1,11 @@
+uuid: 4c84ede5-a51d-450b-980b-526774f8b95d
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.file_download_button
+label: 'File download button'
+description: null
+targetEntityType: media
+cache: true

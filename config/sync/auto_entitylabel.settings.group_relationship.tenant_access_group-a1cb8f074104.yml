@@ -1,0 +1,10 @@
+status: 0
+pattern: ''
+escape: false
+preserve_titles: false
+save: false
+chunk: 50
+dependencies:
+  config:
+    - group.relationship_type.tenant_access_group-a1cb8f074104
+new_content_behavior: 0

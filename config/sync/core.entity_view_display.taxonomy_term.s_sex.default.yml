@@ -1,0 +1,31 @@
+uuid: 859a6d30-6dfe-41b0-b71f-2c96c3a27d61
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.s_sex.field_human_readable_name
+    - taxonomy.vocabulary.s_sex
+  module:
+    - text
+id: taxonomy_term.s_sex.default
+targetEntityType: taxonomy_term
+bundle: s_sex
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_human_readable_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  search_api_excerpt: true

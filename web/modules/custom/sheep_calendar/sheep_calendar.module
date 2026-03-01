@@ -1,0 +1,64 @@
+<?php
+
+/**
+ * @file
+ * Hooks for the Sheep Calendar module.
+ */
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function sheep_calendar_views_data_alter(array &$data): void {
+  foreach ($data as $table_name => &$table_data) {
+    foreach ($table_data as $field_name => &$field_data) {
+      if (!isset($field_data['filter']['id'])) {
+        continue;
+      }
+      $filter_id = $field_data['filter']['id'];
+
+      // --- Date-based year filters (existing) ---
+      $add_date_filter = FALSE;
+      if (in_array($filter_id, ['datetime', 'date'], TRUE)) {
+        $add_date_filter = TRUE;
+      }
+      elseif ($filter_id === 'string' && substr($field_name, -5) === '_date') {
+        $add_date_filter = TRUE;
+      }
+
+      if ($add_date_filter) {
+        $data[$table_name][$field_name . '_sheep_year'] = [
+          'title' => $field_data['title'] . ' (Sheep Year)',
+          'help' => $field_data['help'] ?? '',
+          'filter' => [
+            'id' => 'sheep_year',
+            'field' => $field_data['filter']['field'] ?? $field_name,
+            'table' => $table_name,
+          ],
+        ];
+        $data[$table_name][$field_name . '_calendar_year'] = [
+          'title' => $field_data['title'] . ' (Year)',
+          'help' => $field_data['help'] ?? '',
+          'filter' => [
+            'id' => 'calendar_year',
+            'field' => $field_data['filter']['field'] ?? $field_name,
+            'table' => $table_name,
+          ],
+        ];
+      }
+
+      // --- Integer year filter (new) ---
+      if ($filter_id === 'numeric' && str_contains($field_name, '_year')) {
+        $data[$table_name][$field_name . '_year_select'] = [
+          'title' => $field_data['title'] . ' (Year select)',
+          'help' => ($field_data['help'] ?? '') . ' Auto-populated dropdown from data.',
+          'filter' => [
+            'id' => 'integer_year',
+            'field' => $field_data['filter']['field'] ?? $field_name,
+            'table' => $table_name,
+          ],
+        ];
+      }
+    }
+  }
+}
+

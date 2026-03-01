@@ -1,0 +1,38 @@
+uuid: 3f723ffc-ef7e-4c36-80a5-a7a910261af8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ui_suite_uswds_collection.field_collection_items
+    - paragraphs.paragraphs_type.ui_suite_uswds_collection
+  module:
+    - paragraphs
+_core:
+  default_config_hash: vVEn__b-_rTWpMLNxsuFXEqdAq8tCHMWco3PA_QEd9E
+id: paragraph.ui_suite_uswds_collection.default
+targetEntityType: paragraph
+bundle: ui_suite_uswds_collection
+mode: default
+content:
+  field_collection_items:
+    type: paragraphs
+    weight: 0
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ui_suite_uswds_collection_item
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

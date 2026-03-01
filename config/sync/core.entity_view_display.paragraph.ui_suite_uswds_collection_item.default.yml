@@ -1,0 +1,60 @@
+uuid: 24a90889-ab57-4222-8ed5-d82fe389a5c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ui_suite_uswds_collection_item.field_collection_item_content
+    - field.field.paragraph.ui_suite_uswds_collection_item.field_collection_item_header
+    - field.field.paragraph.ui_suite_uswds_collection_item.field_collection_item_meta_items
+    - field.field.paragraph.ui_suite_uswds_collection_item.field_collection_item_meta_tags
+    - paragraphs.paragraphs_type.ui_suite_uswds_collection_item
+  module:
+    - nomarkup
+    - text
+_core:
+  default_config_hash: Kn-mPC11RDEK4T83Nl3lsfow_IlGShGJEwuIK_lJ_IA
+id: paragraph.ui_suite_uswds_collection_item.default
+targetEntityType: paragraph
+bundle: ui_suite_uswds_collection_item
+mode: default
+content:
+  field_collection_item_content:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_collection_item_header:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      nomarkup:
+        enabled: true
+        separator: '|'
+        referenced_entity: ''
+    weight: 0
+    region: content
+  field_collection_item_meta_items:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      nomarkup:
+        enabled: true
+        separator: ''
+        referenced_entity: ''
+    weight: 2
+    region: content
+  field_collection_item_meta_tags:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden: {  }

@@ -1,0 +1,9 @@
+uuid: 7d6f771a-1938-4019-ad54-c121330e444a
+langcode: en
+status: true
+dependencies: {  }
+name: Lots
+vid: s_lots
+description: null
+weight: 0
+new_revision: false

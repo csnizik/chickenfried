@@ -1,0 +1,10 @@
+uuid: ce4f28c0-5f19-4d32-8c99-f32750c49723
+langcode: en
+status: true
+dependencies: {  }
+id: admin
+admin_label: Admin
+category: ''
+frontend: false
+weight: 0
+sections: {  }

@@ -1,0 +1,24 @@
+uuid: 21d55c54-4140-414c-87ac-c46576c11ffe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_step_indicator_label
+    - paragraphs.paragraphs_type.ui_suite_uswds_step_indicator
+  module:
+    - text
+_core:
+  default_config_hash: hXD5B5TO4qdaRXrZQ4G0C3DCoPps6Q5BhvzXnFPxsBU
+id: paragraph.ui_suite_uswds_step_indicator.field_step_indicator_label
+field_name: field_step_indicator_label
+entity_type: paragraph
+bundle: ui_suite_uswds_step_indicator
+label: Label
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text

@@ -1,0 +1,38 @@
+uuid: 2d325a2f-a10e-43ed-9463-a9106ae96576
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+_core:
+  default_config_hash: c-r39fa-v642XE74S9UmeXryf_JsMj77DfzxRkz_JM0
+id: paragraph.field_step_indicator_heading_lvl
+field_name: field_step_indicator_heading_lvl
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '2'
+      label: H2
+    -
+      value: '3'
+      label: H3
+    -
+      value: '4'
+      label: H4
+    -
+      value: '5'
+      label: H5
+    -
+      value: '6'
+      label: H6
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

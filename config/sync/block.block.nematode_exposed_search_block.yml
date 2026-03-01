@@ -1,0 +1,28 @@
+uuid: 08bb3b84-8fe8-436e-a661-cb06039afd0a
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.n_search_the_collection
+  module:
+    - system
+    - views
+  theme:
+    - ui_suite_arsapps
+id: nematode_exposed_search_block
+theme: ui_suite_arsapps
+region: sidebar_first
+weight: -12
+provider: null
+plugin: 'views_exposed_filter_block:n_search_the_collection-block_1'
+settings:
+  id: 'views_exposed_filter_block:n_search_the_collection-block_1'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: Search
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /nematode

@@ -1,0 +1,23 @@
+uuid: 0f56ed1e-8dfa-4d55-9b69-774bb3918903
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_card_media_inset
+    - paragraphs.paragraphs_type.ui_suite_uswds_card
+_core:
+  default_config_hash: Ihiojhz4SWXkCc1YgOdHxiEtRXugZHCik6iZXuwb-ok
+id: paragraph.ui_suite_uswds_card.field_card_media_inset
+field_name: field_card_media_inset
+entity_type: paragraph
+bundle: ui_suite_uswds_card
+label: 'Media Inset'
+description: 'Indents the media element so it doesn’t extend to the edge of the card.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,31 @@
+uuid: b54697c7-e9be-4f39-9066-48ca2c9daaed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_card_media
+    - media.type.image
+    - paragraphs.paragraphs_type.ui_suite_uswds_card
+_core:
+  default_config_hash: 6cJ7HWkrC8D0lqgGix2g5bqA3xViXRgISgsCOjqPlq4
+id: paragraph.ui_suite_uswds_card.field_card_media
+field_name: field_card_media
+entity_type: paragraph
+bundle: ui_suite_uswds_card
+label: Media
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

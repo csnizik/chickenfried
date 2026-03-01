@@ -1,0 +1,19 @@
+uuid: f9a4c1ac-e040-4b14-8650-e4c9029593a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_human_readable_name
+    - taxonomy.vocabulary.s_preliminary_disposals
+id: taxonomy_term.s_preliminary_disposals.field_human_readable_name
+field_name: field_human_readable_name
+entity_type: taxonomy_term
+bundle: s_preliminary_disposals
+label: 'Human readable name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

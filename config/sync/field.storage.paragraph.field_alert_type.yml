@@ -1,0 +1,38 @@
+uuid: cb2c0a8b-4594-4a3d-bf89-554ff4780727
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+_core:
+  default_config_hash: vDPwpZMAyEYI2r5KN13VKX_MH8XBJ0IjumQyv3RTDNA
+id: paragraph.field_alert_type
+field_name: field_alert_type
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: info
+      label: Informative
+    -
+      value: warning
+      label: Warning
+    -
+      value: error
+      label: Error
+    -
+      value: success
+      label: Success
+    -
+      value: emergency
+      label: Emergency
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,17 @@
+entity.sheep_entities_annual_assignment.collection:
+  title: 'Annual Assignments'
+  route_name: entity.sheep_entities_annual_assignment.collection
+  base_route: system.admin_content
+  weight: 10
+
+entity.sheep_entities_sheep_record.collection:
+  title: 'Sheep Records'
+  route_name: entity.sheep_entities_sheep_record.collection
+  base_route: system.admin_content
+  weight: 10
+
+entity.sheep_entities_lamb_card.collection:
+  title: 'Lamb Cards'
+  route_name: entity.sheep_entities_lamb_card.collection
+  base_route: system.admin_content
+  weight: 10

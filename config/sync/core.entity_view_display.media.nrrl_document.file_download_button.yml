@@ -1,0 +1,85 @@
+uuid: 3d0a3fa2-621a-42ec-bdbb-d22840b69fbd
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.file_download_button
+    - field.field.media.nrrl_document.field_abbreviation
+    - field.field.media.nrrl_document.field_description
+    - field.field.media.nrrl_document.field_media_document
+    - field.field.media.nrrl_document.field_media_formula
+    - field.field.media.nrrl_document.field_medium_num
+    - filter.format.plain_text
+    - media.type.nrrl_document
+  module:
+    - layout_builder
+    - nomarkup
+    - token
+    - ui_patterns
+    - ui_patterns_field_formatters
+  theme:
+    - ui_suite_uswds
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: media.nrrl_document.file_download_button
+targetEntityType: media
+bundle: nrrl_document
+mode: file_download_button
+content:
+  field_media_document:
+    type: ui_patterns_component_per_item
+    label: hidden
+    settings:
+      ui_patterns:
+        component_id: 'ui_suite_uswds:button'
+        variant_id:
+          source_id: select
+          source:
+            value: ''
+        props:
+          attributes:
+            source_id: attributes
+            source:
+              value: ''
+          disabled:
+            source_id: checkbox
+            source:
+              value: false
+          url:
+            source_id: entity_reference
+            source:
+              derivable_context: 'entity_reference:media:nrrl_document:field_media_document:file:file'
+              'entity_reference:media:nrrl_document:field_media_document:file:file':
+                value:
+                  source_id: token
+                  source:
+                    value: '[file:original:url]'
+        slots:
+          label:
+            sources:
+              -
+                source_id: wysiwyg
+                source:
+                  value:
+                    value: Download
+                    format: plain_text
+                _weight: '0'
+    third_party_settings:
+      nomarkup:
+        enabled: false
+        separator: '|'
+        referenced_entity: ''
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_abbreviation: true
+  field_description: true
+  field_media_formula: true
+  field_medium_num: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

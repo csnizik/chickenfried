@@ -1,0 +1,18 @@
+uuid: b9c9cae5-819e-483b-8c31-3695ba8b1db4
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - media.type.document
+  module:
+    - groupmedia
+    - media
+id: tenant_access_group-1f71dcad5210
+group_type: tenant_access_group
+content_plugin: 'group_media:document'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false
+  tracking_enabled: 0

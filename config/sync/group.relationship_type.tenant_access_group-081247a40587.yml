@@ -1,0 +1,17 @@
+uuid: b9f1a957-3d2d-4977-a8eb-2ea12eb1eff8
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - taxonomy.vocabulary.s_preliminary_disposals
+  module:
+    - group_term
+    - taxonomy
+id: tenant_access_group-081247a40587
+group_type: tenant_access_group
+content_plugin: 'group_term:s_preliminary_disposals'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

@@ -1,0 +1,29 @@
+uuid: 753c7d13-06dd-497e-a393-5d6c4011f2a9
+langcode: en
+status: false
+dependencies:
+  config:
+    - group_content_menu.group_content_menu_type.tenant_admin_menu
+  module:
+    - group_content_menu
+  theme:
+    - claro
+id: claro_tenantadminmenu
+theme: claro
+region: content
+weight: -4
+provider: null
+plugin: 'group_content_menu:tenant_admin_menu'
+settings:
+  id: 'group_content_menu:tenant_admin_menu'
+  label: 'Tenant admin menu'
+  label_display: visible
+  provider: group_content_menu
+  context_mapping:
+    group: '@group.group_route_context:group'
+  level: 1
+  depth: 0
+  expand_all_items: false
+  relative_visibility: false
+  theme_hook_suggestion: ''
+visibility: {  }

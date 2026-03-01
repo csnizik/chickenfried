@@ -1,0 +1,328 @@
+langcode: en
+status: true
+dependencies: {  }
+id: sr_taxonomy_disposal_codes
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - taxonomy
+  - sheep_reference_data
+migration_group: sheep_data
+label: 'Taxonomy: Disposal Codes'
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      code: '1'
+      human_name: 'Unknown, GOK (God Only Knows)'
+    -
+      code: '2'
+      human_name: 'Old Age'
+    -
+      code: '3'
+      human_name: Lunger
+    -
+      code: '4'
+      human_name: 'Poisonous Plants'
+    -
+      code: '5'
+      human_name: 'Blue Bag, Mastitis'
+    -
+      code: '6'
+      human_name: Infection
+    -
+      code: '7'
+      human_name: 'Prolapse, Uterine'
+    -
+      code: '8'
+      human_name: 'Prolapse, Rectal'
+    -
+      code: '9'
+      human_name: 'Rupture (Prepubic)'
+    -
+      code: '10'
+      human_name: 'Predation, Coyote'
+    -
+      code: '11'
+      human_name: 'Predation, Bear'
+    -
+      code: '12'
+      human_name: 'Predation, Dog'
+    -
+      code: '13'
+      human_name: 'Predation, Other'
+    -
+      code: '14'
+      human_name: Exposure
+    -
+      code: '15'
+      human_name: 'Accident-Man Caused'
+    -
+      code: '16'
+      human_name: 'Bloat/On Back'
+    -
+      code: '17'
+      human_name: Choking
+    -
+      code: '18'
+      human_name: 'Surgical Complications'
+    -
+      code: '19'
+      human_name: Pneumonia
+    -
+      code: '20'
+      human_name: 'Ketosis, Pregnancy Toxemia'
+    -
+      code: '21'
+      human_name: 'Lamb Scours'
+    -
+      code: '22'
+      human_name: 'White Muscle Disease'
+    -
+      code: '23'
+      human_name: Starvation
+    -
+      code: '24'
+      human_name: Enterotoxemia
+    -
+      code: '25'
+      human_name: 'Enzootic Abortion (EAE)'
+    -
+      code: '26'
+      human_name: Vibriosis
+    -
+      code: '27'
+      human_name: 'Premature Birth'
+    -
+      code: '28'
+      human_name: Dystocia
+    -
+      code: '29'
+      human_name: 'Birth Defect'
+    -
+      code: '30'
+      human_name: 'Parasitism (Ticks, Keds, Maggots, etc.)'
+    -
+      code: '31'
+      human_name: Coccidiosis
+    -
+      code: '32'
+      human_name: Accident-Natural
+    -
+      code: '33'
+      human_name: Toxemia
+    -
+      code: '34'
+      human_name: Intussusception
+    -
+      code: '35'
+      human_name: 'Ruptured Ovarian Vessel'
+    -
+      code: '36'
+      human_name: Gastritis
+    -
+      code: '37'
+      human_name: 'Enterotoxemia, Hemorrhagic'
+    -
+      code: '38'
+      human_name: 'Septic Arthritis, Joint Ill'
+    -
+      code: '39'
+      human_name: 'Milk Fever, Hypocalcemia'
+    -
+      code: '40'
+      human_name: 'Impaction, Constipation, Dirt'
+    -
+      code: '41'
+      human_name: 'Polyarthritis, Stiff Lambs'
+    -
+      code: '42'
+      human_name: Miscellaneous
+    -
+      code: '43'
+      human_name: Metritis
+    -
+      code: '44'
+      human_name: 'Dead at Birth'
+    -
+      code: '45'
+      human_name: 'Navel Ill'
+    -
+      code: '46'
+      human_name: 'Suffocation, Laid On'
+    -
+      code: '47'
+      human_name: Hepatitis
+    -
+      code: '48'
+      human_name: Peritonitis
+    -
+      code: '49'
+      human_name: Diarrhea
+    -
+      code: '50'
+      human_name: 'Caseous Lymphadenitis'
+    -
+      code: '51'
+      human_name: 'Shipping Fever, Pasteurellosis'
+    -
+      code: '52'
+      human_name: Salmonellosis
+    -
+      code: '53'
+      human_name: 'Urinary Calculi'
+    -
+      code: '54'
+      human_name: Trauma
+    -
+      code: '55'
+      human_name: 'Cecal Torsion'
+    -
+      code: '56'
+      human_name: Cystitis
+    -
+      code: '57'
+      human_name: 'Heart Failure'
+    -
+      code: '58'
+      human_name: 'Hernia, Inguinal, etc.'
+    -
+      code: '59'
+      human_name: 'Grass Tetany, Hypomagnesemia'
+    -
+      code: '60'
+      human_name: Tetanus
+    -
+      code: '61'
+      human_name: Actinobacillosis
+    -
+      code: '62'
+      human_name: 'Allergic Response'
+    -
+      code: '63'
+      human_name: Blackleg
+    -
+      code: '64'
+      human_name: 'Abomasal Torsion'
+    -
+      code: '65'
+      human_name: Colibacillosis
+    -
+      code: '66'
+      human_name: 'Weak-Poor Doing-Euthanized'
+    -
+      code: '67'
+      human_name: 'Weak-Poor Doing-Natural'
+    -
+      code: '68'
+      human_name: 'Foot Abscess'
+    -
+      code: '69'
+      human_name: Shock
+    -
+      code: '70'
+      human_name: 'Lactic Acidosis, Grain Engorgement'
+    -
+      code: '71'
+      human_name: Volvulus
+    -
+      code: '72'
+      human_name: 'Malignant Edema'
+    -
+      code: '73'
+      human_name: Cellulitis
+    -
+      code: '74'
+      human_name: Pericarditis
+    -
+      code: '75'
+      human_name: Photosensitization
+    -
+      code: '76'
+      human_name: 'Pneumonia, Chronic Progressive'
+    -
+      code: '77'
+      human_name: 'Polio Encephalomalacia'
+    -
+      code: '78'
+      human_name: Tracheitis
+    -
+      code: '79'
+      human_name: 'Necrotic Laryngitis'
+    -
+      code: '80'
+      human_name: Septicemia
+    -
+      code: '81'
+      human_name: 'Septicemic Pasteurellosis'
+    -
+      code: '82'
+      human_name: 'Prolapse, Vaginal'
+    -
+      code: '83'
+      human_name: 'Liver Abscess'
+    -
+      code: '84'
+      human_name: 'Liver Failure'
+    -
+      code: '85'
+      human_name: Enteritis
+    -
+      code: '86'
+      human_name: 'Paralysis, Paresis, ?Cause'
+    -
+      code: '87'
+      human_name: 'Pneumonia, Pasteurella'
+    -
+      code: '88'
+      human_name: Hydrops
+    -
+      code: '89'
+      human_name: 'Abomasal Ulcer'
+    -
+      code: '90'
+      human_name: Obstruction
+    -
+      code: '91'
+      human_name: Autolysis
+    -
+      code: '92'
+      human_name: 'Annual Sale'
+    -
+      code: '93'
+      human_name: Market
+    -
+      code: '94'
+      human_name: 'Septic Carditis'
+    -
+      code: '95'
+      human_name: Sacrificed
+    -
+      code: '96'
+      human_name: Pyelonephritis
+    -
+      code: '97'
+      human_name: Missing
+    -
+      code: '98'
+      human_name: 'Kidney Failure'
+    -
+      code: '99'
+      human_name: ''
+    -
+      code: Z
+      human_name: Z
+  ids:
+    code:
+      type: string
+process:
+  name: code
+  field_human_readable_name: human_name
+  description: ''
+destination:
+  plugin: 'entity:taxonomy_term'
+  default_bundle: s_disposal_codes
+idMap: {  }
+migration_dependencies: {  }
+include: null

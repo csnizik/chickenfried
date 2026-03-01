@@ -1,0 +1,28 @@
+uuid: 4ef9463d-1b30-4770-b021-e5735ab5a4fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.sheep_migration_validator
+  module:
+    - system
+    - views
+  theme:
+    - ui_suite_arsapps
+id: form_migration_validator_lamb
+theme: ui_suite_arsapps
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'views_exposed_filter_block:sheep_migration_validator-migration_validator_lamb'
+settings:
+  id: 'views_exposed_filter_block:sheep_migration_validator-migration_validator_lamb'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /migration-validator/lamb

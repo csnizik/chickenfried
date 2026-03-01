@@ -1,0 +1,29 @@
+uuid: e43abec8-79fe-4a8a-960d-d1868294bf94
+langcode: en
+status: true
+dependencies: {  }
+id: ssr
+admin_label: 'Imperfect SSR'
+category: Tenants
+frontend: false
+weight: 0
+sections:
+  -
+    layout_id: layout_onecol
+    layout_settings:
+      label: ''
+      context_mapping: {  }
+    components:
+      b904a0f4-b842-4a3d-86b5-71ef06cf9ae3:
+        uuid: b904a0f4-b842-4a3d-86b5-71ef06cf9ae3
+        region: content
+        configuration:
+          id: 'dashboards_block:dashboard:view_embed'
+          label: 'Embed a view'
+          label_display: '0'
+          provider: dashboards
+          context_mapping: {  }
+          view: 'webform_submissions:embed_administer'
+        weight: 0
+        additional: {  }
+    third_party_settings: {  }

@@ -1,0 +1,23 @@
+uuid: a6dce17d-d9bf-4c20-afe2-cf81502dafd5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_card_footer_exdent
+    - paragraphs.paragraphs_type.ui_suite_uswds_card
+_core:
+  default_config_hash: p3VriZt0FPvphROXCEdx2c2JpmAkivIWGPCMyyDi7ao
+id: paragraph.ui_suite_uswds_card.field_card_footer_exdent
+field_name: field_card_footer_exdent
+entity_type: paragraph
+bundle: ui_suite_uswds_card
+label: 'Footer Exdent'
+description: 'Extends the footer element out over the card border. Useful for light-bordered cards.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

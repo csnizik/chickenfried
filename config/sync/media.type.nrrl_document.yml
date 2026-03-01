@@ -1,0 +1,13 @@
+uuid: 8c6c47d2-fa81-45ee-8137-f5fea391cc3c
+langcode: en
+status: true
+dependencies: {  }
+id: nrrl_document
+label: 'NRRL Document'
+description: 'Revisionable. Allowed formats: .pdf.'
+source: file
+queue_thumbnail_downloads: false
+new_revision: true
+source_configuration:
+  source_field: field_media_document
+field_map: {  }

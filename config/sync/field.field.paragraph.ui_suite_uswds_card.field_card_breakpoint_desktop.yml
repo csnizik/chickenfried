@@ -1,0 +1,25 @@
+uuid: 579a1840-6df8-4d1f-9b8a-219382ab021f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_card_breakpoint_desktop
+    - paragraphs.paragraphs_type.ui_suite_uswds_card
+_core:
+  default_config_hash: ylmds2L3qxxmJCeKGXMDQeAqxzYJtBbHoC4CwjPLimE
+id: paragraph.ui_suite_uswds_card.field_card_breakpoint_desktop
+field_name: field_card_breakpoint_desktop
+entity_type: paragraph
+bundle: ui_suite_uswds_card
+label: Desktop
+description: 'Between 1-2'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: 12
+  prefix: ''
+  suffix: ''
+field_type: integer

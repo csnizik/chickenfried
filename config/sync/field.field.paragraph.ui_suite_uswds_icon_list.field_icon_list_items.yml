@@ -1,0 +1,36 @@
+uuid: 69f64fc6-26d2-4aca-8cf7-03ecf54f8cc9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_icon_list_items
+    - paragraphs.paragraphs_type.ui_suite_uswds_icon_list
+    - paragraphs.paragraphs_type.ui_suite_uswds_icon_list_item
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: xLYAeFs697fBwT700JcrpDcvrr8BgI5nIefRYrZV8nI
+id: paragraph.ui_suite_uswds_icon_list.field_icon_list_items
+field_name: field_icon_list_items
+entity_type: paragraph
+bundle: ui_suite_uswds_icon_list
+label: Items
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      ui_suite_uswds_icon_list_item: ui_suite_uswds_icon_list_item
+    negate: 0
+    target_bundles_drag_drop:
+      ui_suite_uswds_icon_list:
+        weight: 3
+        enabled: false
+      ui_suite_uswds_icon_list_item:
+        weight: 4
+        enabled: true
+field_type: entity_reference_revisions

@@ -1,0 +1,23 @@
+uuid: e81a5be3-4647-4187-bee2-5122ee0b2d91
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_card_make_flag
+    - paragraphs.paragraphs_type.ui_suite_uswds_card
+_core:
+  default_config_hash: 7MhrWj4i1QoaxCy8fC6bE-tOTI0yQ0k4i_rMYCiV5z4
+id: paragraph.ui_suite_uswds_card.field_card_make_flag
+field_name: field_card_make_flag
+entity_type: paragraph
+bundle: ui_suite_uswds_card
+label: 'Make Flag'
+description: 'Will turn this card into a flag card.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

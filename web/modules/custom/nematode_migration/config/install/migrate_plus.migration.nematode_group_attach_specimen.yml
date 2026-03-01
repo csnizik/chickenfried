@@ -1,0 +1,38 @@
+uuid: a2a85c1c-ea57-4bdc-b6ff-aca119754072
+langcode: en
+status: true
+dependencies: {  }
+id: nematode_group_attach_specimen
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - nematode
+  - specimen
+  - group_attach
+migration_group: nematode_data
+label: 'Attach Nematode Specimens to Group'
+source:
+  plugin: unattached_entities
+  entity_type: nematode_entities_specimen
+  group_plugin_id: nematode_entities_specimen
+  exclude_group: 8
+process:
+  entity_id: id
+  gid:
+    plugin: default_value
+    default_value: 8
+  type:
+    plugin: default_value
+    default_value: tenant_access_group-6d2a36bd5db5
+  plugin_id:
+    plugin: default_value
+    default_value: nematode_entities_specimen
+destination:
+  plugin: 'entity:group_relationship'
+idMap: {  }
+migration_dependencies:
+  required:
+    - specimen
+  optional: {  }
+include: null

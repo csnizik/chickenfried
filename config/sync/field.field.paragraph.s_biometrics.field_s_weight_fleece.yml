@@ -1,0 +1,23 @@
+uuid: d4da5fff-f5ba-4d7f-a559-bf2fdc9a7e91
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_s_weight_fleece
+    - paragraphs.paragraphs_type.s_biometrics
+id: paragraph.s_biometrics.field_s_weight_fleece
+field_name: field_s_weight_fleece
+entity_type: paragraph
+bundle: s_biometrics
+label: 'Fleece weight (lbs)'
+description: 'Collected in February at shearing. Expressed in multiples of 10, e.g. 5 lbs. listed as 50. TODO: create display mode for conversion to x10; also display mode for grease fleece weight: 5 lbs == 5.0. '
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: lbs
+field_type: decimal

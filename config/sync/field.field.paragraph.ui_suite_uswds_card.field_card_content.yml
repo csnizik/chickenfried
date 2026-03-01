@@ -1,0 +1,24 @@
+uuid: c523f88c-33d3-4c53-b472-cc762253214d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_card_content
+    - paragraphs.paragraphs_type.ui_suite_uswds_card
+  module:
+    - text
+_core:
+  default_config_hash: lbpRH-U-RziBI_XSBDsh4Zpxm8Qd8YDZLPeH7pkvJYQ
+id: paragraph.ui_suite_uswds_card.field_card_content
+field_name: field_card_content
+entity_type: paragraph
+bundle: ui_suite_uswds_card
+label: Content
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

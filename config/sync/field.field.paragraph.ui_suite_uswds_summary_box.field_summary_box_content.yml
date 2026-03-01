@@ -1,0 +1,24 @@
+uuid: b7bdb5f6-2ee6-4a85-83d0-02568524a3bb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_summary_box_content
+    - paragraphs.paragraphs_type.ui_suite_uswds_summary_box
+  module:
+    - text
+_core:
+  default_config_hash: RMpQUncQ8VN_sd8UkYuzXdojkuX0AaL8XQ19KAVM9-w
+id: paragraph.ui_suite_uswds_summary_box.field_summary_box_content
+field_name: field_summary_box_content
+entity_type: paragraph
+bundle: ui_suite_uswds_summary_box
+label: Content
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

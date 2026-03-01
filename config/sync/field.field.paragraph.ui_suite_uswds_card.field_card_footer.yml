@@ -1,0 +1,21 @@
+uuid: 7b648c22-97c9-4b3f-ab76-71d4284f77ee
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_card_footer
+    - paragraphs.paragraphs_type.ui_suite_uswds_card
+_core:
+  default_config_hash: Gins8OWMZBUz0IVJieotIzA9VJYda3iW6bszLZ9PHVM
+id: paragraph.ui_suite_uswds_card.field_card_footer
+field_name: field_card_footer
+entity_type: paragraph
+bundle: ui_suite_uswds_card
+label: Footer
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

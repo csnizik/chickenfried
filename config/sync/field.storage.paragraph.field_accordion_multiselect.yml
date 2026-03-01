@@ -1,0 +1,20 @@
+uuid: 087f5722-dcee-40ac-901b-e134d88257d4
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+_core:
+  default_config_hash: vNJfsmaq-KkBqr2OpbbaSfEHEMjygnVShrw-KzDLKt0
+id: paragraph.field_accordion_multiselect
+field_name: field_accordion_multiselect
+entity_type: paragraph
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,80 @@
+uuid: bbe2da2f-3c39-40bd-be27-e8ee4dabf027
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.nrrl_document.field_abbreviation
+    - field.field.media.nrrl_document.field_description
+    - field.field.media.nrrl_document.field_media_document
+    - field.field.media.nrrl_document.field_media_formula
+    - field.field.media.nrrl_document.field_medium_num
+    - media.type.nrrl_document
+  module:
+    - file
+    - path
+    - text
+id: media.nrrl_document.default
+targetEntityType: media
+bundle: nrrl_document
+mode: default
+content:
+  field_abbreviation:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_description:
+    type: text_textarea
+    weight: 5
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_media_document:
+    type: file_generic
+    weight: 1
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  field_media_formula:
+    type: options_buttons
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_medium_num:
+    type: number
+    weight: 3
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 7
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  created: true
+  uid: true

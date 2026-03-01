@@ -1,0 +1,43 @@
+uuid: 9c261f72-aff7-4f1e-a858-222fc219faad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ui_suite_uswds_icon_list_item.field_icon_list_item_content
+    - field.field.paragraph.ui_suite_uswds_icon_list_item.field_icon_list_item_header
+    - field.field.paragraph.ui_suite_uswds_icon_list_item.field_icon_list_item_icon
+    - paragraphs.paragraphs_type.ui_suite_uswds_icon_list_item
+  module:
+    - text
+_core:
+  default_config_hash: cQVt7rf3Tkv1Fzt_oNYl1YdpM1KfBj-BXEwExjQkXWc
+id: paragraph.ui_suite_uswds_icon_list_item.default
+targetEntityType: paragraph
+bundle: ui_suite_uswds_icon_list_item
+mode: default
+content:
+  field_icon_list_item_content:
+    type: text_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_icon_list_item_header:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_icon_list_item_icon:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

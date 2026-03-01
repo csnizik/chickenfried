@@ -1,0 +1,24 @@
+uuid: 1e7549e1-abd4-45bb-85cd-08766d4b2d3d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_process_list_item_content
+    - paragraphs.paragraphs_type.ui_suite_uswds_process_list_item
+  module:
+    - text
+_core:
+  default_config_hash: zUaHzOh6CMbpxAqIZ60HjtM7QYGIzA5hhxfIcN5BBd0
+id: paragraph.ui_suite_uswds_process_list_item.field_process_list_item_content
+field_name: field_process_list_item_content
+entity_type: paragraph
+bundle: ui_suite_uswds_process_list_item
+label: Content
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

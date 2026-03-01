@@ -1,0 +1,8 @@
+uuid: 12f7a444-709a-46d8-9cbd-844acdc28b6e
+langcode: en
+status: true
+dependencies: {  }
+id: nrrl-side-navigation
+label: 'NRRL side navigation'
+description: ''
+locked: false

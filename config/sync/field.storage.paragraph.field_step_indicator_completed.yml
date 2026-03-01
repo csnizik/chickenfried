@@ -1,0 +1,23 @@
+uuid: 7ac11084-dd3d-493c-bfe2-f15a1f1f4d2c
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+_core:
+  default_config_hash: jMSP_wEIs2oSi-G55f8P9-w3v33xncuNpY3UxYb0xf8
+id: paragraph.field_step_indicator_completed
+field_name: field_step_indicator_completed
+entity_type: paragraph
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

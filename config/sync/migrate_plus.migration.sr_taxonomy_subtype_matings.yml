@@ -1,0 +1,424 @@
+uuid: f00d97dd-0ba7-41cc-bdce-3df39927d82f
+langcode: en
+status: true
+dependencies: {  }
+id: sr_taxonomy_subtype_matings
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - taxonomy
+  - sheep_reference_data
+migration_group: sheep_data
+label: 'Taxonomy: Subtype Matings'
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      code: '00'
+      human_name: 'Other Crossbred'
+      description: 'Any type of crossbred not accounted for elsewhere'
+      parent: Unknown/Other
+    -
+      code: '02'
+      human_name: Targhee
+      description: 'T x T purebred'
+      parent: Purebreds
+    -
+      code: '06'
+      human_name: Columbia
+      description: 'C x C purebred'
+      parent: Purebreds
+    -
+      code: '07'
+      human_name: Rambouillet
+      description: 'R x R purebred'
+      parent: Purebreds
+    -
+      code: '30'
+      human_name: Polypay
+      description: 'P x P purebred. Also S x C historically.'
+      parent: Purebreds
+    -
+      code: '70'
+      human_name: Friesian
+      description: 'Friesian purebred'
+      parent: Purebreds
+    -
+      code: '90'
+      human_name: Dorper
+      description: 'Dorper purebred'
+      parent: Purebreds
+    -
+      code: '95'
+      human_name: Finnsheep
+      description: 'F x F purebred'
+      parent: Purebreds
+    -
+      code: '97'
+      human_name: Suffolk
+      description: 'S x S purebred'
+      parent: Purebreds
+    -
+      code: '98'
+      human_name: Hampshire
+      description: 'H x H purebred'
+      parent: Purebreds
+    -
+      code: '01'
+      human_name: 'T x R'
+      description: 'Targhee x Rambouillet'
+      parent: 'Targhee Sire'
+    -
+      code: '03'
+      human_name: 'T x C'
+      description: 'Targhee x Columbia'
+      parent: 'Targhee Sire'
+    -
+      code: '04'
+      human_name: 'C x R'
+      description: 'Columbia x Rambouillet'
+      parent: 'Columbia Sire'
+    -
+      code: '05'
+      human_name: 'C x T'
+      description: 'Columbia x Targhee. Also CLPG rams x Columbia ewes in Callipyge breeding.'
+      parent: 'Columbia Sire'
+    -
+      code: '08'
+      human_name: 'R x T'
+      description: 'Rambouillet x Targhee. Also D x T in Polypay lines.'
+      parent: 'Rambouillet Sire'
+    -
+      code: '09'
+      human_name: 'R x C'
+      description: 'Rambouillet x Columbia'
+      parent: 'Rambouillet Sire'
+    -
+      code: '31'
+      human_name: 'P x R'
+      description: 'Polypay x Rambouillet (1/2 Poly)'
+      parent: 'Polypay Sire'
+    -
+      code: '32'
+      human_name: 'P x T'
+      description: 'Polypay x Targhee (1/2 Poly)'
+      parent: 'Polypay Sire'
+    -
+      code: '33'
+      human_name: 'P x C'
+      description: 'Polypay x Columbia (1/2 Poly). Also C x P in Friesian study.'
+      parent: 'Polypay Sire'
+    -
+      code: '34'
+      human_name: 'P x (P x R)'
+      description: 'Polypay x (Polypay x Rambouillet) (3/4 Poly)'
+      parent: 'Polypay Sire'
+    -
+      code: '35'
+      human_name: 'P x (P x T)'
+      description: 'Polypay x (Polypay x Targhee) (3/4 Poly)'
+      parent: 'Polypay Sire'
+    -
+      code: '36'
+      human_name: 'P x (P x C)'
+      description: 'Polypay x (Polypay x Columbia) (3/4 Poly)'
+      parent: 'Polypay Sire'
+    -
+      code: '37'
+      human_name: 'P x (F x R)'
+      description: 'Polypay x (Finnsheep x Rambouillet)'
+      parent: 'Polypay Sire'
+    -
+      code: '38'
+      human_name: 'P x (F x T)'
+      description: 'Polypay x (Finnsheep x Targhee). Also P x (D x T) in Polypay lines.'
+      parent: 'Polypay Sire'
+    -
+      code: '39'
+      human_name: 'P x (F x C)'
+      description: 'Polypay x (Finnsheep x Columbia). Also P x [P x (D x T)] in Polypay lines.'
+      parent: 'Polypay Sire'
+    -
+      code: '10'
+      human_name: 'S x R'
+      description: 'Suffolk x Rambouillet'
+      parent: 'Suffolk Sire'
+    -
+      code: '20'
+      human_name: 'S x T'
+      description: 'Suffolk x Targhee'
+      parent: 'Suffolk Sire'
+    -
+      code: '57'
+      human_name: 'S x [(F x R) x R]'
+      description: 'Suffolk x Finncross Rambouillet'
+      parent: 'Suffolk Sire'
+    -
+      code: '58'
+      human_name: 'S x [(F x T) x T]'
+      description: 'Suffolk x Finncross Targhee'
+      parent: 'Suffolk Sire'
+    -
+      code: '59'
+      human_name: 'S x [(F x C) x C]'
+      description: 'Suffolk x Finncross Columbia'
+      parent: 'Suffolk Sire'
+    -
+      code: '75'
+      human_name: 'S x (F x R)'
+      description: 'Suffolk x (Finnsheep x Rambouillet)'
+      parent: 'Suffolk Sire'
+    -
+      code: '78'
+      human_name: 'S x (F x T)'
+      description: 'Suffolk x (Finnsheep x Targhee)'
+      parent: 'Suffolk Sire'
+    -
+      code: '79'
+      human_name: 'S x (F x C)'
+      description: 'Suffolk x (Finnsheep x Columbia)'
+      parent: 'Suffolk Sire'
+    -
+      code: '80'
+      human_name: 'S x P'
+      description: 'Suffolk x Polypay'
+      parent: 'Suffolk Sire'
+    -
+      code: '81'
+      human_name: 'S x (P x R)'
+      description: 'Suffolk x (Polypay x Rambouillet)'
+      parent: 'Suffolk Sire'
+    -
+      code: '82'
+      human_name: 'S x (P x T)'
+      description: 'Suffolk x (Polypay x Targhee)'
+      parent: 'Suffolk Sire'
+    -
+      code: '83'
+      human_name: 'S x (P x C)'
+      description: 'Suffolk x (Polypay x Columbia)'
+      parent: 'Suffolk Sire'
+    -
+      code: '50'
+      human_name: 'H x T'
+      description: 'Hampshire x Targhee'
+      parent: 'Hampshire Sire'
+    -
+      code: '51'
+      human_name: 'F x R'
+      description: 'Finnsheep x Rambouillet (1/2 Finn)'
+      parent: Finnsheep
+    -
+      code: '52'
+      human_name: 'F x T'
+      description: 'Finnsheep x Targhee (1/2 Finn)'
+      parent: Finnsheep
+    -
+      code: '53'
+      human_name: 'F x C'
+      description: 'Finnsheep x Columbia (1/2 Finn)'
+      parent: Finnsheep
+    -
+      code: '54'
+      human_name: '(F x R) x R'
+      description: 'Finncross x Rambouillet (1/4 Finn)'
+      parent: Finnsheep
+    -
+      code: '55'
+      human_name: '(F x T) x T'
+      description: 'Finncross x Targhee (1/4 Finn)'
+      parent: Finnsheep
+    -
+      code: '56'
+      human_name: '(F x C) x C'
+      description: 'Finncross x Columbia (1/4 Finn)'
+      parent: Finnsheep
+    -
+      code: '41'
+      human_name: 'M x R'
+      description: 'Merino x Rambouillet (1/2 Merino)'
+      parent: Merino
+    -
+      code: '42'
+      human_name: 'R x (M x R)'
+      description: 'Rambouillet x (Merino x Rambouillet) (1/4 Merino)'
+      parent: Merino
+    -
+      code: '43'
+      human_name: 'R x [R x (M x R)]'
+      description: 'Rambouillet x [Rambouillet x (Merino x Rambouillet)] (1/8 Merino)'
+      parent: Merino
+    -
+      code: '40'
+      human_name: 'Booroola Rambouillet'
+      description: 'Booroola Rambouillet rams. Historical: H x R (Hampshire x Rambouillet).'
+      parent: Booroola
+    -
+      code: '48'
+      human_name: 'Booroola Rambouillet (alt)'
+      description: 'Booroola Rambouillet rams (alternate code)'
+      parent: Booroola
+    -
+      code: '60'
+      human_name: 'Booroola Coopworth'
+      description: 'Booroola Coopworth rams. Historical: H x C (Hampshire x Columbia).'
+      parent: Booroola
+    -
+      code: '61'
+      human_name: 'Booroola Coopworth (alt 1)'
+      description: 'Booroola Coopworth rams (alternate code)'
+      parent: Booroola
+    -
+      code: '68'
+      human_name: 'Booroola Coopworth (alt 2)'
+      description: 'Booroola Coopworth rams (alternate code)'
+      parent: Booroola
+    -
+      code: '71'
+      human_name: 'Fr x P'
+      description: 'Friesian AI rams x Polypay ewes'
+      parent: Friesian
+    -
+      code: '76'
+      human_name: 'C x (Fr x P)'
+      description: 'Columbia x (Friesian x Polypay), Friesian study'
+      parent: Friesian
+    -
+      code: '73'
+      human_name: 'T x BF'
+      description: 'Targhee x Black Face, Dorper study'
+      parent: Dorper
+    -
+      code: '86'
+      human_name: 'C x BF'
+      description: 'Columbia x Black Face, Friesian study'
+      parent: Dorper
+    -
+      code: '91'
+      human_name: 'D x C'
+      description: 'Dorper AI rams x Columbia ewes'
+      parent: Dorper
+    -
+      code: '92'
+      human_name: 'T x (D x C)'
+      description: 'Targhee x (Dorper x Columbia), Dorper study'
+      parent: Dorper
+    -
+      code: '93'
+      human_name: '3/4 Dorper'
+      description: 'Dorper AI rams x (D x C ewes)'
+      parent: Dorper
+    -
+      code: TS
+      human_name: 'Texel x Suffolk'
+      description: ''
+      parent: Texel
+    -
+      code: TC
+      human_name: 'Texel x Columbia'
+      description: ''
+      parent: Texel
+    -
+      code: T3
+      human_name: 'Texel x SC'
+      description: 'Texel x (Suffolk x Columbia) or Texel x (Columbia x Suffolk)'
+      parent: Texel
+    -
+      code: S3
+      human_name: 'Suffolk x TC'
+      description: 'Suffolk x (Texel x Columbia)'
+      parent: Texel
+    -
+      code: C3
+      human_name: 'Columbia x TS'
+      description: 'Columbia x (Texel x Suffolk)'
+      parent: Texel
+    -
+      code: CM
+      human_name: 'Columbia x TC'
+      description: 'Columbia x (Texel x Columbia)'
+      parent: Texel
+    -
+      code: CT
+      human_name: 'CM x TS'
+      description: 'CM x TS or TS x CM'
+      parent: Texel
+    -
+      code: SY
+      human_name: 'Suffolk x CM'
+      description: 'Suffolk x CM or CM x Suffolk'
+      parent: Texel
+    -
+      code: SC
+      human_name: 'Suffolk x Columbia'
+      description: ''
+      parent: Texel
+    -
+      code: CS
+      human_name: 'Columbia x Suffolk'
+      description: ''
+      parent: Texel
+    -
+      code: PC
+      human_name: 'Paternal Composite'
+      description: '3/8 Suffolk, 3/8 Columbia, 1/4 Texel'
+      parent: 'Paternal Composite'
+    -
+      code: LP
+      human_name: 'PC x Polypay'
+      description: 'Paternal Composite x Polypay'
+      parent: 'Paternal Composite'
+    -
+      code: LR
+      human_name: 'PC x Rambouillet'
+      description: 'Paternal Composite x Rambouillet'
+      parent: 'Paternal Composite'
+    -
+      code: LT
+      human_name: 'PC x Targhee'
+      description: 'Paternal Composite x Targhee'
+      parent: 'Paternal Composite'
+    -
+      code: RW
+      human_name: 'Romanov x White Dorper'
+      description: ''
+      parent: Romanov
+    -
+      code: R3
+      human_name: 'RW x Rambouillet'
+      description: '(Romanov x White Dorper) x Rambouillet'
+      parent: Romanov
+    -
+      code: Kt
+      human_name: Katahdin
+      description: ''
+      parent: 'Other Specialty'
+    -
+      code: BL
+      human_name: Black
+      description: ''
+      parent: 'Other Specialty'
+  ids:
+    code:
+      type: string
+process:
+  name: code
+  field_human_readable_name: human_name
+  description: description
+  parent:
+    -
+      plugin: entity_lookup
+      source: parent
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: s_subtype_matings
+      value_key: name
+destination:
+  plugin: 'entity:taxonomy_term'
+  default_bundle: s_subtype_matings
+idMap: {  }
+migration_dependencies:
+  required:
+    - sr_taxonomy_subtype_matings_parents
+include: null

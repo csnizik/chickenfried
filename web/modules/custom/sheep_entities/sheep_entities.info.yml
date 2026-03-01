@@ -1,0 +1,8 @@
+name: 'Sheep Entities'
+type: module
+description: 'Minimal custom content entities for tabular data'
+package: Custom
+core_version_requirement: ^10 || ^11
+dependencies:
+  - better_exposed_filters:better_exposed_filters
+  - group:group

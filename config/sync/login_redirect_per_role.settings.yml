@@ -1,0 +1,66 @@
+login:
+  administrator:
+    redirect_url: ''
+    allow_destination: false
+    weight: 0
+  authenticated:
+    redirect_url: ''
+    allow_destination: false
+    weight: 0
+  content_administrator:
+    redirect_url: ''
+    allow_destination: false
+    weight: 0
+  content_editor:
+    redirect_url: ''
+    allow_destination: false
+    weight: 0
+  rsper:
+    redirect_url: '/dashboard/rsper?check_logged_in=1'
+    allow_destination: false
+    weight: 0
+  nematode:
+    redirect_url: '/dashboard/rsper?check_logged_in=1'
+    allow_destination: false
+    weight: 0
+  ssr:
+    redirect_url: ''
+    allow_destination: false
+    weight: 0
+  nrrl:
+    redirect_url: '/dashboard/nrrl?check_logged_in=1'
+    allow_destination: false
+    weight: 0
+logout:
+  administrator:
+    redirect_url: ''
+    allow_destination: false
+    weight: 0
+  authenticated:
+    redirect_url: ''
+    allow_destination: false
+    weight: 0
+  content_administrator:
+    redirect_url: ''
+    allow_destination: false
+    weight: 0
+  content_editor:
+    redirect_url: ''
+    allow_destination: false
+    weight: 0
+  rsper:
+    redirect_url: /node/5246
+    allow_destination: false
+    weight: 0
+  nematode:
+    redirect_url: /node/5243
+    allow_destination: false
+    weight: 0
+  ssr:
+    redirect_url: /node/5255
+    allow_destination: false
+    weight: 0
+  nrrl:
+    redirect_url: /node/7
+    allow_destination: false
+    weight: 0

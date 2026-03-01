@@ -1,0 +1,22 @@
+uuid: b3c8656e-61ac-457f-a110-36a623a1c4cb
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - text
+_core:
+  default_config_hash: kysAt07PA33qbb79CSjfUld_z9LZm-qKtr0JgeeVhzo
+id: paragraph.field_process_list_item_header
+field_name: field_process_list_item_header
+entity_type: paragraph
+type: text
+settings:
+  max_length: 255
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

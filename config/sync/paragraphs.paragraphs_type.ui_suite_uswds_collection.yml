@@ -1,0 +1,12 @@
+uuid: 01361158-eb06-4293-8012-cb8008c92677
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 9hUTJZ_KMkX_BsB8q7WfRERFgkAk23y3kkivI89HF2A
+id: ui_suite_uswds_collection
+label: Collection
+icon_uuid: null
+icon_default: null
+description: 'Based off of <a href="https://designsystem.digital.gov/components/collection/">USWDS Collection</a>'
+behavior_plugins: {  }

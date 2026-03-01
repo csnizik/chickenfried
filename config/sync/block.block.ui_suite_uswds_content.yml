@@ -1,0 +1,22 @@
+uuid: 53ccb017-9efd-4376-be1c-e37ae3cb3209
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - ui_suite_uswds
+_core:
+  default_config_hash: dAcgkQwppAONZoM3Anuo-spQXcFvTTJWV98kvhxc5M8
+id: ui_suite_uswds_content
+theme: ui_suite_uswds
+region: content
+weight: 30
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

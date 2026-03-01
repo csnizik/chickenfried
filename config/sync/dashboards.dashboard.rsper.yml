@@ -1,0 +1,30 @@
+uuid: d89fc837-c8e5-43a0-aa75-a8e11ced2098
+langcode: en
+status: true
+dependencies: {  }
+id: rsper
+admin_label: RSPER
+category: Tenants
+frontend: false
+weight: 0
+sections:
+  -
+    layout_id: layout_onecol
+    layout_settings:
+      label: ''
+      context_mapping: {  }
+    components:
+      d93f806e-c1ad-41f5-9d19-40479c8422e2:
+        uuid: d93f806e-c1ad-41f5-9d19-40479c8422e2
+        region: content
+        configuration:
+          id: 'views_block:sheep_overview-block_2'
+          label: ''
+          label_display: '0'
+          provider: views
+          context_mapping: {  }
+          views_label: ''
+          items_per_page: null
+        weight: 1
+        additional: {  }
+    third_party_settings: {  }

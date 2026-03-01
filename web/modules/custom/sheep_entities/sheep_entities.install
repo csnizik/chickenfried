@@ -1,0 +1,102 @@
+<?php
+
+/**
+ * Add missing base-field columns for SheepRecord (Julian + disposal).
+ */
+function sheep_entities_update_9001() {
+  $entity_type_id = 'sheep_entities_sheep_record';
+  $provider = 'sheep_entities';
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  $base_defs = \Drupal::service('entity_field.manager')->getBaseFieldDefinitions($entity_type_id);
+
+  $fields_to_add = [
+    'field_s_born_day_julian',
+    'field_s_born_year',
+    'field_s_disposal_day_julian',
+    'field_s_disposal_year',
+  ];
+
+  foreach ($fields_to_add as $field_name) {
+    if (!isset($base_defs[$field_name])) {
+      throw new \RuntimeException(sprintf('Base field %s is not defined in code.', $field_name));
+    }
+    try {
+      // Adds the column if missing; no-ops if it already exists.
+      $manager->installFieldStorageDefinition($field_name, $entity_type_id, $provider, $base_defs[$field_name]);
+    }
+    catch (\Drupal\Core\Entity\EntityStorageException $e) {
+      // Ignore "already exists" style errors to keep it idempotent.
+      if (stripos($e->getMessage(), 'already exists') === false) {
+        throw $e;
+      }
+    }
+  }
+}
+
+/**
+ * Add datetime fields for birth_date and disposal_date.
+ */
+function sheep_entities_update_9002() {
+  $entity_type_id = 'sheep_entities_sheep_record';
+  $provider = 'sheep_entities';
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  $base_defs = \Drupal::service('entity_field.manager')->getBaseFieldDefinitions($entity_type_id);
+
+  $fields_to_add = [
+    'field_s_birth_date',
+    'field_s_disposal_date',
+  ];
+
+  foreach ($fields_to_add as $field_name) {
+    if (!isset($base_defs[$field_name])) {
+      throw new \RuntimeException(sprintf('Base field %s is not defined in code.', $field_name));
+    }
+    try {
+      // Adds the column if missing; no-ops if it already exists.
+      $manager->installFieldStorageDefinition($field_name, $entity_type_id, $provider, $base_defs[$field_name]);
+    }
+    catch (\Drupal\Core\Entity\EntityStorageException $e) {
+      // Ignore "already exists" style errors to keep it idempotent.
+      if (stripos($e->getMessage(), 'already exists') === false) {
+        throw $e;
+      }
+    }
+  }
+}
+
+/**
+ * Add field_s_cut (castration status) field.
+ */
+function sheep_entities_update_9003() {
+  $entity_type_id = 'sheep_entities_sheep_record';
+  $provider = 'sheep_entities';
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  $base_defs = \Drupal::service('entity_field.manager')->getBaseFieldDefinitions($entity_type_id);
+
+  $fields_to_add = [
+    'field_s_cut',
+  ];
+
+  foreach ($fields_to_add as $field_name) {
+    if (!isset($base_defs[$field_name])) {
+      throw new \RuntimeException(sprintf('Base field %s is not defined in code.', $field_name));
+    }
+    try {
+      // Adds the column if missing; no-ops if it already exists.
+      $manager->installFieldStorageDefinition($field_name, $entity_type_id, $provider, $base_defs[$field_name]);
+    }
+    catch (\Drupal\Core\Entity\EntityStorageException $e) {
+      // Ignore "already exists" style errors to keep it idempotent.
+      if (stripos($e->getMessage(), 'already exists') === false) {
+        throw $e;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+

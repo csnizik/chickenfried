@@ -1,0 +1,17 @@
+uuid: a9d69b93-e6f2-4746-adde-e85a60e8df69
+langcode: en
+status: true
+dependencies:
+  module:
+    - group
+    - help
+    - toolbar
+id: ssr
+label: SSR
+weight: 2
+is_admin: false
+permissions:
+  - 'access group overview'
+  - 'access help pages'
+  - 'access toolbar'
+  - 'access user profiles'

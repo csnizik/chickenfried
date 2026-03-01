@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Theme override for the user account menu as button group.
+ */
+#}
+{% if items %}
+  <ul style="display: flex;  gap: 0.5rem; margin: -3rem 0 0 0; padding: 0; list-style: none; justify-content: flex-end;">
+    {% for item in items %}
+      <li>
+        <a href="{{ item.url }}" class="button button--small">{{ item.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}

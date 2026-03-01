@@ -1,0 +1,18 @@
+uuid: 6b12f12c-7b38-4715-ba58-cce1d3bf75c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+id: group.tenant_access_group.label
+field_name: label
+entity_type: group
+bundle: tenant_access_group
+label: 'Tenant title'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

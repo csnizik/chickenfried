@@ -1,0 +1,8 @@
+uuid: 736c3780-0025-4809-b84c-e46c75dbc66f
+langcode: en
+status: true
+dependencies: {  }
+id: html
+label: HTML
+revision: false
+description: "One field, body, which is set to render as HTML. This block is set to use Layout Builder, with the ability to modify each individual block's layout.\t\r\n"

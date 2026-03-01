@@ -1,0 +1,31 @@
+uuid: 656af013-3cc7-4c43-a8cd-2785bd68a659
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.s_subtype_matings.field_human_readable_name
+    - taxonomy.vocabulary.s_subtype_matings
+  module:
+    - text
+id: taxonomy_term.s_subtype_matings.default
+targetEntityType: taxonomy_term
+bundle: s_subtype_matings
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_human_readable_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  search_api_excerpt: true

@@ -1,0 +1,13 @@
+uuid: e6226962-5d05-4090-947f-99e31d722f71
+langcode: en
+status: true
+dependencies: {  }
+id: nrrl_catalog
+label: 'NRRL Downloadable'
+description: 'Revisionable. Allowed formats: pdf, .xlsx or .csv.'
+source: file
+queue_thumbnail_downloads: false
+new_revision: true
+source_configuration:
+  source_field: field_media_document
+field_map: {  }

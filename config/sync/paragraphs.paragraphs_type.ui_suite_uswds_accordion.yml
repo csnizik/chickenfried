@@ -1,0 +1,12 @@
+uuid: 02e62ed4-fdae-4ff0-abe6-bec257e18659
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: xIn2WxJPMJtlY-WVuuITsxlZhdxmN0KOge6fMxKYHSs
+id: ui_suite_uswds_accordion
+label: Accordion
+icon_uuid: null
+icon_default: null
+description: 'Based off of <a href="https://designsystem.digital.gov/components/accordion/">USWDS Accordion</a>'
+behavior_plugins: {  }

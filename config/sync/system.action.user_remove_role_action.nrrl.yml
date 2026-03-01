@@ -1,0 +1,14 @@
+uuid: 05a44942-77e3-4595-a056-d9303fb199ea
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.nrrl
+  module:
+    - user
+id: user_remove_role_action.nrrl
+label: 'Remove the NRRL role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: nrrl

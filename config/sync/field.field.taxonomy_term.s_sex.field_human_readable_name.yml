@@ -1,0 +1,19 @@
+uuid: cbf0f9fc-5e67-4f5c-acfe-cff14df21601
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_human_readable_name
+    - taxonomy.vocabulary.s_sex
+id: taxonomy_term.s_sex.field_human_readable_name
+field_name: field_human_readable_name
+entity_type: taxonomy_term
+bundle: s_sex
+label: 'Human readable name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,5 @@
+name: 'Nematode Entities'
+type: module
+description: 'Custom entities for Nematode data'
+package: Custom
+core_version_requirement: ^10 || ^11

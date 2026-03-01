@@ -1,0 +1,86 @@
+uuid: 221f3ae8-0b5b-4ba4-9426-76bd7607a87c
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+_core:
+  default_config_hash: dde5VimcNXdu3HyldGord4jSosSfAUP2Xx7zXh8qIRQ
+id: paragraph.field_icon_list_item_icon
+field_name: field_icon_list_item_icon
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: add_circle
+      label: add_circle
+    -
+      value: announcement
+      label: announcement
+    -
+      value: attach_file
+      label: attach_file
+    -
+      value: bookmark
+      label: bookmark
+    -
+      value: bug_report
+      label: bug_report
+    -
+      value: cancel
+      label: cancel
+    -
+      value: check
+      label: check
+    -
+      value: comment
+      label: comment
+    -
+      value: error
+      label: error
+    -
+      value: file_download
+      label: file_download
+    -
+      value: file_upload
+      label: file_upload
+    -
+      value: flag
+      label: flag
+    -
+      value: help
+      label: help
+    -
+      value: info
+      label: info
+    -
+      value: link
+      label: link
+    -
+      value: settings
+      label: settings
+    -
+      value: star
+      label: star
+    -
+      value: thumb_down_alt
+      label: thumb_down_alt
+    -
+      value: thumb_up_alt
+      label: thumb_up_alt
+    -
+      value: trending_down
+      label: trending_down
+    -
+      value: trending_up
+      label: trending_up
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

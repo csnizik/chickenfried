@@ -1,0 +1,22 @@
+uuid: 97e2b8cf-ab03-44d1-ba58-a7e3de15bf98
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - user.role.anonymous
+id: tenant_access_group-anonymous
+label: Anonymous
+weight: -10
+admin: false
+scope: outsider
+global_role: anonymous
+group_type: tenant_access_group
+permissions:
+  - 'view group_media:document entity'
+  - 'view group_media:image entity'
+  - 'view group_media:nrrl_catalog entity'
+  - 'view group_media:nrrl_document entity'
+  - 'view group_node:page entity'
+  - 'view group_node:webform entity'
+  - 'view nematode_entities_specimen entity'

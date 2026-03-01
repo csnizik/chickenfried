@@ -1,0 +1,212 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - nematode_entities
+    - text
+id: nematode_entities_specimen.nematode_entities_specimen.full
+targetEntityType: nematode_entities_specimen
+bundle: nematode_entities_specimen
+mode: full
+content:
+  field_n_entry_number:
+    type: number_integer
+    label: above
+    weight: 0
+    region: content
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {}
+  field_n_nematode_genus:
+    type: string
+    label: above
+    weight: 1
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_nematode_species:
+    type: string
+    label: above
+    weight: 2
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_host_genus:
+    type: string
+    label: above
+    weight: 3
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_host_species:
+    type: string
+    label: above
+    weight: 4
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_common_name:
+    type: string
+    label: above
+    weight: 5
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_origin_country:
+    type: string
+    label: above
+    weight: 6
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_origin_state:
+    type: string
+    label: above
+    weight: 7
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_origin_locale:
+    type: string
+    label: above
+    weight: 8
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_collector:
+    type: string
+    label: above
+    weight: 9
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_date_collected:
+    type: string
+    label: above
+    weight: 10
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_date_received:
+    type: string
+    label: above
+    weight: 11
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_date_added:
+    type: string
+    label: above
+    weight: 12
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_determined_by:
+    type: string
+    label: above
+    weight: 13
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_author:
+    type: string
+    label: above
+    weight: 14
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_disposition:
+    type: string
+    label: above
+    weight: 15
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_nematodes_in:
+    type: string
+    label: above
+    weight: 16
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_other_nematodes:
+    type: string
+    label: above
+    weight: 17
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_sample_number:
+    type: string
+    label: above
+    weight: 18
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_total_samples:
+    type: string
+    label: above
+    weight: 19
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_slides:
+    type: string
+    label: above
+    weight: 20
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_vials:
+    type: string
+    label: above
+    weight: 21
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_reference:
+    type: string
+    label: above
+    weight: 22
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  field_n_remarks:
+    type: text_default
+    label: above
+    weight: 23
+    region: content
+    settings: {}
+    third_party_settings: {}
+  field_n_confidential:
+    type: string
+    label: above
+    weight: 24
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+hidden: {}

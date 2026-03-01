@@ -1,0 +1,21 @@
+uuid: 3a2ea93b-a05f-4b8f-b1a4-8b7915c6f845
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_step_indicator_completed
+    - paragraphs.paragraphs_type.ui_suite_uswds_step_indicator
+_core:
+  default_config_hash: xvMEFeM62uUnN5lw5kmJKzWoomgYpYiVKRbCH2s1nY4
+id: paragraph.ui_suite_uswds_step_indicator.field_step_indicator_completed
+field_name: field_step_indicator_completed
+entity_type: paragraph
+bundle: ui_suite_uswds_step_indicator
+label: 'Completed Items'
+description: 'Step items that have been completed'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

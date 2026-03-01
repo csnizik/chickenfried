@@ -1,0 +1,35 @@
+administer sheep_entities_annual_assignment:
+  title: 'Administer annual assignments'
+  restrict access: true
+view sheep_entities_annual_assignment:
+  title: 'View annual assignment'
+edit sheep_entities_annual_assignment:
+  title: 'Edit annual assignment'
+delete sheep_entities_annual_assignment:
+  title: 'Delete annual assignment'
+create sheep_entities_annual_assignment:
+  title: 'Create annual assignment'
+
+administer sheep_entities_sheep_record:
+  title: 'Administer sheep records'
+  restrict access: true
+view sheep_entities_sheep_record:
+  title: 'View sheep record'
+edit sheep_entities_sheep_record:
+  title: 'Edit sheep record'
+delete sheep_entities_sheep_record:
+  title: 'Delete sheep record'
+create sheep_entities_sheep_record:
+  title: 'Create sheep record'
+
+administer sheep_entities_lamb_card:
+  title: 'Administer lamb cards'
+  restrict access: true
+view sheep_entities_lamb_card:
+  title: 'View lamb card'
+edit sheep_entities_lamb_card:
+  title: 'Edit lamb card'
+delete sheep_entities_lamb_card:
+  title: 'Delete lamb card'
+create sheep_entities_lamb_card:
+  title: 'Create lamb card'

@@ -1,0 +1,9 @@
+uuid: a555c1e3-a291-45c8-bae5-79bea54bcebd
+langcode: en
+status: true
+dependencies: {  }
+name: 'Rearing Types'
+vid: s_rearing_types
+description: null
+weight: 0
+new_revision: false

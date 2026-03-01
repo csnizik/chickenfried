@@ -1,0 +1,8 @@
+uuid: 060018ee-b456-4072-ab16-d16458ab63ce
+langcode: en
+status: true
+dependencies: {  }
+id: s_doy
+label: 'Sheep: Day of the Year'
+locked: false
+pattern: z

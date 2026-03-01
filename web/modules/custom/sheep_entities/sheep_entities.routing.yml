@@ -1,0 +1,20 @@
+sheep_entities.sheep_view:
+  path: '/sheep/{sheep_entities_sheep_record}'
+  defaults:
+    _controller: '\Drupal\sheep_entities\Controller\SheepViewController::view'
+    _title_callback: '\Drupal\sheep_entities\Controller\SheepTitle::title'
+  requirements:
+    _entity_access: 'sheep_entities_sheep_record.view'
+  options:
+    parameters:
+      sheep_entities_sheep_record:
+        type: entity:sheep_entities_sheep_record
+
+entity.sheep_entities_lamb_card.collection:
+  path: '/admin/content/lamb_card'
+  defaults:
+    _entity_list: 'sheep_entities_lamb_card'
+    _title: 'Lamb cards'
+  requirements:
+    _permission: 'administer sheep_entities_lamb_card'
+

@@ -1,0 +1,12 @@
+uuid: 237d5fe0-65a4-4091-9678-96753ef56eed
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: ftKXg020jSRK5VPqmhMPx3LqX4B3RB0HVRyF68K-r6o
+id: ui_suite_uswds_alert
+label: Alert
+icon_uuid: null
+icon_default: null
+description: 'Based off of <a href="https://designsystem.digital.gov/components/alert/">USWDS Alert</a>'
+behavior_plugins: {  }

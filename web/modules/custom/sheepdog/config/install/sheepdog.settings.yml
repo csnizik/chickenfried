@@ -1,0 +1,17 @@
+logging:
+  main_channel: 'sheepdog'
+  edits_channel: 'sheepdog_edits'
+  log_new_entities: true
+  log_updated_entities: true
+  log_unchanged_entities: true
+  log_skipped_rows: false
+tracking:
+  id_fields:
+    - 'id'
+    - 'source_id'
+    - 'ID10'
+  primary_id_field: ''
+  entity_label_field: ''
+monitoring:
+  enable_real_time: false
+  log_level: 'info'

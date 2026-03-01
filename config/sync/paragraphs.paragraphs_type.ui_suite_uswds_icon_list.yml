@@ -1,0 +1,12 @@
+uuid: 5bb49fc1-a5a2-4ea8-a180-f033f2fc053e
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: RnG-c7e8y_02IuS3YsLNM8bc4rIQXWD6s5Ud2CHympM
+id: ui_suite_uswds_icon_list
+label: 'Icon List'
+icon_uuid: null
+icon_default: null
+description: 'Based off of <a href="https://designsystem.digital.gov/components/icon-list/">USWDS Icon list</a>'
+behavior_plugins: {  }

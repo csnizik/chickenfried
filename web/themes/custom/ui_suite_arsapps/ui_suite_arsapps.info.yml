@@ -1,0 +1,22 @@
+name: 'ARS Apps Theme'
+type: theme
+description: 'ARS Apps Theme subtheme based on UI Suite USWDS theme.'
+core_version_requirement: '^10.3 || ^11'
+'base theme': ui_suite_uswds
+logo: logo.png
+screenshot: screenshot.png
+dependencies:
+  - 'ui_icons:ui_icons_patterns'
+  - 'ui_patterns:ui_patterns'
+regions:
+  header_top: 'Header - Top'
+  sidebar_first: 'First sidebar'
+  sidebar_second: 'Second sidebar'
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  help: Help
+  hero: Hero
+  content: Content
+  footer_bottom: 'Footer - Bottom'
+libraries:
+  - ui_suite_arsapps/global

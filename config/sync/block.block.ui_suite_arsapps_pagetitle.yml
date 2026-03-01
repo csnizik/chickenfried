@@ -1,0 +1,24 @@
+uuid: 0821c974-e712-4f6a-93ea-b55357dd8e68
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - ui_suite_arsapps
+id: ui_suite_arsapps_pagetitle
+theme: ui_suite_arsapps
+region: content
+weight: -12
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/media/*\r\n/media/*/*"

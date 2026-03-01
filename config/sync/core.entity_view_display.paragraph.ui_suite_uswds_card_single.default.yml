@@ -1,0 +1,35 @@
+uuid: c9715866-f41e-4294-bec1-b3a4c00a3335
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ui_suite_uswds_card_single.field_card_single_card
+    - field.field.paragraph.ui_suite_uswds_card_single.field_card_single_heading_level
+    - paragraphs.paragraphs_type.ui_suite_uswds_card_single
+  module:
+    - entity_reference_revisions
+    - options
+_core:
+  default_config_hash: pRGAcv5qnfzQwaEkRFScjUAO9M71fb00yRMh_JfDLKc
+id: paragraph.ui_suite_uswds_card_single.default
+targetEntityType: paragraph
+bundle: ui_suite_uswds_card_single
+mode: default
+content:
+  field_card_single_card:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_card_single_heading_level:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

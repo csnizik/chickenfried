@@ -1,0 +1,23 @@
+uuid: 5f76283e-9de2-488d-ae9d-32d4cbe97053
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_s_udder_score
+    - paragraphs.paragraphs_type.s_biometrics
+id: paragraph.s_biometrics.field_s_udder_score
+field_name: field_s_udder_score
+entity_type: paragraph
+bundle: s_biometrics
+label: 'Udder score'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

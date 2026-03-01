@@ -1,0 +1,9 @@
+uuid: 90927b6c-9f1d-4eed-8e0d-333f1e22dc34
+langcode: en
+status: true
+dependencies: {  }
+name: 'Life Stage Events'
+vid: s_life_stage_events
+description: null
+weight: 0
+new_revision: false

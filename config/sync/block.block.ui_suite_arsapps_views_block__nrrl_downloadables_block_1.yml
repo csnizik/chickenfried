@@ -1,0 +1,29 @@
+uuid: d059fe9e-5d51-45de-a60d-879f297166eb
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.nrrl_downloadables
+  module:
+    - system
+    - views
+  theme:
+    - ui_suite_arsapps
+id: ui_suite_arsapps_views_block__nrrl_downloadables_block_1
+theme: ui_suite_arsapps
+region: sidebar_second
+weight: -11
+provider: null
+plugin: 'views_block:nrrl_downloadables-block_1'
+settings:
+  id: 'views_block:nrrl_downloadables-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /nrrl

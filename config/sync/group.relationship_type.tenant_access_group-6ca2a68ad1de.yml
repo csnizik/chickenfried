@@ -1,0 +1,17 @@
+uuid: 9029798c-d262-4631-bdbc-9591017c96ad
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - taxonomy.vocabulary.s_breeding_groups
+  module:
+    - group_term
+    - taxonomy
+id: tenant_access_group-6ca2a68ad1de
+group_type: tenant_access_group
+content_plugin: 'group_term:s_breeding_groups'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

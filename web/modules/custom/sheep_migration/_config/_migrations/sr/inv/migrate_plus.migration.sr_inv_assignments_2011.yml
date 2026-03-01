@@ -1,0 +1,155 @@
+langcode: en
+status: true
+dependencies: {  }
+id: sr_inv_assignments_2011
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - '2011'
+  - inv
+  - annual_assignment
+migration_group: sheep_data
+label: 'INV 2011 → Create annual assignments'
+source:
+  plugin: csv
+  path: modules/custom/sheep_migration/data/inv/INV2011.preprocessed.csv
+  ids:
+    - UID
+  constants:
+    record_year: 2011
+process:
+  field_s_year: constants/record_year
+  field_s_sheep:
+    -
+      plugin: callback
+      callable: trim
+      source: ID10
+    -
+      plugin: entity_lookup
+      entity_type: sheep_entities_sheep_record
+      value_key: field_s_id10
+    -
+      plugin: skip_on_empty
+      method: row
+      message: 'Sheep record not found for ID10'
+  field_s_lot:
+    -
+      plugin: callback
+      callable: trim
+      source: LOT
+    -
+      plugin: skip_on_empty
+      method: process
+    -
+      plugin: entity_lookup
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: s_lots
+      value_key: name
+  field_s_band:
+    -
+      plugin: callback
+      callable: trim
+      source: BAND
+    -
+      plugin: skip_on_empty
+      method: process
+    -
+      plugin: entity_lookup
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: s_bands
+      value_key: name
+  field_s_group:
+    -
+      plugin: callback
+      callable: trim
+      source: GRP
+    -
+      plugin: skip_on_empty
+      method: process
+    -
+      plugin: entity_lookup
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: s_groups
+      value_key: name
+  field_s_research_group:
+    -
+      plugin: callback
+      callable: trim
+      source: RGRP
+    -
+      plugin: skip_on_empty
+      method: process
+    -
+      plugin: entity_lookup
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: s_research_groups
+      value_key: name
+  field_s_treatment:
+    -
+      plugin: callback
+      callable: trim
+      source: TRT
+    -
+      plugin: skip_on_empty
+      method: process
+    -
+      plugin: entity_lookup
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: s_treatments
+      value_key: name
+  field_s_breeding_pen:
+    -
+      plugin: callback
+      callable: trim
+      source: BPEN
+    -
+      plugin: skip_on_empty
+      method: process
+    -
+      plugin: entity_lookup
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: s_breeding_pens
+      value_key: name
+  field_s_breeding_group:
+    -
+      plugin: callback
+      callable: trim
+      source: BGRP
+    -
+      plugin: skip_on_empty
+      method: process
+    -
+      plugin: entity_lookup
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: s_breeding_groups
+      value_key: name
+  field_s_treatment_pen:
+    -
+      plugin: callback
+      callable: trim
+      source: PEN
+    -
+      plugin: skip_on_empty
+      method: process
+    -
+      plugin: entity_lookup
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: s_treatment_pens
+      value_key: name
+destination:
+  plugin: 'entity:sheep_entities_annual_assignment'
+idMap: {  }
+migration_dependencies:
+  required:
+    - sr_inv_stubs
+    - sr_inv_update_2011
+include: null

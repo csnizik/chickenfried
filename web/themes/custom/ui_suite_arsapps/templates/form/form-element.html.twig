@@ -1,0 +1,106 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a form element.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - errors: (optional) Any inline error messages to display for this form element.
+ * - has_error: (optional) Flag indicating error state for this form element.
+ * - required: The required marker, or empty if not required.
+ * - type: The #type of the element (textfield, select, checkbox, radio, etc.).
+ * - name: The element name.
+ * - label: A rendered label element.
+ * - label_display: 'before' | 'after' | 'invisible' | 'attribute'.
+ * - description: (optional) { content, attributes } for help text.
+ * - description_display: 'before' | 'after' | 'invisible'.
+ * - disabled: 'disabled' if disabled.
+ * - title_display: Title display setting.
+ * - is_form_group: Theme flag for grouping (kept for compatibility).
+ *
+ * @ingroup templates
+ *
+ * @see template_preprocess_form_element()
+ */
+#}
+
+{# Base wrapper classes. Add USWDS "usa-form-group" consistently. #}
+{%
+  set classes = [
+    'form-item',
+    'js-form-item',
+    'form-type-' ~ type|clean_class,
+    'js-form-type-' ~ type|clean_class,
+    'form-item-' ~ name|clean_class,
+    'js-form-item-' ~ name|clean_class,
+    title_display not in ['after', 'before'] ? 'form-no-label',
+    disabled == 'disabled' ? 'form-disabled',
+    'usa-form-group',
+    has_error ? 'usa-form-group--error',
+  ]
+%}
+
+{# Description classes: preserve existing plus add USWDS helper. #}
+{%
+  set description_classes = [
+    'description',
+    'help-block',
+    'usa-hint',
+    description_display == 'invisible' ? 'usa-sr-only',
+  ]
+%}
+
+<div{{ attributes.addClass(classes) }}>
+
+  {# Label before or invisible (screen-reader only). #}
+  {% if label_display in ['before', 'invisible'] %}
+    {{ label }}
+  {% endif %}
+
+  {# Optional input group (prefix/suffix). Use USWDS group. #}
+  {% set has_group = prefix is not empty or suffix is not empty %}
+  {% if has_group %}
+    <div class="usa-input-group">
+  {% endif %}
+
+  {% if prefix is not empty %}
+    <span class="field-prefix usa-input-prefix">{{ prefix }}</span>
+  {% endif %}
+
+  {# Help text before control if configured. #}
+  {% if description_display == 'before' and description.content %}
+    <div{{ description.attributes.addClass(description_classes) }}>
+      {{ description.content }}
+    </div>
+  {% endif %}
+
+  {# Child control(s) render here (input/select/checkboxes/etc.). #}
+  {{ children }}
+
+  {% if suffix is not empty %}
+    <span class="field-suffix usa-input-suffix">{{ suffix }}</span>
+  {% endif %}
+
+  {% if has_group %}
+    </div>
+  {% endif %}
+
+  {# Label after (for radios/checkboxes when label follows input). #}
+  {% if label_display == 'after' %}
+    {{ label }}
+  {% endif %}
+
+  {# Inline error message. #}
+  {% if errors %}
+    <div class="usa-error-message" role="alert">
+      {{ errors }}
+    </div>
+  {% endif %}
+
+  {# Help text after control (default) or invisible. #}
+  {% if description_display in ['after', 'invisible'] and description.content %}
+    <div{{ description.attributes.addClass(description_classes) }}>
+      {{ description.content }}
+    </div>
+  {% endif %}
+</div>

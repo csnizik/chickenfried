@@ -1,0 +1,12 @@
+uuid: 2cdde33a-6b56-4a3b-ae22-9a01e876715d
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: MlPu2iN49jtV4j8wZryEEbi2S6QCMo0o-4w6BvEoDrg
+id: ui_suite_uswds_collection_item
+label: 'Collection Item'
+icon_uuid: null
+icon_default: null
+description: 'Used by Collections. DO NOT USE AS STANDALONE'
+behavior_plugins: {  }

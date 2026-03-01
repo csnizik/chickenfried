@@ -1,0 +1,84 @@
+@forward 'uswds/uswds-theme';
+@forward 'uswds';
+
+.usa-label {
+  font-weight: bold;
+}
+
+:is(h1, h2, h3, h4, h5, h6) a {
+  text-decoration: none !important;
+}
+
+/* a11y improvement: base text contrast in dark sections */
+.usa-section--dark, .usa-section--dark .usa-prose {
+  color: #fff;
+}
+
+/* a11y improvement: base text contrast in dark sections */
+.usa-section--dark a:not(.usa-link--inverse) {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.ars-heading {
+  text-align: center;
+  @media all and (min-width: 640px) {
+    text-align: left;
+  }
+
+}
+
+.usa-sidenav a:not(.usa-button) {
+  border-top: 2px solid transparent;
+  border-bottom: 2px solid rgba(255,255,255,0.9);
+  position: relative;
+  background-color: #f3f3f3;
+}
+
+.usa-sidenav a.usa-current, .usa-sidenav a:not(.usa-button):hover, .usa-sidenav a:not(.usa-button):active {
+  position: relative;
+  z-index: 1;
+  background-color: rgba(255,255,255,0.7);
+  border-top: 2px solid rgba(0,0,0,0.15);
+  border-bottom: 2px solid rgba(255,255,255,0.5);
+}
+
+.arsapps-main {
+  background-color: rgba(255,255,255,1);
+
+    &--bordered, &--bordered-left {
+    border-bottom: .25rem solid #f0f0f0;
+    border-left: .25rem solid #f0f0f0;
+    }
+    &--bordered {
+      border-right: .25rem solid #f0f0f0;
+    }
+}
+
+// We want the contextual help block (in webforms) to be sticky. For it to work we need to
+// set position:sticky and give a top value to its parent (which is of class .grid-col)
+// and then we also need to set align-items:flex-start on the .grid-col's paren (which is of class .grid-row).
+// First, we find the target .grid-row and set its align-items.
+.grid-row:has(.webform-contextual-help) {
+  align-items: flex-start;
+}
+
+// Changing align-items property will affect every one of its direct children, but we only care
+// about the .grid-col that holds the contextual help block. For all other affected children, we
+// "undo" the effect changing their parent's align-items by individually setting their align-self:normal.
+.grid-col:not(:has(.webform-contextual-help)) {
+  align-self: normal;
+}
+
+// Finally we apply properties to the contextual help block's parent div to make the contextual block sticky.
+.grid-col:has(.webform-contextual-help) {
+  position: sticky;
+  top: 1.5rem;
+}
+
+
+.main-content--wide {
+  @media (min-width:64em) {
+    width: calc(100% - 15rem);
+  }
+}

@@ -1,0 +1,31 @@
+keep_admin_menu: 0
+settings:
+  -
+    menu: nematode-admin
+    role:
+      nematode: nematode
+      administrator: '0'
+      anonymous: '0'
+      authenticated: '0'
+      content_administrator: '0'
+      content_editor: '0'
+      rsper: '0'
+      ssr: '0'
+      nrrl: '0'
+    excluded_role:
+      administrator: '0'
+      anonymous: '0'
+      authenticated: '0'
+      content_administrator: '0'
+      content_editor: '0'
+      rsper: '0'
+      nematode: '0'
+      ssr: '0'
+      nrrl: '0'
+    icons:
+      'menu_link_content:f75c438e-1c91-4cf3-99ee-afd691a4c261': tool-view
+      'menu_link_content:c5560214-0e33-48ab-b5a0-ac97bf3f2bc4': content-view
+      'menu_link_content:56960d7c-66be-44d1-a16a-d14a2f865993': show-view
+      'menu_link_content:2b0cfd63-3c9a-4b57-9999-f4bac6a17a7e': backtosite-view
+    actions:
+      remove_setting: 'Remove rule'

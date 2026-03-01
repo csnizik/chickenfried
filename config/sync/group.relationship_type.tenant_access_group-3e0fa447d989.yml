@@ -1,0 +1,17 @@
+uuid: 64625041-3bd3-4a9e-beac-4660d3cf5ed2
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - taxonomy.vocabulary.s_study_treatments
+  module:
+    - group_term
+    - taxonomy
+id: tenant_access_group-3e0fa447d989
+group_type: tenant_access_group
+content_plugin: 'group_term:s_study_treatments'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

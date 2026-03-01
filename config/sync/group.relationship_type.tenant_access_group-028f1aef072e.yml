@@ -1,0 +1,19 @@
+uuid: bd601e0e-a9dc-4cbe-8b9c-16f9899a7b22
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.tenant_access_group
+    - group_content_menu.group_content_menu_type.tenant_admin_menu
+  module:
+    - group_content_menu
+id: tenant_access_group-028f1aef072e
+group_type: tenant_access_group
+content_plugin: 'group_content_menu:tenant_admin_menu'
+plugin_config:
+  group_cardinality: 1
+  entity_cardinality: 1
+  use_creation_wizard: false
+  auto_create_group_menu: true
+  auto_create_home_link: false
+  auto_create_home_link_title: Home

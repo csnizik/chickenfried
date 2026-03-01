@@ -1,0 +1,55 @@
+uuid: 4820f094-e2a3-4b64-b69c-c9dfee06656c
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+    - ui_patterns
+    - ui_patterns_blocks
+  theme:
+    - ui_suite_arsapps
+    - ui_suite_uswds
+id: ui_suite_arsapps_alert
+theme: ui_suite_arsapps
+region: highlighted
+weight: -12
+provider: null
+plugin: 'ui_patterns:ui_suite_uswds:alert'
+settings:
+  id: 'ui_patterns:ui_suite_uswds:alert'
+  label: 'NRRL temp alert'
+  label_display: '0'
+  provider: ui_patterns_blocks
+  ui_patterns:
+    component_id: 'ui_suite_uswds:alert'
+    variant_id:
+      source_id: select
+      source:
+        value: info
+    props:
+      attributes:
+        source_id: attributes
+        source:
+          value: 'class="margin-bottom-4"'
+      slim:
+        source_id: checkbox
+        source:
+          value: false
+      no_icon:
+        source_id: checkbox
+        source:
+          value: false
+    slots:
+      heading:
+        sources:
+          -
+            source_id: textfield
+            source:
+              value: 'To receive orders of microbial strains we require APHIS PPQ authorization'
+            _weight: '0'
+      message: {  }
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/nrrl\r\n/nrrl/*"

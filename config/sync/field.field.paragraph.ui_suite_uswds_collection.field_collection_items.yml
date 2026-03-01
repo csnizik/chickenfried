@@ -1,0 +1,36 @@
+uuid: ce31597d-bdf9-4508-8a9c-5f6add29b4e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_collection_items
+    - paragraphs.paragraphs_type.ui_suite_uswds_collection
+    - paragraphs.paragraphs_type.ui_suite_uswds_collection_item
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: pqmd8KyxA7heasDJZVSQIOjL4Jtz_wyrzspWWxiWc4s
+id: paragraph.ui_suite_uswds_collection.field_collection_items
+field_name: field_collection_items
+entity_type: paragraph
+bundle: ui_suite_uswds_collection
+label: Items
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      ui_suite_uswds_collection_item: ui_suite_uswds_collection_item
+    negate: 0
+    target_bundles_drag_drop:
+      ui_suite_uswds_collection:
+        weight: 3
+        enabled: false
+      ui_suite_uswds_collection_item:
+        weight: 4
+        enabled: true
+field_type: entity_reference_revisions

@@ -1,0 +1,99 @@
+uuid: 1a4a7d92-209e-4bfd-ab76-865ca74c4377
+langcode: en
+status: true
+dependencies: {  }
+id: nrrl
+admin_label: NRRL
+category: Tenants
+frontend: false
+weight: 0
+sections:
+  -
+    layout_id: layout_onecol
+    layout_settings:
+      label: ''
+      context_mapping: {  }
+    components:
+      4354f85f-2d1b-47f2-8534-fdfd884429c9:
+        uuid: 4354f85f-2d1b-47f2-8534-fdfd884429c9
+        region: content
+        configuration:
+          id: 'block_content:f0a78865-2ba2-4ef8-869e-ba340ca6f7e9'
+          label: 'NRRL dashboard button row'
+          label_display: '0'
+          provider: block_content
+          context_mapping: {  }
+          status: true
+          info: ''
+          view_mode: full
+        weight: 0
+        additional: {  }
+    third_party_settings: {  }
+  -
+    layout_id: layout_twocol_section
+    layout_settings:
+      label: ''
+      context_mapping: {  }
+      column_widths: 50-50
+    components:
+      34d0e706-6cf4-444b-8188-ea4cadf915fa:
+        uuid: 34d0e706-6cf4-444b-8188-ea4cadf915fa
+        region: first
+        configuration:
+          id: 'views_block:media_library-dashboard_block_nrrl_catalog'
+          label: ''
+          label_display: visible
+          provider: views
+          context_mapping: {  }
+          views_label: ''
+          items_per_page: null
+        weight: 1
+        additional: {  }
+      9b3feef8-e8a4-4ed7-a736-b27e39563f65:
+        uuid: 9b3feef8-e8a4-4ed7-a736-b27e39563f65
+        region: second
+        configuration:
+          id: 'views_block:media_library-dashboard_block_nrrl_document'
+          label: ''
+          label_display: visible
+          provider: views
+          context_mapping: {  }
+          views_label: ''
+          items_per_page: null
+        weight: 0
+        additional: {  }
+      67ce4069-620e-43d9-b4b5-29d4775a8df6:
+        uuid: 67ce4069-620e-43d9-b4b5-29d4775a8df6
+        region: second
+        configuration:
+          id: 'views_block:alerts-block_1'
+          label: ''
+          label_display: visible
+          provider: views
+          context_mapping: {  }
+          views_label: ''
+          items_per_page: null
+        weight: 1
+        additional: {  }
+      63e26833-b0c0-4cc4-9c40-7737cee7d361:
+        uuid: 63e26833-b0c0-4cc4-9c40-7737cee7d361
+        region: first
+        configuration:
+          id: 'views_block:nrrl_media_formulas-block_2'
+          label: ''
+          label_display: visible
+          provider: views
+          context_mapping: {  }
+          views_label: ''
+          items_per_page: 20
+        weight: 3
+        additional: {  }
+    third_party_settings: {  }
+  -
+    layout_id: layout_3
+    layout_settings:
+      label: ''
+      context_mapping: {  }
+      reverse: 0
+    components: {  }
+    third_party_settings: {  }

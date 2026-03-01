@@ -1,0 +1,14 @@
+uuid: 653f7b58-16ad-414a-813e-0b82888c10c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.nrrl
+  module:
+    - user
+id: user_add_role_action.nrrl
+label: 'Add the NRRL role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: nrrl

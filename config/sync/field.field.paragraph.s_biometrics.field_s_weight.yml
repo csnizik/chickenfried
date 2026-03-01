@@ -1,0 +1,23 @@
+uuid: 1f9b5c3a-b232-49c8-9bf7-1b10ca4c57b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_s_weight
+    - paragraphs.paragraphs_type.s_biometrics
+id: paragraph.s_biometrics.field_s_weight
+field_name: field_s_weight
+entity_type: paragraph
+bundle: s_biometrics
+label: 'Weight (lbs)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: lbs
+field_type: decimal

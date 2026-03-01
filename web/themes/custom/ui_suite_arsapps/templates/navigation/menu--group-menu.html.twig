@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Theme override for Group Content Menu using USWDS Side Navigation component.
+ *
+ * Overrides: modules/contrib/group_content_menu/templates/menu--group-menu.html.twig
+ */
+#}
+{% if items %}
+  {{ include('ui_suite_arsapps:side_navigation', {
+    items: items,
+    attributes: attributes.addClass(['menu', 'menu--' ~ menu_name|clean_class])
+  }, with_context = false) }}
+{% endif %}

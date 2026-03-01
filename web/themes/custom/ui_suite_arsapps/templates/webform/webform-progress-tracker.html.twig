@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Override webform progress tracker to use USWDS Step Indicator.
+ */
+#}
+
+{# Build arrays for completed (including current) and future steps #}
+{% set completed = [] %}
+{% set upcoming = [] %}
+{% set current_label = '' %}
+
+{% for index, page in progress %}
+  {% if index <= current_index %}
+    {% set completed = completed|merge([page.title]) %}
+    {% if index == current_index %}
+      {% set current_label = page.title %}
+    {% endif %}
+  {% else %}
+    {% set upcoming = upcoming|merge([page.title]) %}
+  {% endif %}
+{% endfor %}
+
+{{ include('ui_suite_uswds:step_indicator', {
+  completed_items: completed,
+  in_progress_items: upcoming,
+  label: current_label,
+  heading_level: 4,
+  variant: 'no_labels',
+}, with_context=false) }}

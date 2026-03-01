@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Block template for Webform Contextual Help.
+ *
+ * Provides subtle, unobtrusive help text for webform pages.
+ * The aria-labelledby must match the id on the <h4> in the webform content.
+ * Convention: id="webform-help-{page_key}"
+ *
+ * @see ars_apps_core_preprocess_block()
+ */
+#}
+{% if content %}
+  <div{{ attributes.addClass([
+    'webform-contextual-help',
+    'position-sticky',
+    'top-0',
+    'font-body-sm',
+    'text-base-dark',
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+  ]).setAttribute('role', 'complementary').setAttribute('aria-labelledby', 'webform-help-' ~ current_page) }}>
+    {{ content }}
+  </div>
+{% endif %}

@@ -1,0 +1,22 @@
+uuid: 5ace9765-fca2-48dc-8e28-0524f428d1a5
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - text
+_core:
+  default_config_hash: ecs_nZ1FBDIMBGstl4Vp2lagJ_y_AeX1lIedKJDIfOs
+id: paragraph.field_icon_list_item_content
+field_name: field_icon_list_item_content
+entity_type: paragraph
+type: text
+settings:
+  max_length: 255
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

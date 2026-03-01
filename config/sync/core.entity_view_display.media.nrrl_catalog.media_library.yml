@@ -1,0 +1,32 @@
+uuid: 69bb8c61-c25f-4b88-bc05-e8d37839bea9
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.media_library
+    - field.field.media.nrrl_catalog.field_media_document
+    - image.style.medium
+    - media.type.nrrl_catalog
+  module:
+    - image
+id: media.nrrl_catalog.media_library
+targetEntityType: media
+bundle: nrrl_catalog
+mode: media_library
+content:
+  thumbnail:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: medium
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_media_document: true
+  name: true
+  uid: true

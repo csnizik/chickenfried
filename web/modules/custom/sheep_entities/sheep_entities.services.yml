@@ -1,0 +1,38 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  # Group relation handlers for Sheep Record.
+  group.relation_handler.access.sheep_entities_sheep_record:
+    class: Drupal\sheep_entities\Group\RelationHandler\Access\SheepRecordAccess
+
+  group.relation_handler.permission_provider.sheep_entities_sheep_record:
+    class: Drupal\sheep_entities\Group\RelationHandler\PermissionProvider\SheepRecordPermissionProvider
+    arguments:
+      - '@entity_type.manager'
+      - '@group_relation_type.manager'
+
+  # Group relation handlers for Annual Assignment.
+  group.relation_handler.access.sheep_entities_annual_assignment:
+    class: Drupal\sheep_entities\Group\RelationHandler\Access\AnnualAssignmentAccess
+
+  group.relation_handler.permission_provider.sheep_entities_annual_assignment:
+    class: Drupal\sheep_entities\Group\RelationHandler\PermissionProvider\AnnualAssignmentPermissionProvider
+    arguments:
+      - '@entity_type.manager'
+      - '@group_relation_type.manager'
+
+  # Group relation handlers for Lamb Card.
+  group.relation_handler.access.sheep_entities_lamb_card:
+    class: Drupal\sheep_entities\Group\RelationHandler\Access\LambCardAccess
+
+  group.relation_handler.permission_provider.sheep_entities_lamb_card:
+    class: Drupal\sheep_entities\Group\RelationHandler\PermissionProvider\LambCardPermissionProvider
+    arguments:
+      - '@entity_type.manager'
+      - '@group_relation_type.manager'
+
+
+

@@ -1,0 +1,234 @@
+uuid: c9c03c36-6b04-4b1c-a951-f715205f21fc
+langcode: en
+status: true
+dependencies: {  }
+id: specimen
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - nematode
+  - specimens
+migration_group: nematode_data
+label: 'Specimen import'
+source:
+  plugin: csv
+  path: modules/custom/nematode_migration/data/specimen_export_pre.csv
+  ids:
+    - EntryNumber
+process:
+  id: EntryNumber
+  field_n_entry_number: EntryNumber
+  field_n_origin_locale:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: CityLocale
+    -
+      plugin: get
+      source: CityLocale
+  field_n_date_collected:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: DateCollected
+    -
+      plugin: get
+      source: DateCollected
+  field_n_host_species:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: HostSpecies
+    -
+      plugin: get
+      source: HostSpecies
+  field_n_nematode_species:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: NematodeSpecies
+    -
+      plugin: get
+      source: NematodeSpecies
+  field_n_collector:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: Collector
+    -
+      plugin: get
+      source: Collector
+  field_n_common_name:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: CommonName
+    -
+      plugin: get
+      source: CommonName
+  field_n_confidential:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: Confidential
+    -
+      plugin: get
+      source: Confidential
+  field_n_origin_country:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: Country
+    -
+      plugin: get
+      source: Country
+  field_n_origin_state:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: State
+    -
+      plugin: get
+      source: State
+  field_n_date_added:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: DateAdded
+    -
+      plugin: get
+      source: DateAdded
+  field_n_date_received:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: DateReceived
+    -
+      plugin: get
+      source: DateReceived
+  field_n_determined_by:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: DeterminedBy
+    -
+      plugin: get
+      ource: DeterminedBy
+  field_n_disposition:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: DispositionSample
+    -
+      plugin: get
+      source: DispositionSample
+  field_n_host_genus:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: HostGenus
+    -
+      plugin: get
+      source: HostGenus
+  field_n_nematode_genus:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: NematodeGenus
+    -
+      plugin: get
+      source: NematodeGenus
+  field_n_nematodes_in:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: NematodesIn
+    -
+      plugin: get
+      source: NematodesIn
+  field_n_other_nematodes:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: OtherNematodes
+    -
+      plugin: get
+      source: OtherNematodes
+  field_n_reference:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: Reference
+    -
+      plugin: get
+      source: Reference
+  field_n_remarks:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: Remarks
+    -
+      plugin: get
+      source: Remarks
+  field_n_sample_number:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: SampleNumber
+    -
+      plugin: get
+      source: SampleNumber
+  field_n_slides:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: SlideNumber
+    -
+      plugin: get
+      source: SlideNumber
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: explode
+      source: SlideNumber
+      delimiter: ','
+      strict: false
+  field_n_vials:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: VialNumber
+    -
+      plugin: get
+      source: VialNumber
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: explode
+      source: VialNumber
+      delimiter: ','
+      strict: false
+  field_n_author:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: TaxonAuthor
+    -
+      plugin: get
+      source: TaxonAuthor
+  field_n_total_samples:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: TotalSamples
+    -
+      plugin: get
+      source: TotalSamples
+destination:
+  plugin: 'entity:nematode_entities_specimen'
+idMap: {  }
+migration_dependencies: {  }
+include: null

@@ -1,0 +1,15 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  # Group relation handlers for Specimen.
+  group.relation_handler.access.nematode_entities_specimen:
+    class: Drupal\nematode_entities\Group\RelationHandler\Access\SpecimenAccess
+
+  group.relation_handler.permission_provider.nematode_entities_specimen:
+    class: Drupal\nematode_entities\Group\RelationHandler\PermissionProvider\SpecimenPermissionProvider
+    arguments:
+      - '@entity_type.manager'
+      - '@group_relation_type.manager'

@@ -1,0 +1,8 @@
+uuid: d83c4d61-89ff-4b97-bc30-455abf3e9028
+langcode: en
+status: true
+dependencies: {  }
+id: nrrl-catalogs-menu
+label: 'NRRL catalogs menu'
+description: ''
+locked: false

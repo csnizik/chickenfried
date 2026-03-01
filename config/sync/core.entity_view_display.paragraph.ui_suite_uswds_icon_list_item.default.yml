@@ -1,0 +1,56 @@
+uuid: 8be02199-c5c4-4a58-adef-89978b9f01f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ui_suite_uswds_icon_list_item.field_icon_list_item_content
+    - field.field.paragraph.ui_suite_uswds_icon_list_item.field_icon_list_item_header
+    - field.field.paragraph.ui_suite_uswds_icon_list_item.field_icon_list_item_icon
+    - paragraphs.paragraphs_type.ui_suite_uswds_icon_list_item
+  module:
+    - nomarkup
+    - options
+    - text
+_core:
+  default_config_hash: O2Pt9HsZ3NzM-ZZKwrX-8UU6S9hnfIPrgIfyn3EF2gs
+id: paragraph.ui_suite_uswds_icon_list_item.default
+targetEntityType: paragraph
+bundle: ui_suite_uswds_icon_list_item
+mode: default
+content:
+  field_icon_list_item_content:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      nomarkup:
+        enabled: false
+        separator: '|'
+        referenced_entity: ''
+    weight: 2
+    region: content
+  field_icon_list_item_header:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      nomarkup:
+        enabled: true
+        separator: '|'
+        referenced_entity: ''
+    weight: 1
+    region: content
+  field_icon_list_item_icon:
+    type: list_key
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      nomarkup:
+        enabled: true
+        separator: '|'
+        referenced_entity: ''
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

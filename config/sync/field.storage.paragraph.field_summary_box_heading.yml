@@ -1,0 +1,22 @@
+uuid: 48bff62a-4df9-4b2a-a46e-d1aee952594a
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - text
+_core:
+  default_config_hash: iQlKF4UEDfHC0sCwxBuCPSzaG3LZOkscOfayMG3_v5k
+id: paragraph.field_summary_box_heading
+field_name: field_summary_box_heading
+entity_type: paragraph
+type: text
+settings:
+  max_length: 255
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

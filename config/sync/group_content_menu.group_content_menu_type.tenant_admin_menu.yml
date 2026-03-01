@@ -1,0 +1,6 @@
+uuid: 0ff3f79c-bbe1-4c05-bf8f-54baa5075be2
+langcode: en
+status: true
+dependencies: {  }
+id: tenant_admin_menu
+label: 'Tenant admin menu'
