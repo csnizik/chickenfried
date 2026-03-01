@@ -1,0 +1,12 @@
+=== Lamb Cards Preprocessing Report: LAMB1950.preprocessed.csv ===
+Year: 1950
+
+Total lamb cards: 2103
+Litter sizes:
+  1: 1589 cards
+  2: 510 cards
+  3: 4 cards
+
+Sire conflicts (multiple sires per litter): 0
+
+TB conflicts (multiple TB values per litter): 0
