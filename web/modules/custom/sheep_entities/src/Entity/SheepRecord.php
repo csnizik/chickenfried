@@ -72,11 +72,6 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type): array {
     $fields = [];
 
-    // Primary keys.
-    $fields['id'] = BaseFieldDefinition::create('integer')
-      ->setLabel(t('ID'))
-      ->setReadOnly(TRUE);
-
     $fields['uuid'] = BaseFieldDefinition::create('uuid')
     ->setLabel(t('UUID'))
     ->setReadOnly(TRUE);
