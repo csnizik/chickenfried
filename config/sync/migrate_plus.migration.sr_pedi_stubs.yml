@@ -1,4 +1,4 @@
-uuid: null
+uuid: c1311958-4863-4f58-8a23-a57a0e2e3f5a
 langcode: en
 status: true
 dependencies: {  }
@@ -13,40 +13,32 @@ migration_tags:
   - idempotent
 migration_group: sheep_data
 label: 'PEDI Registry → Create stub sheep_records for all animals'
-
-# CUMULATIVE MIGRATION:
-# Source is the master pedi_registry.csv built by build_pedi_registry.py.
-# As new PEDI year files are added and the registry is rebuilt,
-# run `drush mim sr_pedi_stubs --update` to pick up new animals.
-# The migration ID map prevents re-processing existing source rows.
-# The entity_lookup on `id` prevents duplicates from any other source.
-
 source:
   plugin: csv
   path: modules/custom/sheep_migration/data/pedigree-csv/registry/pedi_registry.csv
   ids:
     - id10
-  # Registry CSV columns: id10, birth_year, breed, etag, id_type, sources
-
 process:
-  # --- Dedup: skip row if entity already exists (from ANY migration) ---
   _existing_entity:
     plugin: entity_lookup
     source: id10
     entity_type: sheep_entities_sheep_record
     value_key: field_s_id10
     ignore_case: true
-
+  _existing_check:
+    -
+      plugin: get
+      source: '@_existing_entity'
+    -
+      plugin: callback
+      callable: strval
   _skip_if_exists:
-    plugin: skip_on_not_empty
+    plugin: skip_on_value
     method: row
-    source: '@_existing_entity'
-    message: 'Skipping — entity already exists for this id10'
-
-  # --- Core fields ---
+    source: '@_existing_check'
+    not_equals: true
+    value: ''
   field_s_id10: id10
-
-  # Ear tag (skip placeholder 0000 values — unknown parents have no real etag)
   field_s_etag:
     -
       plugin: skip_on_empty
@@ -59,8 +51,6 @@ process:
       plugin: skip_on_value
       method: process
       value: '0000'
-
-  # Breed code → taxonomy term
   field_s_breed:
     -
       plugin: skip_on_empty
@@ -80,7 +70,8 @@ process:
       bundle: s_breeds
       value_key: name
       ignore_case: true
-
 destination:
   plugin: 'entity:sheep_entities_sheep_record'
-migration_dependencies: {}
+idMap: {  }
+migration_dependencies: {  }
+include: null
