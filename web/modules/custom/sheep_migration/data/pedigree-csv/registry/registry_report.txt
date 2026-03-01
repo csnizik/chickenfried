@@ -1,0 +1,44 @@
+=== PEDI Registry Report ===
+
+Total unique animals: 4873
+  animals_dam: 2103
+  animals_lamb: 2620
+  animals_sire: 91
+  animals_unknown_sire: 59
+
+Total relationships: 2621
+
+⚠ Lambs appearing in multiple PEDI rows: 1
+  1950405332: 2 rows
+
+Unique unknown sire codes (US): 59
+  US00482665
+  US00485552
+  US00485905
+  US00486319
+  US00486713
+  US00486718
+  US00487725
+  US00487874
+  US00488106
+  US00488230
+  US00488278
+  US00488287
+  US00488715
+  US00488729
+  US00488771
+  US00488980
+  US00489162
+  US00489361
+  US00489365
+  US00489453
+  US00489638
+  US00489667
+  US00489712
+  US00489715
+  US00489728
+  US17481847
+  US17482228
+  US17482262
+  US17482341
+  US17482677
