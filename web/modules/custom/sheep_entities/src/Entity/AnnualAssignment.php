@@ -90,18 +90,19 @@ class AnnualAssignment extends ContentEntityBase implements AnnualAssignmentInte
 
   // Sheep reference
   $fields['field_s_sheep'] = BaseFieldDefinition::create('entity_reference')
-    ->setLabel(t('Ear tag'))
-    ->setDescription(t('Ear tag. Link to the Sheep record.'))
+    ->setLabel(t('Sheep'))
+    ->setDescription(t('The sheep this annual assignment belongs to.'))
     ->setSetting('target_type', 'sheep_entities_sheep_record')
-    ->setSetting('handler', 'entity:sheep_entities_sheep_record')
+    ->setSetting('handler', 'default:sheep_entities_sheep_record')
     ->setSetting('handler_settings', [
       'sort' => ['field' => '_none', 'direction' => 'ASC'],
       'auto_create' => FALSE,
     ])
+    ->setRequired(TRUE)
     ->setDisplayConfigurable('form', TRUE)
     ->setDisplayConfigurable('view', TRUE);
 
-  // Taxonomy references (one bundle each)…
+  // Taxonomy references
 
   $fields['field_s_band'] = BaseFieldDefinition::create('entity_reference')
     ->setLabel(t('Band'))
