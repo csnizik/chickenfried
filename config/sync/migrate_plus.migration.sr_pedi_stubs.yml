@@ -1,0 +1,87 @@
+uuid: null
+langcode: en
+status: true
+dependencies: {  }
+id: sr_pedi_stubs
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - pedi
+  - sheep_record
+  - stubs
+  - idempotent
+migration_group: sheep_data
+label: 'PEDI Registry → Create stub sheep_records for all animals'
+
+# CUMULATIVE MIGRATION:
+# Source is the master pedi_registry.csv built by build_pedi_registry.py.
+# As new PEDI year files are added and the registry is rebuilt,
+# run `drush mim sr_pedi_stubs --update` to pick up new animals.
+# The migration ID map prevents re-processing existing source rows.
+# The entity_lookup on `id` prevents duplicates from any other source.
+
+source:
+  plugin: csv
+  path: modules/custom/sheep_migration/data/pedigree-csv/registry/pedi_registry.csv
+  ids:
+    - id10
+  # Registry CSV columns: id10, birth_year, breed, etag, id_type, sources
+
+process:
+  # --- Dedup: if entity already exists (from ANY migration), reuse its ID ---
+  # If entity found → update mode (harmless for stubs).
+  # If null → create new entity.
+  _existing_entity:
+    plugin: entity_lookup
+    source: id10
+    entity_type: sheep_entities_sheep_record
+    value_key: field_s_id10
+    ignore_case: true
+
+  id:
+    plugin: null_coalesce
+    source:
+      - '@_existing_entity'
+
+  # --- Core fields ---
+  field_s_id10: id10
+
+  # Ear tag (skip placeholder 0000 values — unknown parents have no real etag)
+  field_s_etag:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: etag
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: skip_on_value
+      method: process
+      value: '0000'
+
+  # Breed code → taxonomy term
+  field_s_breed:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: breed
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: skip_on_value
+      method: process
+      value: '00'
+    -
+      plugin: entity_generate
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: s_breeds
+      value_key: name
+      ignore_case: true
+
+destination:
+  plugin: 'entity:sheep_entities_sheep_record'
+migration_dependencies: {}
