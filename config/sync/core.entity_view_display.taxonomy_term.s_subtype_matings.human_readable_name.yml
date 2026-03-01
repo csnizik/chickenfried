@@ -1,0 +1,37 @@
+uuid: 4f694cb5-67c1-4b8f-b53e-6e44352867ba
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.human_readable_name
+    - field.field.taxonomy_term.s_subtype_matings.field_human_readable_name
+    - taxonomy.vocabulary.s_subtype_matings
+  module:
+    - layout_builder
+    - text
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: taxonomy_term.s_subtype_matings.human_readable_name
+targetEntityType: taxonomy_term
+bundle: s_subtype_matings
+mode: human_readable_name
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_human_readable_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  search_api_excerpt: true

@@ -1,0 +1,28 @@
+uuid: d544bf01-0acb-4646-8b57-29d72b8307d5
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.human_readable_name
+    - taxonomy.vocabulary.s_colors
+  module:
+    - layout_builder
+    - text
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: taxonomy_term.s_colors.human_readable_name
+targetEntityType: taxonomy_term
+bundle: s_colors
+mode: human_readable_name
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

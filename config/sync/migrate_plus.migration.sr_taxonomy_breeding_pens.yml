@@ -24,7 +24,5 @@ destination:
   plugin: 'entity:taxonomy_term'
   default_bundle: s_breeding_pens
 idMap: {  }
-migration_dependencies:
-  required: {  }
-  optional: {  }
+migration_dependencies: {  }
 include: null

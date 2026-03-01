@@ -1,0 +1,28 @@
+uuid: 27d97b20-b385-4e05-afc7-71a55f4af034
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.human_readable_name
+    - taxonomy.vocabulary.s_seasons
+  module:
+    - layout_builder
+    - text
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: taxonomy_term.s_seasons.human_readable_name
+targetEntityType: taxonomy_term
+bundle: s_seasons
+mode: human_readable_name
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

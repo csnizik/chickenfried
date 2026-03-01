@@ -1,0 +1,28 @@
+uuid: 1a715d39-8f69-45b7-abc8-172d38ca0641
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.human_readable_name
+    - taxonomy.vocabulary.s_lots
+  module:
+    - layout_builder
+    - text
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: taxonomy_term.s_lots.human_readable_name
+targetEntityType: taxonomy_term
+bundle: s_lots
+mode: human_readable_name
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

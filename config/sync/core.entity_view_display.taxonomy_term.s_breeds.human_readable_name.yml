@@ -1,0 +1,30 @@
+uuid: 3d1c243d-2b70-4a81-ae6b-f8e918adbbe2
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.human_readable_name
+    - field.field.taxonomy_term.s_breeds.field_human_readable_name
+    - taxonomy.vocabulary.s_breeds
+  module:
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: taxonomy_term.s_breeds.human_readable_name
+targetEntityType: taxonomy_term
+bundle: s_breeds
+mode: human_readable_name
+content:
+  field_human_readable_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  description: true
+  search_api_excerpt: true

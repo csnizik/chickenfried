@@ -1,0 +1,37 @@
+uuid: a5c50185-361d-4f95-b11a-c61471884da4
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.human_readable_name
+    - field.field.taxonomy_term.s_life_stage_events.field_human_readable_name
+    - taxonomy.vocabulary.s_life_stage_events
+  module:
+    - layout_builder
+    - text
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: taxonomy_term.s_life_stage_events.human_readable_name
+targetEntityType: taxonomy_term
+bundle: s_life_stage_events
+mode: human_readable_name
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_human_readable_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

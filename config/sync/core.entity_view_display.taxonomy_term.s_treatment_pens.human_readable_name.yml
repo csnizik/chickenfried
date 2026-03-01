@@ -1,0 +1,28 @@
+uuid: 0baee0e1-f8df-4b3e-ba04-d407d3463b1c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.human_readable_name
+    - taxonomy.vocabulary.s_treatment_pens
+  module:
+    - layout_builder
+    - text
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: taxonomy_term.s_treatment_pens.human_readable_name
+targetEntityType: taxonomy_term
+bundle: s_treatment_pens
+mode: human_readable_name
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

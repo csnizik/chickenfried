@@ -1,0 +1,28 @@
+uuid: f1b832c4-745d-4261-8cfc-1d37c9a82e7b
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.human_readable_name
+    - taxonomy.vocabulary.s_breeding_groups
+  module:
+    - layout_builder
+    - text
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: taxonomy_term.s_breeding_groups.human_readable_name
+targetEntityType: taxonomy_term
+bundle: s_breeding_groups
+mode: human_readable_name
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

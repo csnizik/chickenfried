@@ -1,0 +1,427 @@
+uuid: 66cc3673-221a-43f6-b5ac-c788469a2e7c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.s_breeds.field_human_readable_name
+    - field.field.taxonomy_term.s_disposal_codes.field_human_readable_name
+    - field.field.taxonomy_term.s_preliminary_disposals.field_human_readable_name
+    - field.field.taxonomy_term.s_sex.field_human_readable_name
+    - field.field.taxonomy_term.s_subtype_matings.field_human_readable_name
+    - filter.format.html_no_filter
+  module:
+    - layout_builder
+    - sheep_entities
+    - ui_patterns
+    - ui_patterns_blocks
+    - ui_patterns_field_formatters
+  theme:
+    - ui_suite_uswds
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_threecol_section
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+          column_widths: 33-34-33
+        components:
+          3aa8f52a-e374-4658-8895-07517f208ae7:
+            uuid: 3aa8f52a-e374-4658-8895-07517f208ae7
+            region: first
+            configuration:
+              id: 'ui_patterns_entity:ui_suite_uswds:summary_box'
+              label: 'Summary box - ID'
+              label_display: '0'
+              provider: ui_patterns_blocks
+              context_mapping:
+                entity: layout_builder.entity
+              ui_patterns:
+                component_id: 'ui_suite_uswds:summary_box'
+                variant_id: null
+                props:
+                  attributes:
+                    source_id: attributes
+                    source:
+                      value: ''
+                  summary_box_id:
+                    source_id: textfield
+                    source:
+                      value: ''
+                slots:
+                  summary_heading:
+                    sources:
+                      -
+                        source_id: entity_field
+                        source:
+                          derivable_context: 'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_id10'
+                          'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_id10':
+                            value:
+                              sources:
+                                -
+                                  source_id: 'field_property:sheep_entities_sheep_record:field_s_id10:value'
+                                  node_id: ''
+                                  third_party_settings: ''
+                                  _weight: '0'
+                        _weight: '0'
+                        node_id: ''
+                        third_party_settings: ''
+                  content:
+                    sources:
+                      5:
+                        source_id: wysiwyg
+                        source:
+                          value:
+                            value: '<h4 class="margin-top-3 margin-bottom-0">ETAG:</h4>'
+                            format: html_no_filter
+                        _weight: '-6'
+                        node_id: ''
+                        third_party_settings: ''
+                      1:
+                        source_id: entity_field
+                        source:
+                          derivable_context: 'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_etag'
+                          'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_etag':
+                            value:
+                              sources:
+                                -
+                                  source_id: 'field_property:sheep_entities_sheep_record:field_s_etag:value'
+                                  node_id: ''
+                                  third_party_settings: ''
+                                  _weight: '0'
+                        _weight: '-5'
+                        node_id: ''
+                        third_party_settings: ''
+                      4:
+                        source_id: wysiwyg
+                        source:
+                          value:
+                            value: '<h4 class="margin-top-2 margin-bottom-0">SEX:</h4>'
+                            format: html_no_filter
+                        _weight: '-4'
+                        node_id: ''
+                        third_party_settings: ''
+                      3:
+                        source_id: entity_field
+                        source:
+                          derivable_context: 'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_sex'
+                          'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_sex':
+                            value:
+                              sources:
+                                -
+                                  source_id: 'entity:field_property:sheep_entities_sheep_record:field_s_sex:target_id'
+                                  source:
+                                    derivable_context: 'entity_reference:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_sex:taxonomy_term:s_sex'
+                                    'entity_reference:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_sex:taxonomy_term:s_sex':
+                                      value:
+                                        sources:
+                                          -
+                                            source_id: entity_field
+                                            source:
+                                              derivable_context: 'field:taxonomy_term:s_sex:field_human_readable_name'
+                                              'field:taxonomy_term:s_sex:field_human_readable_name':
+                                                value:
+                                                  sources:
+                                                    -
+                                                      source_id: 'field_property:taxonomy_term:field_human_readable_name:value'
+                                                      node_id: ''
+                                                      third_party_settings: ''
+                                                      _weight: '0'
+                                            node_id: ''
+                                            third_party_settings: ''
+                                            _weight: '0'
+                                  node_id: ''
+                                  third_party_settings: ''
+                                  _weight: '0'
+                        _weight: '-3'
+                        node_id: ''
+                        third_party_settings: ''
+                      7:
+                        source_id: wysiwyg
+                        source:
+                          value:
+                            value: '<h4 class="margin-top-2 margin-bottom-0">BREED:</h4>'
+                            format: html_no_filter
+                        _weight: '-2'
+                        node_id: ''
+                        third_party_settings: ''
+                      6:
+                        source_id: entity_field
+                        source:
+                          derivable_context: 'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_breed'
+                          'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_breed':
+                            value:
+                              sources:
+                                -
+                                  source_id: 'entity:field_property:sheep_entities_sheep_record:field_s_breed:target_id'
+                                  source:
+                                    derivable_context: 'entity_reference:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_breed:taxonomy_term:s_breeds'
+                                    'entity_reference:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_breed:taxonomy_term:s_breeds':
+                                      value:
+                                        sources:
+                                          -
+                                            source_id: entity_field
+                                            source:
+                                              derivable_context: 'field:taxonomy_term:s_breeds:field_human_readable_name'
+                                              'field:taxonomy_term:s_breeds:field_human_readable_name':
+                                                value:
+                                                  sources:
+                                                    -
+                                                      source_id: 'field_property:taxonomy_term:field_human_readable_name:value'
+                                                      node_id: ''
+                                                      third_party_settings: ''
+                                                      _weight: '0'
+                                            node_id: ''
+                                            third_party_settings: ''
+                                            _weight: '0'
+                                  node_id: ''
+                                  third_party_settings: ''
+                                  _weight: '0'
+                        _weight: '-1'
+                        node_id: ''
+                        third_party_settings: ''
+                      8:
+                        source_id: wysiwyg
+                        source:
+                          value:
+                            value: '<h4 class="margin-top-2 margin-bottom-0">LINE:</h4>'
+                            format: html_no_filter
+                        _weight: '8'
+                        node_id: ''
+                        third_party_settings: ''
+                      9:
+                        source_id: entity_field
+                        source:
+                          derivable_context: 'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_line'
+                          'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_line':
+                            value:
+                              sources:
+                                -
+                                  source_id: 'entity:field_property:sheep_entities_sheep_record:field_s_line:target_id'
+                                  source:
+                                    derivable_context: 'entity_reference:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_line:taxonomy_term:s_lines'
+                                    'entity_reference:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_line:taxonomy_term:s_lines':
+                                      value:
+                                        sources:
+                                          -
+                                            source_id: entity_field
+                                            source:
+                                              derivable_context: 'field:taxonomy_term:s_lines:name'
+                                              'field:taxonomy_term:s_lines:name':
+                                                value:
+                                                  add_more_button: ''
+                                            node_id: ''
+                                            third_party_settings: ''
+                                            _weight: '0'
+                                  node_id: ''
+                                  third_party_settings: ''
+                                  _weight: '0'
+                        _weight: '9'
+                        node_id: ''
+                        third_party_settings: ''
+                      10:
+                        source_id: wysiwyg
+                        source:
+                          value:
+                            value: '<h4 class="margin-top-2 margin-bottom-0">BORN DATE:</h4>'
+                            format: html_no_filter
+                        _weight: '10'
+                        node_id: ''
+                        third_party_settings: ''
+                      11:
+                        source_id: entity_field
+                        source:
+                          derivable_context: 'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_birth_date'
+                          'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_birth_date':
+                            value:
+                              sources:
+                                -
+                                  source_id: 'field_property:sheep_entities_sheep_record:field_s_birth_date:value'
+                                  node_id: ''
+                                  third_party_settings: ''
+                                  _weight: '0'
+                        _weight: '11'
+                        node_id: ''
+                        third_party_settings: ''
+                      12:
+                        source_id: wysiwyg
+                        source:
+                          value:
+                            value: '<h4 class="margin-top-2 margin-bottom-0">DISPOSED DATE:</h4>'
+                            format: html_no_filter
+                        _weight: '12'
+                        node_id: ''
+                        third_party_settings: ''
+                      13:
+                        source_id: entity_field
+                        source:
+                          derivable_context: 'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_disposal_date'
+                          'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_disposal_date':
+                            value:
+                              sources:
+                                -
+                                  source_id: 'field_property:sheep_entities_sheep_record:field_s_disposal_date:value'
+                                  node_id: ''
+                                  third_party_settings: ''
+                                  _weight: '0'
+                        _weight: '13'
+                        node_id: ''
+                        third_party_settings: ''
+                      14:
+                        source_id: wysiwyg
+                        source:
+                          value:
+                            value: '<h3 class="margin-top-4 margin-bottom-2 border-bottom-1px border-acccent-cool-light">LINEAGE</h3>'
+                            format: html_no_filter
+                        _weight: '14'
+                        node_id: ''
+                        third_party_settings: ''
+                      15:
+                        source_id: wysiwyg
+                        source:
+                          value:
+                            value: '<h4 class="margin-top-2 margin-bottom-0">SIRE:</h4>'
+                            format: html_no_filter
+                        _weight: '15'
+                        node_id: ''
+                        third_party_settings: ''
+                      16:
+                        source_id: entity_field
+                        source:
+                          derivable_context: 'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_sire'
+                          'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_sire':
+                            value:
+                              sources:
+                                -
+                                  source_id: 'entity:field_property:sheep_entities_sheep_record:field_s_sire:target_id'
+                                  source:
+                                    derivable_context: 'entity_reference:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_sire:sheep_entities_sheep_record:sheep_entities_sheep_record'
+                                    'entity_reference:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_sire:sheep_entities_sheep_record:sheep_entities_sheep_record':
+                                      value:
+                                        sources:
+                                          -
+                                            source_id: entity_field
+                                            source:
+                                              derivable_context: 'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_id10'
+                                              'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_id10':
+                                                value:
+                                                  sources:
+                                                    -
+                                                      source_id: 'field_formatter:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_id10'
+                                                      source:
+                                                        type: string
+                                                        settings:
+                                                          link_to_entity: '1'
+                                                        third_party_settings:
+                                                          nomarkup:
+                                                            separator: '|'
+                                                            referenced_entity: ''
+                                                      node_id: ''
+                                                      third_party_settings: ''
+                                                      _weight: '0'
+                                            node_id: ''
+                                            third_party_settings: ''
+                                            _weight: '0'
+                                  node_id: ''
+                                  third_party_settings: ''
+                                  _weight: '0'
+                        _weight: '16'
+                        node_id: ''
+                        third_party_settings: ''
+                      17:
+                        source_id: wysiwyg
+                        source:
+                          value:
+                            value: '<h4 class="margin-top-2 margin-bottom-0">DAM:</h4>'
+                            format: html_no_filter
+                        _weight: '17'
+                        node_id: ''
+                        third_party_settings: ''
+                      18:
+                        source_id: entity_field
+                        source:
+                          derivable_context: 'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_dam'
+                          'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_dam':
+                            value:
+                              sources:
+                                -
+                                  source_id: 'entity:field_property:sheep_entities_sheep_record:field_s_dam:target_id'
+                                  source:
+                                    derivable_context: 'entity_reference:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_dam:sheep_entities_sheep_record:sheep_entities_sheep_record'
+                                    'entity_reference:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_dam:sheep_entities_sheep_record:sheep_entities_sheep_record':
+                                      value:
+                                        sources:
+                                          -
+                                            source_id: entity_field
+                                            source:
+                                              derivable_context: 'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_id10'
+                                              'field:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_id10':
+                                                value:
+                                                  sources:
+                                                    -
+                                                      source_id: 'field_formatter:sheep_entities_sheep_record:sheep_entities_sheep_record:field_s_id10'
+                                                      source:
+                                                        type: string
+                                                        settings:
+                                                          link_to_entity: '1'
+                                                        third_party_settings:
+                                                          nomarkup:
+                                                            separator: '|'
+                                                            referenced_entity: ''
+                                                      node_id: ''
+                                                      third_party_settings: ''
+                                                      _weight: '0'
+                                            node_id: ''
+                                            third_party_settings: ''
+                                            _weight: '0'
+                                  node_id: ''
+                                  third_party_settings: ''
+                                  _weight: '0'
+                        _weight: '18'
+                        node_id: ''
+                        third_party_settings: ''
+                third_party_settings: ''
+                node_id: ''
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+id: sheep_entities_sheep_record.sheep_entities_sheep_record.default
+targetEntityType: sheep_entities_sheep_record
+bundle: sheep_entities_sheep_record
+mode: default
+content: {  }
+hidden:
+  field_s_altid: true
+  field_s_birth_date: true
+  field_s_born_day_julian: true
+  field_s_born_year: true
+  field_s_breed: true
+  field_s_card_num: true
+  field_s_color: true
+  field_s_cut: true
+  field_s_dam: true
+  field_s_disposal: true
+  field_s_disposal_date: true
+  field_s_disposal_day_julian: true
+  field_s_disposal_year: true
+  field_s_dna: true
+  field_s_etag: true
+  field_s_id10: true
+  field_s_inbreeding: true
+  field_s_is_purchased: true
+  field_s_legacy_sire: true
+  field_s_line: true
+  field_s_preliminary_disp: true
+  field_s_purchased_date: true
+  field_s_rearing_type: true
+  field_s_rearing_type_17: true
+  field_s_rearing_type_equiv: true
+  field_s_scrapie_tag: true
+  field_s_sex: true
+  field_s_sire: true
+  field_s_subtype_mating: true
+  field_s_type_of_birth: true
+  search_api_excerpt: true

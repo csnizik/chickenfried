@@ -6,26 +6,41 @@ dependencies:
     - field.field.taxonomy_term.s_breeds.field_human_readable_name
     - taxonomy.vocabulary.s_breeds
   module:
-    - text
+    - layout_builder
+    - layout_discovery
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          5c3cd15f-892b-4e75-bdf2-7834bf6e40fc:
+            uuid: 5c3cd15f-892b-4e75-bdf2-7834bf6e40fc
+            region: content
+            configuration:
+              id: 'field_block:taxonomy_term:s_breeds:field_human_readable_name'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: string
+                label: inline
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
 id: taxonomy_term.s_breeds.default
 targetEntityType: taxonomy_term
 bundle: s_breeds
 mode: default
-content:
-  description:
-    type: text_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 0
-    region: content
-  field_human_readable_name:
-    type: string
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 1
-    region: content
+content: {  }
 hidden:
+  description: true
+  field_human_readable_name: true
   search_api_excerpt: true

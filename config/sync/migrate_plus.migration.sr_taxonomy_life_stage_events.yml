@@ -1,0 +1,145 @@
+uuid: 82076667-824a-4902-946f-ac5388ebf7df
+langcode: en
+status: true
+dependencies: {  }
+id: sr_taxonomy_life_stage_events
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - taxonomy
+migration_group: sheep_data
+label: 'Import s_life_stage_events taxonomy terms'
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      name: 'Lamb (First-Year Events)'
+      weight: 5
+    -
+      name: 'April Turnout'
+      description: 'Body weight at approximately 30 days of age, late April through late May. Lambs in earlier years may not have this measurement. [LAMB: APRLWT/ADAY]'
+      weight: 10
+      parent: 'Lamb (First-Year Events)'
+    -
+      name: Weaning
+      description: 'Body weight and assessment scores at approximately 90 to 120 days of age, early July through mid-August. The primary selection evaluation event. Includes wool character scores, ADG, WT120, selection indices, and Y-traits. [WEANING: WNWT/DAYWN + associated fields]'
+      weight: 20
+      parent: 'Lamb (First-Year Events)'
+    -
+      name: 'Culling/Early Postweaning'
+      description: 'Body weight at approximately 120 to 160 days of age, early August through mid-September. Timing varies by sex (ram lambs earlier than ewe lambs). [WEANING: CUWT/CUDAY]'
+      weight: 30
+      parent: 'Lamb (First-Year Events)'
+    -
+      name: 'October Weight'
+      description: 'Body weight in early October for retained ram lambs, mid- to late October for ewe lambs going into breeding.'
+      weight: 40
+      parent: 'Lamb (First-Year Events)'
+    -
+      name: 'Late Fall Postweaning'
+      description: 'Body weight in late November to early December, for ewe lambs coming out of breeding and for ram lambs.'
+      weight: 50
+      parent: 'Lamb (First-Year Events)'
+    -
+      name: 'January Weight'
+      description: 'Body weight in early January for retained lambs.'
+      weight: 60
+      parent: 'Lamb (First-Year Events)'
+    -
+      name: 'Yearling Shearing'
+      description: 'Body weight, body condition, fleece weight, and wool sample data collected at first shearing in February. Wool sample data (fiber diameter, SD, CV, clean fleece percentage, diameter grade, staple length) is a one-time yearling measurement. [SHEARING + PRESHEARING, first year]'
+      weight: 70
+      parent: 'Lamb (First-Year Events)'
+    -
+      name: 'Annual Events (Mature)'
+      weight: 75
+    -
+      name: 'Spring Weight'
+      description: 'Body weight and body condition for mature sheep, late April to late May. [INV: SPRGWT]'
+      weight: 80
+      parent: 'Annual Events (Mature)'
+    -
+      name: 'June/July Weight'
+      description: 'Body weight and body condition in early to mid-July for mature sheep. Also a historical lamb measurement at approximately 60 days of age (JUWT/JDAY). [LAMB/WEANING: JUWT/JDAY]'
+      weight: 90
+      parent: 'Annual Events (Mature)'
+    -
+      name: 'Fall Weight'
+      description: 'Body weight and body condition in early August for rams, mid-September for ewes. Udder score collected on all mature ewes at this time. [INV: FALLWT, BAG; BREEDING: FALLWT, BCS_FALL]'
+      weight: 100
+      parent: 'Annual Events (Mature)'
+    -
+      name: October/Breeding
+      description: 'Body weight at entry into breeding, early to mid-October. [BREEDING: WTOCT/DAYOCT]'
+      weight: 110
+      parent: 'Annual Events (Mature)'
+    -
+      name: November/Post-Breeding
+      description: 'Body weight and body condition at exit from breeding, early to late November. [BREEDING: WTNOV/BCS_NOV/WDAYN]'
+      weight: 120
+      parent: 'Annual Events (Mature)'
+    -
+      name: 'Winter Weight'
+      description: 'Body weight and body condition coming off winter range or hay circles, late December to early February. Timing varies by year. [BREEDING: WTWIN/BCS_WIN/WDAYW]'
+      weight: 130
+      parent: 'Annual Events (Mature)'
+    -
+      name: Shearing
+      description: 'Body weight, body condition, and fleece weight collected at shearing in early to mid-February. Mature animals do not receive wool sample measurements (yearling only). [SHEARING: GRFL/FLWT/body weight/BCS]'
+      weight: 140
+      parent: 'Annual Events (Mature)'
+    -
+      name: Assessments
+      weight: 145
+    -
+      name: 'Pre-Shearing Assessment'
+      description: 'Wool quality measurements collected before February shearing. Includes fiber diameter, staple length, face and horn scores, and related traits. [PRESHEARING]'
+      weight: 150
+      parent: Assessments
+    -
+      name: 'Ewe Lambing Assessment'
+      description: 'Ewe observations during lambing season, March through May. Includes weights at entry to and exit from lambing, body condition, wool traits, and related measurements. [EWE/EWELAM]'
+      weight: 160
+      parent: Assessments
+    -
+      name: 'Ram Evaluation'
+      description: 'Comprehensive annual ram performance assessment including growth weights, fleece data, reproduction scores (libido, semen), selection indices, and genetic markers. [RAMS]'
+      weight: 170
+      parent: Assessments
+    -
+      name: Reproductive
+      weight: 175
+    -
+      name: 'Fertility Record'
+      description: 'Sire fertility and prolificacy data including Y-trait values. [FERTILITY]'
+      weight: 180
+      parent: Reproductive
+    -
+      name: 'Pregnancy Test'
+      description: 'Pregnancy detection result and embryo count when available. Applies to both first-year ewe lambs and mature ewes. [INV: PREG]'
+      weight: 190
+      parent: Reproductive
+    -
+      name: Other
+      description: 'Observation that does not map to a standard life stage event. Used for legacy data or measurements that fall outside the normal annual cycle.'
+      weight: 200
+  ids:
+    name:
+      type: string
+process:
+  name: name
+  description/value: description
+  description/format:
+    plugin: default_value
+    default_value: basic_html
+  weight: weight
+  vid:
+    plugin: default_value
+    default_value: s_life_stage_events
+destination:
+  plugin: 'entity:taxonomy_term'
+  default_bundle: s_life_stage_events
+idMap: {  }
+migration_dependencies: {  }
+include: null
