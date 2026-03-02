@@ -1,0 +1,8 @@
+=== PEDI Preprocessing Report: PEDI2003.csv ===
+Format detected: separated
+
+Total rows: 3622
+Rows written: 3622
+Unknown sires (→ US code): 791
+Unknown dams (→ UD code): 0
+Parse errors (skipped): 0

@@ -1,0 +1,8 @@
+=== PEDI Preprocessing Report: PEDI1975.csv ===
+Format detected: 8digit
+
+Total rows: 4690
+Rows written: 4690
+Unknown sires (→ US code): 1296
+Unknown dams (→ UD code): 0
+Parse errors (skipped): 0

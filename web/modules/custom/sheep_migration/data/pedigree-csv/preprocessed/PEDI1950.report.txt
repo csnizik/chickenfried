@@ -1,6 +1,5 @@
 === PEDI Preprocessing Report: PEDI1950.csv ===
 Format detected: 8digit
-Century prefix: 19
 
 Total rows: 2621
 Rows written: 2621

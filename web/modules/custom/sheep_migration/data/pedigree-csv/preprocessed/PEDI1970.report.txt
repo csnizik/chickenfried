@@ -1,0 +1,11 @@
+=== PEDI Preprocessing Report: PEDI1970.csv ===
+Format detected: 8digit
+
+Total rows: 4552
+Rows written: 4551
+Unknown sires (→ US code): 656
+Unknown dams (→ UD code): 0
+Parse errors (skipped): 1
+
+Parse errors (row, field, raw_value):
+  row 3114: LAMB = '7062174x'
