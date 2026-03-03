@@ -78,11 +78,11 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
       ->setReadOnly(TRUE);
 
     $fields['uuid'] = BaseFieldDefinition::create('uuid')
-    ->setLabel(t('UUID'))
-    ->setReadOnly(TRUE);
+      ->setLabel(t('UUID'))
+      ->setReadOnly(TRUE);
 
     // field_s_id10 (string)
-    // This is our source-of-truth unique field identifying a sheep_record
+    // This is our source-of-truth unique field identifying a sheep_record.
     $fields['field_s_id10'] = BaseFieldDefinition::create('string')
       ->setLabel(t('ID10'))
       ->setDescription(t('ID10. 10-digit string used as unique identifier. Length must be 10 characters. See README for derivation rules. [INV,PEDI-CM:ID10; WNMAS:ID;LAMB,PEDI,PEDI-CM:LAMBID,DAMID,SIREID]'))
@@ -136,10 +136,10 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
     // Storage format: Y-m-d (e.g., "2024-03-15").
     // Migration: Use julian_to_date process plugin from sheep_calendar.
     // Example YAML:
-    //   field_s_birth_date:
-    //     plugin: julian_to_date
-    //     source: DAYBRN
-    //     year: constants/year_label
+    // field_s_birth_date:
+    //   plugin: julian_to_date
+    //   source: DAYBRN
+    //   year: constants/year_label
     // Display: Use sheep_calendar Twig functions (sheep_date, sheep_age, sheep_year_label).
     // Sheep Year format: 2024/25.
     $fields['field_s_birth_date'] = BaseFieldDefinition::create('datetime')
@@ -173,7 +173,7 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
           "type" => "physical_measurement_default",
           "settings" => [
               "default_unit" => "lb",
-              "allow_unit_change" => true,
+              "allow_unit_change" => TRUE,
               "available_units" => ["lb", "kg"],
           ],
       ])
@@ -183,8 +183,8 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
               "output_unit" => "",
           ],
       ])
-      ->setDisplayConfigurable("form", true)
-      ->setDisplayConfigurable("view", true);
+      ->setDisplayConfigurable("form", TRUE)
+      ->setDisplayConfigurable("view", TRUE);
 
     // field_s_disposal_date (datetime - date only)
     // Full date of disposal. Use sheep_calendar module functions for Julian day conversion.
@@ -340,6 +340,13 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
       ->setLabel(t('Purchased (date)'))
       ->setDescription(t('Purchased date. Date when animal was added to inventory. Base field type is "datetime" using the "date" format. If exposing a filter on this field, use either the "Purchased date (Sheep Year)" or "Purchased date (Year)" plugin (provided by the sheep_calendar module) to create an autopopulated dropdown of values.'))
       ->setSetting('datetime_type', 'date')
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    // field_s_is_unidentified_parent (boolean)
+    $fields['field_s_is_unidentified_parent'] = BaseFieldDefinition::create('boolean')
+      ->setLabel(t('Unidentified parent'))
+      ->setDescription(t('Boolean indicating that this is an unidentified parent record created to link offspring to a known sire or dam. Unidentified parent records have an ID10 beginning with "US" (Unknown Sire) or "UD" (Unknown Dam). They should not be included in population counts, reports or statistical queries.'))
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
