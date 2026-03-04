@@ -46,9 +46,9 @@ use Drupal\sheep_entities\SheepRecordViewsData;
   base_table: 'sheep_entities_sheep_record',
   admin_permission: 'administer sheep_entities_sheep_record',
   entity_keys: [
-    'id' => 'field_s_id10',
+    'id' => 'id',
     'uuid' => 'uuid',
-    'label' => 'field_s_id10'
+    'label' => 'field_s_id10',
   ],
   links: [
     'collection' => '/admin/content/sheep',
@@ -355,27 +355,23 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
     $fields['field_s_migration_legacy_data'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Legacy data (JSON)'))
       ->setDescription(t('JSON object containing fields not represented as dedicated base fields. Keyed by original source field name.'))
+      ->setCardinality(-1)
       ->setDisplayConfigurable('form', FALSE)
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['field_s_migration_notes'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Migration notes'))
       ->setDescription(t('Auto-generated migration warnings and validation discrepancies.'))
+      ->setCardinality(-1)
       ->setDisplayConfigurable('form', FALSE)
       ->setDisplayConfigurable('view', FALSE);
 
     $fields['field_s_migration_source'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Migration source (CSV/DBF)'))
-      ->setDescription(t('The filename of the source data. Original files from FoxPro were in .dbf format; we convert to .csv for migration.'))
+      ->setDescription(t('The table and row number the data was sourced from. Format: [YY + first two letters of table name + row number padded to 5 digits, e.g. "24IN01001" for 2024 INV table row 1001.'))
+      ->setCardinality(-1)
       ->setDisplayConfigurable('form', FALSE)
       ->setDisplayConfigurable('view', FALSE);
-
-    $fields['field_s_migration_year'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Migration year (CSV/DBF)'))
-      ->setDescription(t('The year of the source data.'))
-      ->setDisplayConfigurable('form', FALSE)
-      ->setDisplayConfigurable('view', FALSE);
-
 
     return $fields;
   }
