@@ -34,5 +34,4 @@ class SheepNoteViewsData extends EntityViewsData {
     return $data;
   }
 
-
 }

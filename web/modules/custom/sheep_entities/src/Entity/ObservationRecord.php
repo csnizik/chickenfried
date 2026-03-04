@@ -62,300 +62,292 @@ use Drupal\views\EntityViewsData;
         label_singular: new TranslatableMarkup("observation record"),
         label_plural: new TranslatableMarkup("observation records"),
         handlers: [
-            "list_builder" => ObservationRecordListBuilder::class,
-            "views_data" => EntityViewsData::class,
-            "access" => ObservationRecordAccessControlHandler::class,
-            "form" => [
-                "add" => ObservationRecordForm::class,
-                "edit" => ObservationRecordForm::class,
-                "delete" => ContentEntityDeleteForm::class,
-                "delete-multiple-confirm" => DeleteMultipleForm::class,
-            ],
-            "route_provider" => [
-                "html" => ObservationRecordHtmlRouteProvider::class,
-            ],
+          "list_builder" => ObservationRecordListBuilder::class,
+          "views_data" => EntityViewsData::class,
+          "access" => ObservationRecordAccessControlHandler::class,
+          "form" => [
+            "add" => ObservationRecordForm::class,
+            "edit" => ObservationRecordForm::class,
+            "delete" => ContentEntityDeleteForm::class,
+            "delete-multiple-confirm" => DeleteMultipleForm::class,
+          ],
+          "route_provider" => [
+            "html" => ObservationRecordHtmlRouteProvider::class,
+          ],
         ],
         base_table: "sheep_entities_observation_rec",
         admin_permission: "administer sheep_entities_observation_rec",
         entity_keys: [
-            "id" => "id",
-            "uuid" => "uuid",
-            "label" => "id",
+          "id" => "id",
+          "uuid" => "uuid",
+          "label" => "id",
         ],
         links: [
-            "collection" => "/admin/content/observation-records",
-            "add-form" => "/observation-record/add",
-            "canonical" =>
-                "/observation-record/{sheep_entities_observation_rec}",
-            "edit-form" =>
-                "/observation-record/{sheep_entities_observation_rec}/edit",
-            "delete-form" =>
-                "/observation-record/{sheep_entities_observation_rec}/delete",
-            "delete-multiple-form" =>
-                "/admin/content/observation-records/delete-multiple",
+          "collection" => "/admin/content/observation-records",
+          "add-form" => "/observation-record/add",
+          "canonical" =>
+          "/observation-record/{sheep_entities_observation_rec}",
+          "edit-form" =>
+          "/observation-record/{sheep_entities_observation_rec}/edit",
+          "delete-form" =>
+          "/observation-record/{sheep_entities_observation_rec}/delete",
+          "delete-multiple-form" =>
+          "/admin/content/observation-records/delete-multiple",
         ],
         label_count: [
-            "singular" => "@count observation record",
-            "plural" => "@count observation records",
+          "singular" => "@count observation record",
+          "plural" => "@count observation records",
         ]
     )
 ]
 final class ObservationRecord extends ContentEntityBase implements
-    ObservationRecordInterface
-{
-    /**
-     * {@inheritdoc}
-     */
-    public static function baseFieldDefinitions(
-        EntityTypeInterface $entity_type
-    ): array {
-        $fields = [];
+  ObservationRecordInterface {
 
-        // ── Primary keys ────────────────────────────────────────────────
+  /**
+   * {@inheritdoc}
+   */
+  public static function baseFieldDefinitions(
+    EntityTypeInterface $entity_type,
+  ): array {
+    $fields = [];
 
-        $fields["id"] = BaseFieldDefinition::create("integer")
-            ->setLabel(t("ID"))
-            ->setReadOnly(true);
+    // ── Primary keys ────────────────────────────────────────────────
+    $fields["id"] = BaseFieldDefinition::create("integer")
+      ->setLabel(t("ID"))
+      ->setReadOnly(TRUE);
 
-        $fields["uuid"] = BaseFieldDefinition::create("uuid")
-            ->setLabel(t("UUID"))
-            ->setReadOnly(true);
+    $fields["uuid"] = BaseFieldDefinition::create("uuid")
+      ->setLabel(t("UUID"))
+      ->setReadOnly(TRUE);
 
+    // Sheep reference.
+    $fields['field_s_sheep'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Sheep'))
+      ->setDescription(t('The sheep this observation record belongs to.'))
+      ->setSetting('target_type', 'sheep_entities_sheep_record')
+      ->setSetting('handler', 'default:sheep_entities_sheep_record')
+      ->setSetting('handler_settings', [
+        'sort' => ['field' => '_none', 'direction' => 'ASC'],
+        'auto_create' => FALSE,
+      ])
+      ->setRequired(TRUE)
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
+    $fields["field_s_observation_date"] = BaseFieldDefinition::create(
+          "datetime"
+      )
+      ->setLabel(t("Observation date"))
+      ->setDescription(
+              t(
+                  'Date when measurements were collected. All measurements on this record were co-collected at this date. Base field type is "datetime" using the "date" format.'
+              )
+          )
+      ->setSetting("datetime_type", "date")
+      ->setDisplayConfigurable("form", TRUE)
+      ->setDisplayConfigurable("view", TRUE);
 
-        // Sheep reference
-        $fields['field_s_sheep'] = BaseFieldDefinition::create('entity_reference')
-          ->setLabel(t('Sheep'))
-          ->setDescription(t('The sheep this observation record belongs to.'))
-          ->setSetting('target_type', 'sheep_entities_sheep_record')
-          ->setSetting('handler', 'default:sheep_entities_sheep_record')
-          ->setSetting('handler_settings', [
-            'sort' => ['field' => '_none', 'direction' => 'ASC'],
-            'auto_create' => FALSE,
-          ])
-          ->setRequired(TRUE)
-          ->setDisplayConfigurable('form', TRUE)
-          ->setDisplayConfigurable('view', TRUE);
+    $fields["field_s_life_stage_event"] = BaseFieldDefinition::create(
+          "entity_reference"
+      )
+      ->setLabel(t("Life stage event"))
+      ->setDescription(
+              t(
+                  "The type of handling/observation event (e.g., Weaning, Shearing, Fall Weight). Determines which fields on this record are expected to be populated."
+              )
+          )
+      ->setSetting("target_type", "taxonomy_term")
+      ->setSetting("handler", "default:taxonomy_term")
+      ->setSetting("handler_settings", [
+        "target_bundles" => [
+          "s_life_stage_events" => "s_life_stage_events",
+        ],
+        "sort" => ["field" => "name", "direction" => "ASC"],
+        "auto_create" => FALSE,
+      ])
+      ->setDisplayConfigurable("form", TRUE)
+      ->setDisplayConfigurable("view", TRUE);
 
-        $fields["field_s_observation_date"] = BaseFieldDefinition::create(
-            "datetime"
-        )
-            ->setLabel(t("Observation date"))
-            ->setDescription(
-                t(
-                    'Date when measurements were collected. All measurements on this record were co-collected at this date. Base field type is "datetime" using the "date" format.'
-                )
-            )
-            ->setSetting("datetime_type", "date")
-            ->setDisplayConfigurable("form", true)
-            ->setDisplayConfigurable("view", true);
+    // ── Body weight & condition ──────────────────────────────────────
+    $fields["field_s_body_weight"] = BaseFieldDefinition::create(
+          "physical_measurement"
+      )
+      ->setLabel(t("Body weight"))
+      ->setDescription(
+              t(
+                  "Body weight measured at the observation date. Maps to WNWT, SPWT, FALLWT, CUWT, SAWT, LBS, or other weight fields depending on life stage event. Legacy adjusted values (WT120, Y6) are stored in the legacy data JSON field."
+              )
+          )
+      ->setSetting("measurement_type", "weight")
+      ->setDisplayOptions("form", [
+        "type" => "physical_measurement_default",
+        "settings" => [
+          "default_unit" => "lb",
+          "allow_unit_change" => TRUE,
+          "available_units" => ["lb", "kg"],
+        ],
+      ])
+      ->setDisplayOptions("view", [
+        "type" => "physical_measurement_default",
+        "settings" => [
+          "output_unit" => "",
+        ],
+      ])
+      ->setDisplayConfigurable("form", TRUE)
+      ->setDisplayConfigurable("view", TRUE);
 
-        $fields["field_s_life_stage_event"] = BaseFieldDefinition::create(
-            "entity_reference"
-        )
-            ->setLabel(t("Life stage event"))
-            ->setDescription(
-                t(
-                    "The type of handling/observation event (e.g., Weaning, Shearing, Fall Weight). Determines which fields on this record are expected to be populated."
-                )
-            )
-            ->setSetting("target_type", "taxonomy_term")
-            ->setSetting("handler", "default:taxonomy_term")
-            ->setSetting("handler_settings", [
-                "target_bundles" => [
-                    "s_life_stage_events" => "s_life_stage_events",
-                ],
-                "sort" => ["field" => "name", "direction" => "ASC"],
-                "auto_create" => false,
-            ])
-            ->setDisplayConfigurable("form", true)
-            ->setDisplayConfigurable("view", true);
+    $fields["field_s_bcs"] = BaseFieldDefinition::create("decimal")
+      ->setLabel(t("Body condition score"))
+      ->setDescription(
+              t(
+                  "Body condition score, 1.0 to 5.0 in 0.5 increments. Not collected during lamb first year. [BREEDING: BCS_FALL, BCS_NOV, BCS_WIN; SHEARING: BCS]"
+              )
+          )
+      ->setSetting("precision", 3)
+      ->setSetting("scale", 1)
+      ->setDisplayConfigurable("form", TRUE)
+      ->setDisplayConfigurable("view", TRUE);
 
-        // ── Body weight & condition ──────────────────────────────────────
+    // ── Reproductive / ewe assessment ────────────────────────────────
+    $fields["field_s_udder_score"] = BaseFieldDefinition::create("integer")
+      ->setLabel(t("Udder score (BAG)"))
+      ->setDescription(
+              t(
+                  "13-point udder scoring system. Collected on mature ewes in September at fall weight. [INV: BAG]"
+              )
+          )
+      ->setDisplayConfigurable("form", TRUE)
+      ->setDisplayConfigurable("view", TRUE);
 
-        $fields["field_s_body_weight"] = BaseFieldDefinition::create(
-            "physical_measurement"
-        )
-            ->setLabel(t("Body weight"))
-            ->setDescription(
-                t(
-                    "Body weight measured at the observation date. Maps to WNWT, SPWT, FALLWT, CUWT, SAWT, LBS, or other weight fields depending on life stage event. Legacy adjusted values (WT120, Y6) are stored in the legacy data JSON field."
-                )
-            )
-            ->setSetting("measurement_type", "weight")
-            ->setDisplayOptions("form", [
-                "type" => "physical_measurement_default",
-                "settings" => [
-                    "default_unit" => "lb",
-                    "allow_unit_change" => true,
-                    "available_units" => ["lb", "kg"],
-                ],
-            ])
-            ->setDisplayOptions("view", [
-                "type" => "physical_measurement_default",
-                "settings" => [
-                    "output_unit" => "",
-                ],
-            ])
-            ->setDisplayConfigurable("form", true)
-            ->setDisplayConfigurable("view", true);
+    $fields["field_s_pregnancy_status"] = BaseFieldDefinition::create(
+          "boolean"
+      )
+      ->setLabel(t("Pregnancy status"))
+      ->setDescription(
+              t(
+                  "Pregnancy detection result. Applies to both first-year ewe lambs and mature ewes. [INV: PREG]"
+              )
+          )
+      ->setDisplayConfigurable("form", TRUE)
+      ->setDisplayConfigurable("view", TRUE);
 
-        $fields["field_s_bcs"] = BaseFieldDefinition::create("decimal")
-            ->setLabel(t("Body condition score"))
-            ->setDescription(
-                t(
-                    "Body condition score, 1.0 to 5.0 in 0.5 increments. Not collected during lamb first year. [BREEDING: BCS_FALL, BCS_NOV, BCS_WIN; SHEARING: BCS]"
-                )
-            )
-            ->setSetting("precision", 3)
-            ->setSetting("scale", 1)
-            ->setDisplayConfigurable("form", true)
-            ->setDisplayConfigurable("view", true);
+    // ── Physical scores ──────────────────────────────────────────────
+    $fields["field_s_face"] = BaseFieldDefinition::create("integer")
+      ->setLabel(t("Face score"))
+      ->setDescription(
+              t(
+                  "15-point scoring system for wool cover on face. [PRESHEARING,WEANING: FACE]"
+              )
+          )
+      ->setDisplayConfigurable("form", TRUE)
+      ->setDisplayConfigurable("view", TRUE);
 
-        // ── Reproductive / ewe assessment ────────────────────────────────
+    $fields["field_s_horn"] = BaseFieldDefinition::create("integer")
+      ->setLabel(t("Horn score"))
+      ->setDescription(
+              t("7-point horn scoring system. [PRESHEARING,WEANING: HORN]")
+          )
+      ->setDisplayConfigurable("form", TRUE)
+      ->setDisplayConfigurable("view", TRUE);
 
-        $fields["field_s_udder_score"] = BaseFieldDefinition::create("integer")
-            ->setLabel(t("Udder score (BAG)"))
-            ->setDescription(
-                t(
-                    "13-point udder scoring system. Collected on mature ewes in September at fall weight. [INV: BAG]"
-                )
-            )
-            ->setDisplayConfigurable("form", true)
-            ->setDisplayConfigurable("view", true);
+    // ── Fleece & wool ────────────────────────────────────────────────
+    $fields["field_s_fleece_weight"] = BaseFieldDefinition::create(
+          "physical_measurement"
+      )
+      ->setLabel(t("Fleece weight"))
+      ->setDescription(
+              t(
+                  "Fleece weight collected at shearing in February. Stores both grease fleece (GRFL, recorded in lbs to 0.1 precision) and processed fleece weight (FLWT) depending on source. [SHEARING: GRFL, FLWT]"
+              )
+          )
+      ->setSetting("measurement_type", "weight")
+      ->setDisplayOptions("form", [
+        "type" => "physical_measurement_default",
+        "settings" => [
+          "default_unit" => "lb",
+          "allow_unit_change" => TRUE,
+          "available_units" => ["lb", "kg", "g", "oz"],
+        ],
+      ])
+      ->setDisplayOptions("view", [
+        "type" => "physical_measurement_default",
+        "settings" => [
+          "output_unit" => "",
+        ],
+      ])
+      ->setDisplayConfigurable("form", TRUE)
+      ->setDisplayConfigurable("view", TRUE);
 
-        $fields["field_s_pregnancy_status"] = BaseFieldDefinition::create(
-            "boolean"
-        )
-            ->setLabel(t("Pregnancy status"))
-            ->setDescription(
-                t(
-                    "Pregnancy detection result. Applies to both first-year ewe lambs and mature ewes. [INV: PREG]"
-                )
-            )
-            ->setDisplayConfigurable("form", true)
-            ->setDisplayConfigurable("view", true);
+    $fields["field_s_staple"] = BaseFieldDefinition::create(
+          "physical_measurement"
+      )
+      ->setLabel(t("Staple length"))
+      ->setDescription(
+              t(
+                  "Staple length of wool sample. Yearling measurement. [PRESHEARING: SL, STAPLE_IN, STAPLE_CM; RAMS: SL]"
+              )
+          )
+      ->setSetting("measurement_type", "length")
+      ->setDisplayOptions("form", [
+        "type" => "physical_measurement_default",
+        "settings" => [
+          "default_unit" => "in",
+          "allow_unit_change" => TRUE,
+          "available_units" => ["in", "cm"],
+        ],
+      ])
+      ->setDisplayOptions("view", [
+        "type" => "physical_measurement_default",
+        "settings" => [
+          "output_unit" => "",
+        ],
+      ])
+      ->setDisplayConfigurable("form", TRUE)
+      ->setDisplayConfigurable("view", TRUE);
 
-        // ── Physical scores ──────────────────────────────────────────────
+    // Fiber diameter is measured in microns (µm), which is not a unit
+    // supported by the drupal/physical module. Stored as plain decimal; can have µm added as suffix in displays.
+    $fields["field_s_fiber_diameter"] = BaseFieldDefinition::create(
+          "decimal"
+      )
+      ->setLabel(t("Fiber diameter"))
+      ->setDescription(
+              t(
+                  "Fiber diameter of yearling wool sample, in microns (µm). [PRESHEARING,RAMS,SHEARING: MICRON]"
+              )
+          )
+      ->setSetting("precision", 6)
+      ->setSetting("scale", 2)
+      ->setDisplayConfigurable("form", TRUE)
+      ->setDisplayConfigurable("view", TRUE);
 
-        $fields["field_s_face"] = BaseFieldDefinition::create("integer")
-            ->setLabel(t("Face score"))
-            ->setDescription(
-                t(
-                    "15-point scoring system for wool cover on face. [PRESHEARING,WEANING: FACE]"
-                )
-            )
-            ->setDisplayConfigurable("form", true)
-            ->setDisplayConfigurable("view", true);
+    $fields["field_s_standard_deviation"] = BaseFieldDefinition::create(
+          "decimal"
+      )
+      ->setLabel(t("Standard deviation"))
+      ->setDescription(
+              t(
+                  "Standard deviation of fiber diameter. [PRESHEARING,RAMS: SD]"
+              )
+          )
+      ->setSetting("precision", 6)
+      ->setSetting("scale", 2)
+      ->setDisplayConfigurable("form", TRUE)
+      ->setDisplayConfigurable("view", TRUE);
 
-        $fields["field_s_horn"] = BaseFieldDefinition::create("integer")
-            ->setLabel(t("Horn score"))
-            ->setDescription(
-                t("7-point horn scoring system. [PRESHEARING,WEANING: HORN]")
-            )
-            ->setDisplayConfigurable("form", true)
-            ->setDisplayConfigurable("view", true);
+    $fields["field_s_clean_fleece"] = BaseFieldDefinition::create("decimal")
+      ->setLabel(t("Clean fleece (%)"))
+      ->setDescription(
+              t(
+                  "Clean fleece expressed as a percentage. [PRESHEARING,RAMS: CF]"
+              )
+          )
+      ->setSetting("precision", 6)
+      ->setSetting("scale", 2)
+      ->setDisplayConfigurable("form", TRUE)
+      ->setDisplayConfigurable("view", TRUE);
 
-        // ── Fleece & wool ────────────────────────────────────────────────
-
-        $fields["field_s_fleece_weight"] = BaseFieldDefinition::create(
-            "physical_measurement"
-        )
-            ->setLabel(t("Fleece weight"))
-            ->setDescription(
-                t(
-                    "Fleece weight collected at shearing in February. Stores both grease fleece (GRFL, recorded in lbs to 0.1 precision) and processed fleece weight (FLWT) depending on source. [SHEARING: GRFL, FLWT]"
-                )
-            )
-            ->setSetting("measurement_type", "weight")
-            ->setDisplayOptions("form", [
-                "type" => "physical_measurement_default",
-                "settings" => [
-                    "default_unit" => "lb",
-                    "allow_unit_change" => true,
-                    "available_units" => ["lb", "kg", "g", "oz"],
-                ],
-            ])
-            ->setDisplayOptions("view", [
-                "type" => "physical_measurement_default",
-                "settings" => [
-                    "output_unit" => "",
-                ],
-            ])
-            ->setDisplayConfigurable("form", true)
-            ->setDisplayConfigurable("view", true);
-
-        $fields["field_s_staple"] = BaseFieldDefinition::create(
-            "physical_measurement"
-        )
-            ->setLabel(t("Staple length"))
-            ->setDescription(
-                t(
-                    "Staple length of wool sample. Yearling measurement. [PRESHEARING: SL, STAPLE_IN, STAPLE_CM; RAMS: SL]"
-                )
-            )
-            ->setSetting("measurement_type", "length")
-            ->setDisplayOptions("form", [
-                "type" => "physical_measurement_default",
-                "settings" => [
-                    "default_unit" => "in",
-                    "allow_unit_change" => true,
-                    "available_units" => ["in", "cm"],
-                ],
-            ])
-            ->setDisplayOptions("view", [
-                "type" => "physical_measurement_default",
-                "settings" => [
-                    "output_unit" => "",
-                ],
-            ])
-            ->setDisplayConfigurable("form", true)
-            ->setDisplayConfigurable("view", true);
-
-        // Fiber diameter is measured in microns (µm), which is not a unit
-        // supported by the drupal/physical module. Stored as plain decimal; can have µm added as suffix in displays.
-        $fields["field_s_fiber_diameter"] = BaseFieldDefinition::create(
-            "decimal"
-        )
-            ->setLabel(t("Fiber diameter"))
-            ->setDescription(
-                t(
-                    "Fiber diameter of yearling wool sample, in microns (µm). [PRESHEARING,RAMS,SHEARING: MICRON]"
-                )
-            )
-            ->setSetting("precision", 6)
-            ->setSetting("scale", 2)
-            ->setDisplayConfigurable("form", true)
-            ->setDisplayConfigurable("view", true);
-
-        $fields["field_s_standard_deviation"] = BaseFieldDefinition::create(
-            "decimal"
-        )
-            ->setLabel(t("Standard deviation"))
-            ->setDescription(
-                t(
-                    "Standard deviation of fiber diameter. [PRESHEARING,RAMS: SD]"
-                )
-            )
-            ->setSetting("precision", 6)
-            ->setSetting("scale", 2)
-            ->setDisplayConfigurable("form", true)
-            ->setDisplayConfigurable("view", true);
-
-        $fields["field_s_clean_fleece"] = BaseFieldDefinition::create("decimal")
-            ->setLabel(t("Clean fleece (%)"))
-            ->setDescription(
-                t(
-                    "Clean fleece expressed as a percentage. [PRESHEARING,RAMS: CF]"
-                )
-            )
-            ->setSetting("precision", 6)
-            ->setSetting("scale", 2)
-            ->setDisplayConfigurable("form", true)
-            ->setDisplayConfigurable("view", true);
-
-  // ── Overflow & provenance ────────────────────────────────────────
-
+    // ── Overflow & provenance ────────────────────────────────────────
     $fields['field_s_migration_legacy_data'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Legacy data (JSON)'))
       ->setDescription(t('JSON object containing fields not represented as dedicated base fields. Keyed by original source field name.'))
@@ -378,5 +370,6 @@ final class ObservationRecord extends ContentEntityBase implements
       ->setDisplayConfigurable('view', FALSE);
 
     return $fields;
-    }
+  }
+
 }

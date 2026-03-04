@@ -117,7 +117,7 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    // field_s_dam
+    // field_s_dam.
     $fields['field_s_dam'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Dam'))
       ->setDescription('Dam of the sheep. All 0s or a letter followed by four 0s (X0000) indicates unknown dam. Very rare. [INV,WNMAS,LAMB,EWEMAS,PEDI:DAM]')
@@ -129,7 +129,6 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
-
 
     // field_s_birth_date (datetime - date only)
     // Full date of birth. Use sheep_calendar module functions for Julian day conversion.
@@ -170,18 +169,18 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
       ->setDescription(t("Weight recorded at birth."))
       ->setSetting("measurement_type", "weight")
       ->setDisplayOptions("form", [
-          "type" => "physical_measurement_default",
-          "settings" => [
-              "default_unit" => "lb",
-              "allow_unit_change" => TRUE,
-              "available_units" => ["lb", "kg"],
-          ],
+        "type" => "physical_measurement_default",
+        "settings" => [
+          "default_unit" => "lb",
+          "allow_unit_change" => TRUE,
+          "available_units" => ["lb", "kg"],
+        ],
       ])
       ->setDisplayOptions("view", [
-          "type" => "physical_measurement_default",
-          "settings" => [
-              "output_unit" => "",
-          ],
+        "type" => "physical_measurement_default",
+        "settings" => [
+          "output_unit" => "",
+        ],
       ])
       ->setDisplayConfigurable("form", TRUE)
       ->setDisplayConfigurable("view", TRUE);
@@ -301,7 +300,7 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    // field_s_sire
+    // field_s_sire.
     $fields['field_s_sire'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Sire'))
       ->setDescription(t('Sire. Reference to the sire sheep record. ID10 beginning with "US" indicates Unknown Sub. See README. [INV,WNMAS,LAMB,PEDI:SIRE]'))
@@ -351,7 +350,6 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
       ->setDisplayConfigurable('view', TRUE);
 
     // ── Overflow & provenance ────────────────────────────────────────
-
     $fields['field_s_migration_legacy_data'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Legacy data (JSON)'))
       ->setDescription(t('JSON object containing fields not represented as dedicated base fields. Keyed by original source field name.'))

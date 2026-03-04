@@ -80,7 +80,6 @@ final class LambCard extends ContentEntityBase implements LambCardInterface {
     $fields = [];
 
     // ── Primary keys ────────────────────────────────────────────────
-
     $fields['id'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('ID'))
       ->setReadOnly(TRUE);
@@ -90,7 +89,6 @@ final class LambCard extends ContentEntityBase implements LambCardInterface {
       ->setReadOnly(TRUE);
 
     // ── Parentage & offspring ────────────────────────────────────────
-
     $fields['field_s_dam'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Dam'))
       ->setDescription(t('The ewe that lambed.'))
@@ -130,7 +128,6 @@ final class LambCard extends ContentEntityBase implements LambCardInterface {
       ->setDisplayConfigurable('view', TRUE);
 
     // ── Lambing event context ────────────────────────────────────────
-
     $fields['field_s_lambing_date'] = BaseFieldDefinition::create('datetime')
       ->setLabel(t('Lambing date'))
       ->setDescription(t('Date of lambing. [LAMB: DATE, BDAY]'))
@@ -145,7 +142,6 @@ final class LambCard extends ContentEntityBase implements LambCardInterface {
       ->setDisplayConfigurable('view', TRUE);
 
     // ── Ewe lambing status (Y-traits) ────────────────────────────────
-
     $fields['field_s_present_lambing'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Present for lambing (Y1)'))
       ->setDescription(t('Whether the ewe was present for lambing. 1 = present, 0 = absent. [LAMB,WEANING,FERTILITY: Y1]'))
@@ -159,7 +155,6 @@ final class LambCard extends ContentEntityBase implements LambCardInterface {
       ->setDisplayConfigurable('view', TRUE);
 
     // ── Ewe assessment scores ────────────────────────────────────────
-
     $fields['field_s_teat'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Teat'))
       ->setDescription(t('7-point scoring system for supernumerary teats.'))
@@ -189,9 +184,7 @@ final class LambCard extends ContentEntityBase implements LambCardInterface {
       ->setDisplayConfigurable('view', TRUE);
 
     // ── Overflow & provenance ────────────────────────────────────────
-
-  // ── Overflow & provenance ────────────────────────────────────────
-
+    // ── Overflow & provenance ────────────────────────────────────────
     $fields['field_s_migration_legacy_data'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Legacy data (JSON)'))
       ->setDescription(t('JSON object containing fields not represented as dedicated base fields. Keyed by original source field name.'))
@@ -215,5 +208,6 @@ final class LambCard extends ContentEntityBase implements LambCardInterface {
 
     return $fields;
 
-}
+  }
+
 }

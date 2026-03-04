@@ -78,9 +78,7 @@ final class SheepNote extends ContentEntityBase implements SheepNoteInterface {
       ->setLabel(t('UUID'))
       ->setReadOnly(TRUE);
 
-
-
-    // Sheep reference
+    // Sheep reference.
     $fields['field_s_sheep'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Sheep'))
       ->setDescription(t('The sheep this note belongs to.'))
@@ -111,8 +109,7 @@ final class SheepNote extends ContentEntityBase implements SheepNoteInterface {
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-  // ── Overflow & provenance ────────────────────────────────────────
-
+    // ── Overflow & provenance ────────────────────────────────────────
     $fields['field_s_migration_legacy_data'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Legacy data (JSON)'))
       ->setDescription(t('JSON object containing fields not represented as dedicated base fields. Keyed by original source field name.'))

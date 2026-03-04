@@ -34,5 +34,4 @@ class ObservationRecordViewsData extends EntityViewsData {
     return $data;
   }
 
-
 }
