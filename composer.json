@@ -64,6 +64,7 @@
     "drupal/paragraphs": "^1.19",
     "drupal/pathauto": "^1.13",
     "drupal/pdf_reader": "^1.2",
+    "drupal/physical": "^1.5",
     "drupal/search_api": "^1.38",
     "drupal/selective_better_exposed_filters": "^3.0",
     "drupal/sitewide_alert": "^3.0",

@@ -130,6 +130,19 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
+    // field_s_foster_dam.
+    $fields['field_s_foster_dam'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Foster dam'))
+      ->setDescription('Foster dam. Entity reference to the dam that raised this lamb, when different from the biological dam (field_s_dam). Migrated from LAMB:FONO on rows where FOPU="-", indicating this lamb was transferred to the foster dam identified by FONO. FOPU "+" rows are ignored (captured from the foster lamb\'s row instead). FOPU "8" indicates orphan/death with no foster placement. [LAMB:FONO,FOPU]')
+      ->setSetting('target_type', 'sheep_entities_sheep_record')
+      ->setSetting('handler', 'default:sheep_entities_sheep_record')
+      ->setSetting('handler_settings', [
+        'sort' => ['field' => '_none', 'direction' => 'ASC'],
+        'auto_create' => FALSE,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     // field_s_birth_date (datetime - date only)
     // Full date of birth. Use sheep_calendar module functions for Julian day conversion.
     // Storage format: Y-m-d (e.g., "2024-03-15").
@@ -163,28 +176,6 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    // Although measurements are collected on ObservationRecord entities, birth weight is captured on the sheep record.
-    $fields["field_s_birth_weight"] = BaseFieldDefinition::create("physical_measurement")
-      ->setLabel(t("Birth weight"))
-      ->setDescription(t("Weight recorded at birth."))
-      ->setSetting("measurement_type", "weight")
-      ->setDisplayOptions("form", [
-        "type" => "physical_measurement_default",
-        "settings" => [
-          "default_unit" => "lb",
-          "allow_unit_change" => TRUE,
-          "available_units" => ["lb", "kg"],
-        ],
-      ])
-      ->setDisplayOptions("view", [
-        "type" => "physical_measurement_default",
-        "settings" => [
-          "output_unit" => "",
-        ],
-      ])
-      ->setDisplayConfigurable("form", TRUE)
-      ->setDisplayConfigurable("view", TRUE);
-
     // field_s_disposal_date (datetime - date only)
     // Full date of disposal. Use sheep_calendar module functions for Julian day conversion.
     // Storage format: Y-m-d (e.g., "2024-04-28").
@@ -202,6 +193,16 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
+    // field_s_cause (term ref)
+    $fields['field_s_cause'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Cause'))
+      ->setDescription(t('Cause of death (lamb). References a taxonomy term). [LAMB:CAUSE]'))
+      ->setSetting('target_type', 'taxonomy_term')
+      ->setSetting('handler', 'default:taxonomy_term')
+      ->setSetting('handler_settings', ['target_bundles' => ['s_causes' => 's_causes']])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     // field_s_preliminary_disp (integer)
     $fields['field_s_preliminary_disp'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Preliminary disposal'))
@@ -215,7 +216,7 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
     // field_s_disposal (term ref)
     $fields['field_s_disposal'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Disposal code'))
-      ->setDescription(t('Disposal code. Reason or method of disposal (taxonomy term). [INV,LAMB,EWEMAS:DISP;WNMAS,LAMB:CAUSE]'))
+      ->setDescription(t('Disposal code. Reason or method of disposal (taxonomy term). [INV,LAMB,EWEMAS:DISP;WNMAS]'))
       ->setSetting('target_type', 'taxonomy_term')
       ->setSetting('handler', 'default:taxonomy_term')
       ->setSetting('handler_settings', ['target_bundles' => ['s_disposal_codes' => 's_disposal_codes']])
