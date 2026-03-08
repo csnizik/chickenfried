@@ -1,0 +1,7 @@
+services:
+  sheep_entities.drush.export:
+    class: Drupal\sheep_entities\Drush\Commands\SheepExportCommands
+    arguments:
+      - '@entity_type.manager'
+    tags:
+      - { name: drush.command }

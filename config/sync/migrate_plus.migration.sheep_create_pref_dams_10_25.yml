@@ -72,5 +72,5 @@ process:
 destination:
   plugin: 'entity:sheep_entities_sheep_record'
 idMap: {  }
-migration_dependencies: { }
+migration_dependencies: {  }
 include: null

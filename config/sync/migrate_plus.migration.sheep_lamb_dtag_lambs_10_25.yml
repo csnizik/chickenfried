@@ -19,7 +19,6 @@ source:
   ids:
     - ID10
   header_offset: 0
-
 process:
   field_s_id10: ID10
   field_s_migration_source: UID
