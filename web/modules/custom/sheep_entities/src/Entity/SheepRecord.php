@@ -130,6 +130,19 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
+    // field_s_sire.
+    $fields['field_s_sire'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Sire'))
+      ->setDescription(t('Sire. Reference to the sire sheep record. ID10 beginning with "US" indicates Unknown Sub. See README. [INV,WNMAS,LAMB,PEDI:SIRE]'))
+      ->setSetting('target_type', 'sheep_entities_sheep_record')
+      ->setSetting('handler', 'default:sheep_entities_sheep_record')
+      ->setSetting('handler_settings', [
+        'sort' => ['field' => '_none', 'direction' => 'ASC'],
+        'auto_create' => FALSE,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     // field_s_foster_dam.
     $fields['field_s_foster_dam'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Foster dam'))
@@ -144,15 +157,14 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
       ->setDisplayConfigurable('view', TRUE);
 
     // field_s_birth_date (datetime - date only)
-    // Full date of birth. Use sheep_calendar module functions for Julian day conversion.
+    // Full date of birth. Use sheep_calendar for Julian day conversion.
     // Storage format: Y-m-d (e.g., "2024-03-15").
     // Migration: Use julian_to_date process plugin from sheep_calendar.
     // Example YAML:
     // field_s_birth_date:
-    //   plugin: julian_to_date
-    //   source: DAYBRN
-    //   year: constants/year_label
-    // Display: Use sheep_calendar Twig functions (sheep_date, sheep_age, sheep_year_label).
+    // plugin: julian_to_date
+    // source: DAYBRN
+    // year: constants/year_label
     // Sheep Year format: 2024/25.
     $fields['field_s_birth_date'] = BaseFieldDefinition::create('datetime')
       ->setLabel(t('Birth date'))
@@ -177,14 +189,14 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
       ->setDisplayConfigurable('view', TRUE);
 
     // field_s_disposal_date (datetime - date only)
-    // Full date of disposal. Use sheep_calendar module functions for Julian day conversion.
+    // Full date of disposal. Use sheep_calendar for Julian conversion.
     // Storage format: Y-m-d (e.g., "2024-04-28").
     // Migration: Use julian_to_date process plugin from sheep_calendar.
     // Example YAML:
-    //   field_s_disposal_date:
-    //     plugin: julian_to_date
-    //     source: DAYDIS
-    //     year: constants/year_label
+    // field_s_disposal_date:
+    // plugin: julian_to_date
+    // source: DAYDIS
+    // year: constants/year_label
     // Display: Use sheep_calendar Twig functions for date/age calculations.
     $fields['field_s_disposal_date'] = BaseFieldDefinition::create('datetime')
       ->setLabel(t('Disposal date'))
@@ -298,15 +310,6 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
       ->setSetting('target_type', 'taxonomy_term')
       ->setSetting('handler', 'default:taxonomy_term')
       ->setSetting('handler_settings', ['target_bundles' => ['s_sex' => 's_sex']])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
-    // field_s_sire.
-    $fields['field_s_sire'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Sire'))
-      ->setDescription(t('Sire. Reference to the sire sheep record. ID10 beginning with "US" indicates Unknown Sub. See README. [INV,WNMAS,LAMB,PEDI:SIRE]'))
-      ->setSetting('target_type', 'sheep_entities_sheep_record')
-      ->setSetting('handler', 'default:sheep_entities_sheep_record')
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
