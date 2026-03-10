@@ -25,7 +25,7 @@ class SheepNoteViewsData extends EntityViewsData {
       'relationship' => [
         'id' => 'standard',
         'base' => 'sheep_entities_sheep_note',
-        'base field' => 'field_s_sheep_record',
+        'base field' => 'field_s_sheep',
         'relationship field' => 'id',
         'label' => t('Sheep Notes'),
       ],
@@ -33,6 +33,5 @@ class SheepNoteViewsData extends EntityViewsData {
 
     return $data;
   }
-
 
 }

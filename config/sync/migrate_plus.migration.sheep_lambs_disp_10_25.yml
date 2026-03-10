@@ -1,0 +1,55 @@
+uuid: 23efa9f5-65e7-4505-bbfb-4297daa78729
+langcode: en
+status: true
+dependencies: {  }
+id: sheep_lambs_disp_10_25
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - sheep
+  - disposal
+migration_group: sheep_pedi_phase1
+label: 'Update existing sheep_record entities to add missing preliminary disposal codes.'
+source:
+  plugin: csv
+  path: modules/custom/sheep_migration/data/_preprocessed/LAMBS-DISP-10-25.csv
+  ids:
+    - ID10
+process:
+  temp_existing_id:
+    plugin: entity_lookup
+    source: ID10
+    entity_type: sheep_entities_sheep_record
+    value_key: field_s_id10
+  id:
+    plugin: skip_on_empty
+    source: '@temp_existing_id'
+    method: row
+    message: 'No matching entity for this ID10, skipping.'
+  temp_pd_clean:
+    -
+      plugin: skip_on_value
+      source: DISP
+      method: process
+      value:
+        - '-'
+        - .
+        - ''
+    -
+      plugin: callback
+      callable: trim
+  field_s_preliminary_disposal:
+    plugin: entity_lookup
+    source: '@temp_pd_clean'
+    entity_type: taxonomy_term
+    bundle_key: vid
+    bundle: s_preliminary_disposals
+    value_key: name
+destination:
+  plugin: 'entity:sheep_entities_sheep_record'
+  overwrite_properties:
+    - field_s_preliminary_disposal
+idMap: {  }
+migration_dependencies: null
+include: null

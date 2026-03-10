@@ -78,14 +78,16 @@ final class SheepNote extends ContentEntityBase implements SheepNoteInterface {
       ->setLabel(t('UUID'))
       ->setReadOnly(TRUE);
 
-    // field_s_sheep_record (entity reference to sheep)
-    // Canonical relationship: child (note) knows parent (sheep) not vice versa
-    // Views: add relationship between sheep_note and sheep_record as needed.
-    $fields['field_s_sheep_record'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Sheep Record'))
-      ->setDescription(t('The Sheep Record entity this note belongs to.'))
+    // Sheep reference.
+    $fields['field_s_sheep'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Sheep'))
+      ->setDescription(t('The sheep this note belongs to.'))
       ->setSetting('target_type', 'sheep_entities_sheep_record')
       ->setSetting('handler', 'default:sheep_entities_sheep_record')
+      ->setSetting('handler_settings', [
+        'sort' => ['field' => '_none', 'direction' => 'ASC'],
+        'auto_create' => FALSE,
+      ])
       ->setRequired(TRUE)
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
@@ -106,6 +108,28 @@ final class SheepNote extends ContentEntityBase implements SheepNoteInterface {
       ->setCardinality(1)
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
+
+    // ── Overflow & provenance ────────────────────────────────────────
+    $fields['field_s_migration_legacy_data'] = BaseFieldDefinition::create('string_long')
+      ->setLabel(t('Legacy data (JSON)'))
+      ->setDescription(t('JSON object containing fields not represented as dedicated base fields. Keyed by original source field name.'))
+      ->setCardinality(-1)
+      ->setDisplayConfigurable('form', FALSE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['field_s_migration_notes'] = BaseFieldDefinition::create('string_long')
+      ->setLabel(t('Migration notes'))
+      ->setDescription(t('Auto-generated migration warnings and validation discrepancies.'))
+      ->setCardinality(-1)
+      ->setDisplayConfigurable('form', FALSE)
+      ->setDisplayConfigurable('view', FALSE);
+
+    $fields['field_s_migration_source'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Migration source (CSV/DBF)'))
+      ->setDescription(t('The table and row number the data was sourced from. Format: [YY + first two letters of table name + row number padded to 5 digits, e.g. "24IN01001" for 2024 INV table row 1001.'))
+      ->setCardinality(-1)
+      ->setDisplayConfigurable('form', FALSE)
+      ->setDisplayConfigurable('view', FALSE);
 
     return $fields;
   }

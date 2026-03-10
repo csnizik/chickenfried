@@ -1,0 +1,51 @@
+uuid: 8fe6c187-e696-436d-af7b-046b7f9264ca
+langcode: en
+status: true
+dependencies: {  }
+id: sheep_update_all_breeds_10_25
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - sheep_lamb
+  - phase1
+  - update
+  - years_10_25
+migration_group: sheep_pedi_phase1
+label: 'LAMB 2010-2025: Update existing sheep records with birth event data'
+source:
+  plugin: csv
+  path: modules/custom/sheep_migration/data/_preprocessed/ID10-BRD-10-25.csv
+  ids:
+    - id10
+process:
+  id:
+    -
+      plugin: callback
+      callable: trim
+      source: id10
+    -
+      plugin: entity_lookup
+      entity_type: sheep_entities_sheep_record
+      value_key: field_s_id10
+  field_s_breed:
+    -
+      plugin: callback
+      callable: trim
+      source: brd
+    -
+      plugin: skip_on_empty
+      method: process
+    -
+      plugin: entity_lookup
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: s_breeds
+      value_key: name
+destination:
+  plugin: 'entity:sheep_entities_sheep_record'
+  overwrite_properties:
+    - field_s_breed
+idMap: {  }
+migration_dependencies: {  }
+include: null

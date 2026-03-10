@@ -33,6 +33,3 @@ services:
     arguments:
       - '@entity_type.manager'
       - '@group_relation_type.manager'
-
-
-

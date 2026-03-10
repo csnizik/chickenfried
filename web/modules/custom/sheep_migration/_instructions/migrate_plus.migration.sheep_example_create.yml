@@ -1,0 +1,140 @@
+# Create new sheep_record entities. Skips rows where entity already exists.
+# Source CSV columns: ID10, DAM_ID10, BRD, DAYBRN, YR, CUT, TB, SRCTABLE, LEGACY_JSON
+id: sheep_example_create
+label: 'Example: Create sheep records from CSV'
+migration_group: sheep_pedi_phase1
+migration_tags:
+  - sheep
+  - example
+
+source:
+  plugin: csv
+  path: /var/www/html/web/modules/custom/sheep_migration/data/example_create.csv
+  ids:
+    - ID10
+
+process:
+
+  # -- Unique key: skip if entity already exists --
+  temp_existing:
+    plugin: entity_lookup
+    source: ID10
+    entity_type: sheep_entities_sheep_record
+    value_key: field_s_id10
+  # If entity_lookup returns a value, this row already exists -- skip it.
+  temp_skip_existing:
+    plugin: skip_on_empty
+    source: '@temp_existing'
+    method: row
+    not_equals: true
+    message: 'Entity already exists, skipping.'
+
+  # -- ID10 (required, string) --
+  field_s_id10: ID10
+
+  # -- Entity reference: dam (lookup by field_s_id10) --
+  # Returns the entity ID of the sheep_record whose field_s_id10 matches DAM_ID10.
+  # Skip placeholder values before lookup.
+  temp_dam_clean:
+    - plugin: skip_on_value
+      source: DAM_ID10
+      method: process
+      value:
+        - '-'
+        - '.'
+        - ''
+    - plugin: callback
+      callable: trim
+  field_s_dam:
+    plugin: entity_lookup
+    source: '@temp_dam_clean'
+    entity_type: sheep_entities_sheep_record
+    value_key: field_s_id10
+
+  # -- Taxonomy reference: breed (lookup by term name) --
+  # Finds term in s_breeds vocabulary matching the BRD source value.
+  temp_breed_clean:
+    - plugin: skip_on_value
+      source: BRD
+      method: process
+      value:
+        - '-'
+        - '.'
+        - ''
+    - plugin: callback
+      callable: trim
+  field_s_breed:
+    plugin: entity_lookup
+    source: '@temp_breed_clean'
+    entity_type: taxonomy_term
+    bundle_key: vid
+    bundle: s_breeds
+    value_key: name
+
+  # -- Date field from Julian day + year --
+  # julian_to_date is a custom process plugin in sheep_calendar module.
+  # 'year' takes the source field NAME (not a @reference).
+  temp_daybrn_clean:
+    - plugin: skip_on_value
+      source: DAYBRN
+      method: process
+      value:
+        - 0
+        - '-'
+        - ''
+  field_s_birth_date:
+    plugin: julian_to_date
+    source: '@temp_daybrn_clean'
+    year: YR
+
+  # -- Boolean from Y/N source values --
+  # Map y/Y -> 1, n/N -> 0, anything else -> skip.
+  temp_cut_trimmed:
+    plugin: callback
+    callable: trim
+    source: CUT
+  temp_cut_lower:
+    plugin: callback
+    callable: strtolower
+    source: '@temp_cut_trimmed'
+  field_s_cut:
+    plugin: static_map
+    source: '@temp_cut_lower'
+    map:
+      'y': 1
+      'n': 0
+    default_value: null
+
+  # -- Integer field with max constraint --
+  # TB is 1-10. Filter out placeholders, cast to int.
+  temp_tb_clean:
+    - plugin: skip_on_value
+      source: TB
+      method: process
+      value:
+        - '-'
+        - '.'
+        - ''
+        - 0
+    - plugin: callback
+      callable: intval
+  field_s_type_of_birth: '@temp_tb_clean'
+
+  # -- Simple text field --
+  field_s_migration_source: SRCTABLE
+
+  # -- JSON blob in string_long field --
+  # LEGACY_JSON is a pre-built JSON string from Google Sheets.
+  # If you need to construct it in YAML from multiple source fields, use concat:
+  #   plugin: concat
+  #   source:
+  #     - constants/legacy_prefix
+  #     - FIELD1
+  #     - constants/legacy_mid
+  #     - FIELD2
+  #     - constants/legacy_suffix
+  # But it's far easier to build JSON in Sheets and pass it as one column.
+  field_s_migration_legacy_data: LEGACY_JSON
+
+destination:
+  plugin: entity:sheep_entities_sheep_record

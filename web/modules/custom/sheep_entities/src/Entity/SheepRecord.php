@@ -48,7 +48,7 @@ use Drupal\sheep_entities\SheepRecordViewsData;
   entity_keys: [
     'id' => 'id',
     'uuid' => 'uuid',
-    'label' => 'field_s_id10'
+    'label' => 'field_s_id10',
   ],
   links: [
     'collection' => '/admin/content/sheep',
@@ -78,18 +78,19 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
       ->setReadOnly(TRUE);
 
     $fields['uuid'] = BaseFieldDefinition::create('uuid')
-    ->setLabel(t('UUID'))
-    ->setReadOnly(TRUE);
+      ->setLabel(t('UUID'))
+      ->setReadOnly(TRUE);
 
     // field_s_id10 (string)
-    // This is our source-of-truth unique field identifying a sheep_record
+    // This is our source-of-truth unique field identifying a sheep_record.
     $fields['field_s_id10'] = BaseFieldDefinition::create('string')
       ->setLabel(t('ID10'))
       ->setDescription(t('ID10. 10-digit string used as unique identifier. Length must be 10 characters. See README for derivation rules. [INV,PEDI-CM:ID10; WNMAS:ID;LAMB,PEDI,PEDI-CM:LAMBID,DAMID,SIREID]'))
       ->setSetting('max_length', 10)
       ->addConstraint('UniqueField')
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
 
     // field_s_altid (string)
     $fields['field_s_altid'] = BaseFieldDefinition::create('string')
@@ -116,45 +117,54 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    // field_s_dam
+    // field_s_dam.
     $fields['field_s_dam'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Dam'))
       ->setDescription('Dam of the sheep. All 0s or a letter followed by four 0s (X0000) indicates unknown dam. Very rare. [INV,WNMAS,LAMB,EWEMAS,PEDI:DAM]')
       ->setSetting('target_type', 'sheep_entities_sheep_record')
       ->setSetting('handler', 'default:sheep_entities_sheep_record')
+      ->setSetting('handler_settings', [
+        'sort' => ['field' => '_none', 'direction' => 'ASC'],
+        'auto_create' => FALSE,
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    // field_s_born_day_julian (integer) - DEPRECATED - Use field_s_birth_date instead
-    // This field exists for legacy data compatibility only
-    $fields['field_s_born_day_julian'] = BaseFieldDefinition::create('integer')
-      ->setLabel(t('Born (Julian day) [DEPRECATED]'))
-      ->setDescription(t('Day of year (1-366) on which the animal was born. DEPRECATED: Use field_s_birth_date instead. [LAMB,WNMAS:DAYBRN]'))
-      ->setSetting('unsigned', TRUE)
-      ->addConstraint('Range', ['min' => 1, 'max' => 366])
+    // field_s_sire.
+    $fields['field_s_sire'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Sire'))
+      ->setDescription(t('Sire. Reference to the sire sheep record. ID10 beginning with "US" indicates Unknown Sub. See README. [INV,WNMAS,LAMB,PEDI:SIRE]'))
+      ->setSetting('target_type', 'sheep_entities_sheep_record')
+      ->setSetting('handler', 'default:sheep_entities_sheep_record')
+      ->setSetting('handler_settings', [
+        'sort' => ['field' => '_none', 'direction' => 'ASC'],
+        'auto_create' => FALSE,
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    // field_s_born_year (integer) - DEPRECATED - Use field_s_birth_date instead
-    // This field exists for legacy data compatibility only
-    $fields['field_s_born_year'] = BaseFieldDefinition::create('integer')
-      ->setLabel(t('Born (year) [DEPRECATED]'))
-      ->setDescription(t('Four-digit year of birth. DEPRECATED: Use field_s_birth_date instead. [Derived from LAMB:YR for on-site births or from INV:YRREC of first appearance in INV]'))
-      ->setSetting('unsigned', TRUE)
-      ->addConstraint('Range', ['min' => 1000, 'max' => 9999])
+    // field_s_foster_dam.
+    $fields['field_s_foster_dam'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Foster dam'))
+      ->setDescription('Foster dam. Entity reference to the dam that raised this lamb, when different from the biological dam (field_s_dam). Migrated from LAMB:FONO on rows where FOPU="-", indicating this lamb was transferred to the foster dam identified by FONO. FOPU "+" rows are ignored (captured from the foster lamb\'s row instead). FOPU "8" indicates orphan/death with no foster placement. [LAMB:FONO,FOPU]')
+      ->setSetting('target_type', 'sheep_entities_sheep_record')
+      ->setSetting('handler', 'default:sheep_entities_sheep_record')
+      ->setSetting('handler_settings', [
+        'sort' => ['field' => '_none', 'direction' => 'ASC'],
+        'auto_create' => FALSE,
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
     // field_s_birth_date (datetime - date only)
-    // Full date of birth. Use sheep_calendar module functions for Julian day conversion.
+    // Full date of birth. Use sheep_calendar for Julian day conversion.
     // Storage format: Y-m-d (e.g., "2024-03-15").
     // Migration: Use julian_to_date process plugin from sheep_calendar.
     // Example YAML:
-    //   field_s_birth_date:
-    //     plugin: julian_to_date
-    //     source: DAYBRN
-    //     year: constants/year_label
-    // Display: Use sheep_calendar Twig functions (sheep_date, sheep_age, sheep_year_label).
+    // field_s_birth_date:
+    // plugin: julian_to_date
+    // source: DAYBRN
+    // year: constants/year_label
     // Sheep Year format: 2024/25.
     $fields['field_s_birth_date'] = BaseFieldDefinition::create('datetime')
       ->setLabel(t('Birth date'))
@@ -178,40 +188,30 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    // field_s_disposal_day_julian (integer) - DEPRECATED - Use field_s_disposal_date instead
-    // This field exists for legacy data compatibility only
-    $fields['field_s_disposal_day_julian'] = BaseFieldDefinition::create('integer')
-      ->setLabel(t('Disposal (Julian day) [DEPRECATED]'))
-      ->setDescription(t('Day of year (1-366) of disposal. DEPRECATED: Use field_s_disposal_date instead. [WNMAS,INV,LAMB:DAYDIS]'))
-      ->setSetting('unsigned', TRUE)
-      ->addConstraint('Range', ['min' => 1, 'max' => 366])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
-    // field_s_disposal_year (integer) - DEPRECATED - Use field_s_disposal_date instead
-    // This field exists for legacy data compatibility only
-    $fields['field_s_disposal_year'] = BaseFieldDefinition::create('integer')
-      ->setLabel(t('Disposal (year) [DEPRECATED]'))
-      ->setDescription(t('Four-digit year of disposal. DEPRECATED: Use field_s_disposal_date instead. [Derived from LAMB:YR for stillbirths or from INV:YRREC of disposal code in INV]'))
-      ->setSetting('unsigned', TRUE)
-      ->addConstraint('Range', ['min' => 1900, 'max' => 2099])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
     // field_s_disposal_date (datetime - date only)
-    // Full date of disposal. Use sheep_calendar module functions for Julian day conversion.
+    // Full date of disposal. Use sheep_calendar for Julian conversion.
     // Storage format: Y-m-d (e.g., "2024-04-28").
     // Migration: Use julian_to_date process plugin from sheep_calendar.
     // Example YAML:
-    //   field_s_disposal_date:
-    //     plugin: julian_to_date
-    //     source: DAYDIS
-    //     year: constants/year_label
+    // field_s_disposal_date:
+    // plugin: julian_to_date
+    // source: DAYDIS
+    // year: constants/year_label
     // Display: Use sheep_calendar Twig functions for date/age calculations.
     $fields['field_s_disposal_date'] = BaseFieldDefinition::create('datetime')
       ->setLabel(t('Disposal date'))
       ->setDescription(t('Disposal date. Base field type is "datetime" using the "date" format. If exposing a filter on this field, use either the "Disposal date (Sheep Year)" or "Disposal date (Year)" plugin (provided by the sheep_calendar module) to create an autopopulated dropdown of values.'))
       ->setSetting('datetime_type', 'date')
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    // field_s_cause (term ref)
+    $fields['field_s_cause'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Cause'))
+      ->setDescription(t('Cause of death (lamb). References a taxonomy term). [LAMB:CAUSE]'))
+      ->setSetting('target_type', 'taxonomy_term')
+      ->setSetting('handler', 'default:taxonomy_term')
+      ->setSetting('handler_settings', ['target_bundles' => ['s_causes' => 's_causes']])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
@@ -228,7 +228,7 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
     // field_s_disposal (term ref)
     $fields['field_s_disposal'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Disposal code'))
-      ->setDescription(t('Disposal code. Reason or method of disposal (taxonomy term). [INV,LAMB,EWEMAS:DISP;WNMAS,LAMB:CAUSE]'))
+      ->setDescription(t('Disposal code. Reason or method of disposal (taxonomy term). [INV,LAMB,EWEMAS:DISP;WNMAS]'))
       ->setSetting('target_type', 'taxonomy_term')
       ->setSetting('handler', 'default:taxonomy_term')
       ->setSetting('handler_settings', ['target_bundles' => ['s_disposal_codes' => 's_disposal_codes']])
@@ -313,15 +313,6 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    // field_s_sire
-    $fields['field_s_sire'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Sire'))
-      ->setDescription(t('Sire. Reference to the sire sheep record. ID10 beginning with "US" indicates Unknown Sub. See README. [INV,WNMAS,LAMB,PEDI:SIRE]'))
-      ->setSetting('target_type', 'sheep_entities_sheep_record')
-      ->setSetting('handler', 'default:sheep_entities_sheep_record')
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
     // field_s_subtype_mating (term ref)
     $fields['field_s_subtype_mating'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Subtype mating'))
@@ -329,13 +320,6 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
       ->setSetting('target_type', 'taxonomy_term')
       ->setSetting('handler', 'default:taxonomy_term')
       ->setSetting('handler_settings', ['target_bundles' => ['s_subtype_matings' => 's_subtype_matings']])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
-    $fields['field_s_legacy_sire'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Legacy sire'))
-      ->setDescription(t('Before 2002.'))
-      ->setSetting('max_length', 64)
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
@@ -361,6 +345,35 @@ final class SheepRecord extends ContentEntityBase implements SheepRecordInterfac
       ->setSetting('datetime_type', 'date')
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
+
+    // field_s_is_unidentified_parent (boolean)
+    $fields['field_s_is_unidentified_parent'] = BaseFieldDefinition::create('boolean')
+      ->setLabel(t('Unidentified parent'))
+      ->setDescription(t('Boolean indicating that this is an unidentified parent record created to link offspring to a known sire or dam. Unidentified parent records have an ID10 beginning with "US" (Unknown Sire) or "UD" (Unknown Dam). They should not be included in population counts, reports or statistical queries.'))
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    // ── Overflow & provenance ────────────────────────────────────────
+    $fields['field_s_migration_legacy_data'] = BaseFieldDefinition::create('string_long')
+      ->setLabel(t('Legacy data (JSON)'))
+      ->setDescription(t('JSON object containing fields not represented as dedicated base fields. Keyed by original source field name.'))
+      ->setCardinality(-1)
+      ->setDisplayConfigurable('form', FALSE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['field_s_migration_notes'] = BaseFieldDefinition::create('string_long')
+      ->setLabel(t('Migration notes'))
+      ->setDescription(t('Auto-generated migration warnings and validation discrepancies.'))
+      ->setCardinality(-1)
+      ->setDisplayConfigurable('form', FALSE)
+      ->setDisplayConfigurable('view', FALSE);
+
+    $fields['field_s_migration_source'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Migration source (CSV/DBF)'))
+      ->setDescription(t('The table and row number the data was sourced from. Format: [YY + first two letters of table name + row number padded to 5 digits, e.g. "24IN01001" for 2024 INV table row 1001.'))
+      ->setCardinality(-1)
+      ->setDisplayConfigurable('form', FALSE)
+      ->setDisplayConfigurable('view', FALSE);
 
     return $fields;
   }

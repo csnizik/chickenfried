@@ -64,6 +64,7 @@
     "drupal/paragraphs": "^1.19",
     "drupal/pathauto": "^1.13",
     "drupal/pdf_reader": "^1.2",
+    "drupal/physical": "^1.5",
     "drupal/search_api": "^1.38",
     "drupal/selective_better_exposed_filters": "^3.0",
     "drupal/sitewide_alert": "^3.0",
@@ -166,7 +167,7 @@
   "require-dev": {
     "drupal/claude_code": "^1.0",
     "drupal/coder": "^8.3",
-    "slevomat/coding-standard": "^8.20"
+    "slevomat/coding-standard": "^8.22"
   },
   "scripts": {
     "clean-chartjs": "chmod +x scripts/clean-chartjs.sh && ./scripts/clean-chartjs.sh",

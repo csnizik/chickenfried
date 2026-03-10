@@ -1,0 +1,128 @@
+# Update existing sheep_record entities. Skips rows where no entity found.
+# Source CSV columns: ID10, DAM_ID10, BRD, DAYBRN, YR, CUT, TB, SRCTABLE, LEGACY_JSON
+id: sheep_example_update
+label: 'Example: Update sheep records from CSV'
+migration_group: sheep_pedi_phase1
+migration_tags:
+  - sheep
+  - example
+
+source:
+  plugin: csv
+  path: modules/custom/sheep_migration/data/example_update.csv
+  ids:
+    - ID10
+
+process:
+
+  # -- Find existing entity by ID10; skip if not found --
+  temp_existing_id:
+    plugin: entity_lookup
+    source: ID10
+    entity_type: sheep_entities_sheep_record
+    value_key: field_s_id10
+  # skip_on_empty: if entity_lookup returns nothing, skip this row.
+  id:
+    plugin: skip_on_empty
+    source: '@temp_existing_id'
+    method: row
+    message: 'No matching entity for this ID10, skipping.'
+
+  # -- Entity reference: dam --
+  temp_dam_clean:
+    - plugin: skip_on_value
+      source: DAM_ID10
+      method: process
+      value:
+        - '-'
+        - '.'
+        - ''
+    - plugin: callback
+      callable: trim
+  field_s_dam:
+    plugin: entity_lookup
+    source: '@temp_dam_clean'
+    entity_type: sheep_entities_sheep_record
+    value_key: field_s_id10
+
+  # -- Taxonomy reference: breed --
+  temp_breed_clean:
+    - plugin: skip_on_value
+      source: BRD
+      method: process
+      value:
+        - '-'
+        - '.'
+        - ''
+    - plugin: callback
+      callable: trim
+  field_s_breed:
+    plugin: entity_lookup
+    source: '@temp_breed_clean'
+    entity_type: taxonomy_term
+    bundle_key: vid
+    bundle: s_breeds
+    value_key: name
+
+  # -- Date from Julian day --
+  temp_daybrn_clean:
+    - plugin: skip_on_value
+      source: DAYBRN
+      method: process
+      value:
+        - 0
+        - '-'
+        - ''
+  field_s_birth_date:
+    plugin: julian_to_date
+    source: '@temp_daybrn_clean'
+    year: YR
+
+  # -- Boolean from Y/N --
+  temp_cut_trimmed:
+    plugin: callback
+    callable: trim
+    source: CUT
+  temp_cut_lower:
+    plugin: callback
+    callable: strtolower
+    source: '@temp_cut_trimmed'
+  field_s_cut:
+    plugin: static_map
+    source: '@temp_cut_lower'
+    map:
+      'y': 1
+      'n': 0
+    default_value: null
+
+  # -- Integer (1-10) --
+  temp_tb_clean:
+    - plugin: skip_on_value
+      source: TB
+      method: process
+      value:
+        - '-'
+        - '.'
+        - ''
+        - 0
+    - plugin: callback
+      callable: intval
+  field_s_type_of_birth: '@temp_tb_clean'
+
+  # -- Text --
+  field_s_migration_source: SRCTABLE
+
+  # -- JSON blob --
+  field_s_migration_legacy_data: LEGACY_JSON
+
+destination:
+  plugin: entity:sheep_entities_sheep_record
+  # Overwrite only the fields listed here on existing entities.
+  overwrite_properties:
+    - field_s_dam
+    - field_s_breed
+    - field_s_birth_date
+    - field_s_cut
+    - field_s_type_of_birth
+    - field_s_migration_source
+    - field_s_migration_legacy_data

@@ -1,0 +1,76 @@
+uuid: 3c4e8f58-4fc2-4047-a690-79e71219fd06
+langcode: en
+status: true
+dependencies: {  }
+id: sheep_pedi_lambs_born_10_25
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - sheep_pedi
+  - phase1
+  - lambs
+  - years_10_25
+migration_group: sheep_pedi_phase1
+label: 'PEDI 2010-2025: Lambs born'
+source:
+  plugin: csv
+  path: modules/custom/sheep_migration/data/_preprocessed/LAMBS-BORN-10-25.csv
+  ids:
+    - id10
+  header_offset: 0
+  fields:
+    -
+      name: id10
+    -
+      name: etag
+    -
+      name: first_seen_row
+    -
+      name: breed
+    -
+      name: stm
+    -
+      name: sireid10
+    -
+      name: damid10
+process:
+  field_s_id10: id10
+  field_s_etag: etag
+  field_s_migration_source: first_seen_row
+  field_s_breed:
+    plugin: entity_lookup
+    source: breed
+    entity_type: taxonomy_term
+    bundle_key: vid
+    bundle: s_breeds
+    value_key: name
+  field_s_subtype_mating:
+    plugin: entity_lookup
+    source: stm
+    entity_type: taxonomy_term
+    bundle_key: vid
+    bundle: s_subtype_matings
+    value_key: name
+  field_s_sire:
+    plugin: entity_lookup
+    source: sireid10
+    entity_type: sheep_entities_sheep_record
+    value_key: field_s_id10
+  field_s_dam:
+    plugin: entity_lookup
+    source: damid10
+    entity_type: sheep_entities_sheep_record
+    value_key: field_s_id10
+destination:
+  plugin: 'entity:sheep_entities_sheep_record'
+idMap: {  }
+migration_dependencies:
+  required:
+    - sheep_pedi_us_rows_10_25
+    - sheep_pedi_ud_rows_10_25
+    - sheep_pedi_pre10_sires_10_25
+    - sheep_pedi_pre10_dams_10_25
+    - sheep_pedi_post10_purch_sires_10_25
+    - sheep_pedi_post10_purch_dams_10_25
+include: null

@@ -1,0 +1,69 @@
+uuid: 5c39d66f-c328-4454-98ac-c629b500e61b
+langcode: en
+status: true
+dependencies: {  }
+id: sheep_notes_lamb_lamb_10_12
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - sheep
+  - notes
+migration_group: sheep_pedi_phase1
+label: 'Create sheep notes from LAMB lamb remarks 2010-2012'
+source:
+  plugin: csv
+  path: modules/custom/sheep_migration/data/_preprocessed/NOTES-LAMB-L-10-12.csv
+  ids:
+    - NOTEID
+process:
+  temp_note_clean:
+    -
+      plugin: callback
+      callable: trim
+      source: NOTE
+    -
+      plugin: skip_on_value
+      method: row
+      value:
+        - .
+        - '-'
+        - ''
+  temp_sheep_id:
+    plugin: entity_lookup
+    source: ID10
+    entity_type: sheep_entities_sheep_record
+    value_key: field_s_id10
+  field_s_sheep:
+    plugin: skip_on_empty
+    source: '@temp_sheep_id'
+    method: row
+    message: 'No matching sheep_record for this ID10, skipping.'
+  field_s_note/value: '@temp_note_clean'
+  field_s_note/format:
+    plugin: default_value
+    default_value: plain_text
+  temp_day_clean:
+    -
+      plugin: skip_on_value
+      source: DAY
+      method: process
+      value:
+        - 0
+        - '-'
+        - ''
+  field_s_date:
+    plugin: julian_to_date
+    source: '@temp_day_clean'
+    year: YR
+  field_s_migration_source:
+    plugin: concat
+    source:
+      - YR
+      - NOTEID
+    delimiter: ':'
+destination:
+  plugin: 'entity:sheep_entities_sheep_note'
+idMap: {  }
+migration_dependencies: { }
+include: null

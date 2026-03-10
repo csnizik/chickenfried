@@ -1,0 +1,69 @@
+id: sheep_notes_lamb_ewe_10_12
+label: 'Create sheep notes from LAMB ewe remarks 2010-2012'
+migration_group: sheep_pedi_phase1
+migration_tags:
+  - sheep
+  - notes
+
+source:
+  plugin: csv
+  path: modules/custom/sheep_migration/data/_preprocessed/NOTES-LAMB-E-10-12.csv
+  ids:
+    - NOTEID
+
+process:
+
+  # -- Skip rows with placeholder notes --
+  temp_note_clean:
+    - plugin: callback
+      callable: trim
+      source: NOTE
+    - plugin: skip_on_value
+      method: row
+      value:
+        - '.'
+        - '-'
+        - ''
+
+  # -- Sheep reference: lookup by ID10 --
+  temp_sheep_id:
+    plugin: entity_lookup
+    source: ID10
+    entity_type: sheep_entities_sheep_record
+    value_key: field_s_id10
+  field_s_sheep:
+    plugin: skip_on_empty
+    source: '@temp_sheep_id'
+    method: row
+    message: 'No matching sheep_record for this ID10, skipping.'
+
+  # -- Note text --
+  field_s_note/value: '@temp_note_clean'
+  field_s_note/format:
+    plugin: default_value
+    default_value: plain_text
+
+  # -- Date from Julian day + year --
+  temp_day_clean:
+    - plugin: skip_on_value
+      source: DAY
+      method: process
+      value:
+        - 0
+        - '-'
+        - ''
+  field_s_date:
+    plugin: julian_to_date
+    source: '@temp_day_clean'
+    year: YR
+
+  # -- Migration source --
+  field_s_migration_source:
+    plugin: concat
+    source:
+      - YR
+      - NOTEID
+    delimiter: ':'
+
+destination:
+  plugin: entity:sheep_entities_sheep_note

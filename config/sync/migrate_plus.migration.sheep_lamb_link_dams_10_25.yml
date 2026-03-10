@@ -1,0 +1,52 @@
+uuid: 204aacd7-3f57-40d1-91a3-fec6b38e1c27
+langcode: en
+status: true
+dependencies: {  }
+id: sheep_lamb_link_dams_10_25
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - sheep_lamb
+  - phase1
+  - links
+  - years_10_25
+migration_group: sheep_pedi_phase1
+label: 'LAMB 2010-2025: Link lambs to dams'
+source:
+  plugin: csv
+  path: modules/custom/sheep_migration/data/_preprocessed/LINK-LAMBS-DAMS-10-25.csv
+  ids:
+    - id10
+  header_offset: 0
+  fields:
+    -
+      name: id10
+    -
+      name: damid10
+process:
+  temp_entity_id:
+    plugin: entity_lookup
+    source: id10
+    entity_type: sheep_entities_sheep_record
+    value_key: field_s_id10
+  _skip_no_match:
+    plugin: skip_on_empty
+    source: '@temp_entity_id'
+    method: row
+  id: '@temp_entity_id'
+  field_s_id10: id10
+  field_s_dam:
+    plugin: entity_lookup
+    source: damid10
+    entity_type: sheep_entities_sheep_record
+    value_key: field_s_id10
+destination:
+  plugin: 'entity:sheep_entities_sheep_record'
+  overwrite_properties:
+    - field_s_dam
+idMap: {  }
+migration_dependencies:
+  required:
+    - sheep_pedi_lambs_born_10_25
+include: null

@@ -1,0 +1,160 @@
+uuid: 7b764153-1cd3-4763-962f-e9753ad9a71b
+langcode: en
+status: true
+dependencies: {  }
+id: sheep_lamb_dtag_lambs_10_25
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - sheep_lamb
+  - phase1
+  - dtags
+  - years_10_25
+migration_group: sheep_pedi_phase1
+label: 'LAMB 2010-2025: D-tag lambs (died before tagging)'
+source:
+  plugin: csv
+  path: modules/custom/sheep_migration/data/_preprocessed/D-LAMBS-10-25.csv
+  ids:
+    - ID10
+  header_offset: 0
+process:
+  field_s_id10: ID10
+  field_s_migration_source: UID
+  field_s_birth_date:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: DAYBRN
+    -
+      plugin: julian_to_date
+      year: YR
+  field_s_color:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: CLR
+    -
+      plugin: get
+  field_s_card_num:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: CDNO
+    -
+      plugin: get
+  field_s_cut:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: CUT_NML
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: static_map
+      map:
+        'Y': 1
+        'N': 0
+  field_s_cause:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: CAUSE
+    -
+      plugin: entity_lookup
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: s_causes
+      value_key: name
+  field_s_disposal_date:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: DAYDIS
+    -
+      plugin: julian_to_date
+      year: YR
+  field_s_preliminary_disp:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: DISP
+    -
+      plugin: entity_lookup
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: s_preliminary_disposals
+      value_key: name
+  field_s_inbreeding:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: INBRL
+    -
+      plugin: callback
+      callable: floatval
+  field_s_line:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: LINE
+    -
+      plugin: entity_lookup
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: s_lines
+      value_key: name
+  field_s_sex:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: SEX
+    -
+      plugin: entity_lookup
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: s_sex
+      value_key: name
+  field_s_subtype_mating:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: STM
+    -
+      plugin: entity_lookup
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: s_subtype_matings
+      value_key: name
+  field_s_type_of_birth:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: TB
+    -
+      plugin: get
+  field_s_dam:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: PREFERREDDAM
+    -
+      plugin: entity_lookup
+      entity_type: sheep_entities_sheep_record
+      value_key: field_s_id10
+  field_s_sire:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: PREFERREDSIRE
+    -
+      plugin: entity_lookup
+      entity_type: sheep_entities_sheep_record
+      value_key: field_s_id10
+destination:
+  plugin: 'entity:sheep_entities_sheep_record'
+idMap: {  }
+migration_dependencies: {  }
+include: null

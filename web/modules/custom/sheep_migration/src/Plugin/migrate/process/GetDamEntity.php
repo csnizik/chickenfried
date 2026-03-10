@@ -2,6 +2,7 @@
 
 namespace Drupal\sheep_migration\Plugin\migrate\process;
 
+use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\Row;
@@ -40,7 +41,7 @@ class GetDamEntity extends ProcessPluginBase {
       ->getStorage('sheep_entities_sheep_record');
     $sheep = $storage->load($value);
 
-    if (!$sheep instanceof \Drupal\Core\Entity\FieldableEntityInterface) {
+    if (!$sheep instanceof FieldableEntityInterface) {
       return NULL;
     }
 
@@ -51,7 +52,4 @@ class GetDamEntity extends ProcessPluginBase {
     return $sheep->get('field_s_dam')->target_id;
   }
 
-
 }
-
-
