@@ -1,4 +1,3 @@
-#!/usr/bin/env drush
 <?php
 
 /**
@@ -6,25 +5,21 @@
  * Delete sheep_record entities matching ID10 values in a CSV.
  *
  * CSV format: single column, header row "ID10", one ID10 per line.
- * Usage:
- * `ddev drush scr web/modules/custom/sheep_migration/scripts/delete_by_id10.php
- * -- /path/to/delete_list.csv` .
+ * Edit $path below, then run: ddev drush scr path/to/delete_by_id10.php.
  */
 
-use Drush\Drush;
+// EDIT THIS PATH before running.
+$path = '/var/www/html/web/modules/custom/sheep_migration/data/_preprocessed/JUNK-ID10S-DEL.csv';
 
-$extra = Drush::input()->getArgument('extra');
-$path = $extra[0] ?? NULL;
-
-if (!$path || !file_exists($path)) {
-  throw new \RuntimeException('Provide a valid CSV path as argument.');
+if (!file_exists($path)) {
+  throw new \RuntimeException("File not found: $path");
 }
 
 $storage = \Drupal::entityTypeManager()->getStorage('sheep_entities_sheep_record');
 $handle = fopen($path, 'r');
-
-// Skip header.
+// Skip header row.
 fgetcsv($handle);
+
 $deleted = 0;
 $not_found = 0;
 $batch = [];

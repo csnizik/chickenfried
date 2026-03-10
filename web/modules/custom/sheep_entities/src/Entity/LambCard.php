@@ -22,7 +22,7 @@ use Drupal\views\EntityViewsData;
  * Defines the Lamb Card entity.
  *
  * A join entity representing one ewe's lambing event for a given year.
- * Links a dam to her sire and the lambs produced. Per-lamb birth scores
+ * Links a dam to its sire and the lambs produced. Per-lamb birth scores
  * (dystocia, depth, jaw, birth weight, entropion, teat score) live on
  * the individual lamb's SheepRecord since they can vary per lamb in a
  * multi-lamb birth. Ewe-level assessments (type of birth, maternal
@@ -183,7 +183,6 @@ final class LambCard extends ContentEntityBase implements LambCardInterface {
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    // ── Overflow & provenance ────────────────────────────────────────
     // ── Overflow & provenance ────────────────────────────────────────
     $fields['field_s_migration_legacy_data'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Legacy data (JSON)'))

@@ -9,7 +9,7 @@ migration_tags:
 
 source:
   plugin: csv
-  path: /var/www/html/web/modules/custom/sheep_migration/data/example_update.csv
+  path: modules/custom/sheep_migration/data/example_update.csv
   ids:
     - ID10
 
