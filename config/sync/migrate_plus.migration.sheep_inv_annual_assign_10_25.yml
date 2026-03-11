@@ -1,0 +1,211 @@
+# Create annual_assignment entities from INV files 2010-2025.
+# Source CSV columns: AAID, ID10, ETAG, YRREC, PEN, RGRP, LOT, BAND, TRT, BPEN, BGRP, STUDY, STUDYTRT
+id: sheep_inv_annual_assign_10_25
+label: 'Create annual assignments from INV files 10-25'
+migration_group: sheep_pedi_phase1
+migration_tags:
+  - sheep
+  - annual
+
+source:
+  plugin: csv
+  path: modules/custom/sheep_migration/data/_preprocessed/INV-ANNUAL-ASSIGN-10-25.csv
+  ids:
+    - AAID
+
+process:
+
+  # -- Sheep reference: lookup by ID10, skip if not found --
+  temp_sheep_id:
+    plugin: entity_lookup
+    source: ID10
+    entity_type: sheep_entities_sheep_record
+    value_key: field_s_id10
+  field_s_sheep:
+    plugin: skip_on_empty
+    source: '@temp_sheep_id'
+    method: row
+    message: 'No matching sheep_record for this ID10, skipping.'
+
+  # -- Year (4-digit integer) --
+  field_s_year:
+    plugin: callback
+    callable: intval
+    source: YRREC
+
+  # -- Taxonomy: treatment pen --
+  temp_pen_clean:
+    - plugin: skip_on_value
+      source: PEN
+      method: process
+      value:
+        - '-'
+        - '.'
+        - ''
+    - plugin: callback
+      callable: trim
+  field_s_treatment_pen:
+    plugin: entity_lookup
+    source: '@temp_pen_clean'
+    entity_type: taxonomy_term
+    bundle_key: vid
+    bundle: s_treatment_pens
+    value_key: name
+
+  # -- Taxonomy: research group --
+  temp_rgrp_clean:
+    - plugin: skip_on_value
+      source: RGRP
+      method: process
+      value:
+        - '-'
+        - '.'
+        - ''
+    - plugin: callback
+      callable: trim
+  field_s_research_group:
+    plugin: entity_lookup
+    source: '@temp_rgrp_clean'
+    entity_type: taxonomy_term
+    bundle_key: vid
+    bundle: s_research_groups
+    value_key: name
+
+  # -- Taxonomy: lot --
+  temp_lot_clean:
+    - plugin: skip_on_value
+      source: LOT
+      method: process
+      value:
+        - '-'
+        - '.'
+        - ''
+    - plugin: callback
+      callable: trim
+  field_s_lot:
+    plugin: entity_lookup
+    source: '@temp_lot_clean'
+    entity_type: taxonomy_term
+    bundle_key: vid
+    bundle: s_lots
+    value_key: name
+
+  # -- Taxonomy: band --
+  temp_band_clean:
+    - plugin: skip_on_value
+      source: BAND
+      method: process
+      value:
+        - '-'
+        - '.'
+        - ''
+    - plugin: callback
+      callable: trim
+  field_s_band:
+    plugin: entity_lookup
+    source: '@temp_band_clean'
+    entity_type: taxonomy_term
+    bundle_key: vid
+    bundle: s_bands
+    value_key: name
+
+  # -- Taxonomy: treatment --
+  temp_trt_clean:
+    - plugin: skip_on_value
+      source: TRT
+      method: process
+      value:
+        - '-'
+        - '.'
+        - ''
+    - plugin: callback
+      callable: trim
+  field_s_treatment:
+    plugin: entity_lookup
+    source: '@temp_trt_clean'
+    entity_type: taxonomy_term
+    bundle_key: vid
+    bundle: s_treatments
+    value_key: name
+
+  # -- Taxonomy: breeding pen --
+  temp_bpen_clean:
+    - plugin: skip_on_value
+      source: BPEN
+      method: process
+      value:
+        - '-'
+        - '.'
+        - ''
+    - plugin: callback
+      callable: trim
+  field_s_breeding_pen:
+    plugin: entity_lookup
+    source: '@temp_bpen_clean'
+    entity_type: taxonomy_term
+    bundle_key: vid
+    bundle: s_breeding_pens
+    value_key: name
+
+  # -- Taxonomy: breeding group --
+  temp_bgrp_clean:
+    - plugin: skip_on_value
+      source: BGRP
+      method: process
+      value:
+        - '-'
+        - '.'
+        - ''
+    - plugin: callback
+      callable: trim
+  field_s_breeding_group:
+    plugin: entity_lookup
+    source: '@temp_bgrp_clean'
+    entity_type: taxonomy_term
+    bundle_key: vid
+    bundle: s_breeding_groups
+    value_key: name
+
+  # -- Taxonomy: study --
+  temp_study_clean:
+    - plugin: skip_on_value
+      source: STUDY
+      method: process
+      value:
+        - '-'
+        - '.'
+        - ''
+    - plugin: callback
+      callable: trim
+  field_s_study:
+    plugin: entity_lookup
+    source: '@temp_study_clean'
+    entity_type: taxonomy_term
+    bundle_key: vid
+    bundle: s_studies
+    value_key: name
+
+  # -- Taxonomy: study treatment --
+  temp_studytrt_clean:
+    - plugin: skip_on_value
+      source: STUDYTRT
+      method: process
+      value:
+        - '-'
+        - '.'
+        - ''
+    - plugin: callback
+      callable: trim
+  field_s_study_treatment:
+    plugin: entity_lookup
+    source: '@temp_studytrt_clean'
+    entity_type: taxonomy_term
+    bundle_key: vid
+    bundle: s_study_treatments
+    value_key: name
+
+  # -- Migration source --
+  field_s_migration_source: AAID
+
+destination:
+  plugin: entity:sheep_entities_annual_assignment

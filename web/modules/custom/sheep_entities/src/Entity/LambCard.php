@@ -24,7 +24,7 @@ use Drupal\views\EntityViewsData;
  * A join entity representing one ewe's lambing event for a given year.
  * Links a dam to its sire and the lambs produced. Per-lamb birth scores
  * (dystocia, depth, jaw, birth weight, entropion, teat score) live on
- * the individual lamb's SheepRecord since they can vary per lamb in a
+ * the individual lamb's ObservationRecord since they can vary per lamb in a
  * multi-lamb birth. Ewe-level assessments (type of birth, maternal
  * score, milk score, teat score, Y1/Y2) live here.
  *

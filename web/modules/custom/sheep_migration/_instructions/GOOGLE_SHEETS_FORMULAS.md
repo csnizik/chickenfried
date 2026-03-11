@@ -47,6 +47,14 @@ All unique values in SourceSheet column A that do not appear in current sheet co
 
 ---
 
+## Values in one column that are not in another
+All values in SourceSheet column A that do not appear in other sheet column B.
+
+### Cross-document
+```
+=UNIQUE(FILTER(A2:A,ISNA(MATCH(A2:A,IMPORTRANGE("DOCUMENT_ID","SheetName.csv!B2:B"),0)),A2:A<>""))
+```
+
 ## Unique Values in a Column
 
 ### Same sheet
