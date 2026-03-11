@@ -56,14 +56,9 @@ process:
     plugin: julian_to_date
     source: '@temp_day_clean'
     year: YR
-  field_s_migration_source:
-    plugin: concat
-    source:
-      - YR
-      - NOTEID
-    delimiter: ':'
+  field_s_migration_source: NOTEID
 destination:
   plugin: 'entity:sheep_entities_sheep_note'
 idMap: {  }
-migration_dependencies: { }
+migration_dependencies: {  }
 include: null

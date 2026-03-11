@@ -176,7 +176,7 @@ final class LambCard extends ContentEntityBase implements LambCardInterface {
     // field_s_disposal (term ref)
     $fields['field_s_breeding_pen'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Breeding pen'))
-      ->setDescription(t('The breeding pen in which the mating that led to this lambing event took place. [INV,WNMAS:PEN]'))
+      ->setDescription(t('The breeding pen in which the mating that led to this lambing event took place.[INV,WNMAS:PEN]'))
       ->setSetting('target_type', 'taxonomy_term')
       ->setSetting('handler', 'default:taxonomy_term')
       ->setSetting('handler_settings', ['target_bundles' => ['s_breeding_pens' => 's_breeding_pens']])
